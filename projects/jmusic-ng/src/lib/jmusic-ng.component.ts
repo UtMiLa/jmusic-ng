@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-jmusic-ng',
+  selector: 'mus-jmusic-ng',
   template: `
     <p>
       jmusic-ng works!
