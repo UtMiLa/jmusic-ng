@@ -6,12 +6,17 @@ import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Me
 console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
   selector: 'mus-jmusic-ng',
+
   template: `<div style="font-family: Emmentaler;">
-<canvas id="scoreCanvas" #scoreCanvas width="1000px"
-  [height]="canvasHeight"></canvas>
-  </div>
-  `,
-  styles: [
+              <canvas id="scoreCanvas" #scoreCanvas width="1000px" [height]="canvasHeight"></canvas>
+            </div>`,
+
+  styles: [`@font-face {
+    font-family: 'Emmentaler';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Emmentaler'), url(./Emmentaler-20.woff) format('woff');
+  }`
   ]
 })
 export class JmusicNgComponent implements OnInit {
