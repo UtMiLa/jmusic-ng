@@ -3,6 +3,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "experimentalDecorators": true,
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
