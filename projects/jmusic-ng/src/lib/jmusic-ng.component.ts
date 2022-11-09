@@ -1,7 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ScoreDef } from '../../../../../jmusic-model/src/model';
-import { ScoreViewModel, scoreModelToViewModel } from '../../../../../jmusic-model/src/logical-view';
-import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from '../../../../../jmusic-model/src/physical-view';
+import { ScoreDef, Time } from 'jmusic-model/model';
+import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
+const { ScoreViewModel, scoreModelToViewModel } = require('jmusic-model/logical-view');
+//const { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
+import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
+import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 
 console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
@@ -26,6 +29,16 @@ export class JmusicNgComponent implements OnInit {
 
   @ViewChild('scoreCanvas')
   scoreCanvas: ElementRef<HTMLCanvasElement> | undefined;
+
+
+  private _insertionPoint: InsertionPoint | undefined;
+  @Input()
+  public get insertionPoint(): InsertionPoint | undefined {
+    return this._insertionPoint;
+  }
+  public set insertionPoint(value: InsertionPoint | undefined) {
+    this._insertionPoint = value;
+  }
 
   private _scoreDef: ScoreDef | undefined;
   @Input()
@@ -60,7 +73,7 @@ export class JmusicNgComponent implements OnInit {
   scale = 1.2;
   staffCount = 2;
 
-  settings = {} as Metrics;
+  settings = {}/* as Metrics*/;
   /*new StandardMetrics({
       staffLineWidth: 6,
   });*/
@@ -83,8 +96,9 @@ export class JmusicNgComponent implements OnInit {
   render() {
     if (!this.scoreCanvas) return;
     if (this._scoreDef) {
+      const cursor = {absTime: this.insertionPoint?.time, staff: this.insertionPoint?.staffNo, position: 0} as Cursor;
       const logicalModel = scoreModelToViewModel(this._scoreDef);
-      const physicalModel = viewModelToPhysical(logicalModel, this.settings);
+      const physicalModel = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
       renderOnCanvas(physicalModel, this.scoreCanvas.nativeElement, {
         offsetX: 10,
         offsetY: 40,

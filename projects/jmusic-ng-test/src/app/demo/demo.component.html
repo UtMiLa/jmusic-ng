@@ -1,2 +1,7 @@
-<p>demo works!</p>
-<mus-jmusic-ng [scoreDef]="tuplets"></mus-jmusic-ng>
+<mus-jmusic-ng [scoreDef]="tuplets" [insertionPoint]="insertionPoint"></mus-jmusic-ng>
+
+
+<button (click)="moveLeft()">&lt;</button>
+<button (click)="moveRight()">&gt;</button>
+<button>&and;</button>
+<button>&or;</button>

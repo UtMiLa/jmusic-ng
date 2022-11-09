@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } from '../../../../../../jmusic-model/src/model';
+import { NoteType,  ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } from 'jmusic-model/model';
+//import { ClefType } from 'jmusic-model/src/model/states/clef';
+
+//const { NoteType,  ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
+import { ScoreDef, StaffDef, Time } from 'jmusic-model/model';
+import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
+
 @Component({
   selector: 'app-demo',
   templateUrl: './demo.component.html',
@@ -51,6 +57,18 @@ export class DemoComponent implements OnInit {
          ]
      } as StaffDef
      ]
-   };
+   } as ScoreDef;
+
+   insertionPoint = new InsertionPoint(this.tuplets);
+
+   moveRight() {
+    this.insertionPoint.moveRight();
+    this.tuplets = {...this.tuplets};
+   }
+
+   moveLeft() {
+    this.insertionPoint.moveLeft();
+    this.tuplets = {...this.tuplets};
+   }
 
 }
