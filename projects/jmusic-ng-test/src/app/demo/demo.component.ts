@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 //import { NoteType,  ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-const { NoteType,  ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
-import { ScoreDef, StaffDef, Time } from 'jmusic-model/model';
+const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
+import { ScoreDef, StaffDef, ClefType, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 
 @Component({
@@ -26,20 +26,25 @@ export class DemoComponent implements OnInit {
            voices:[
              {
                noteDirection: NoteDirection.Up,
-               content: new TupletSequence(
+               content: /*new TupletSequence(
                 new SimpleSequence( "c''8 c''8 c''8 c''8 c''8"
                 //new SimpleSequence( "c''4 c''4 c''4 c''4 c''4"
-               ),
+               )
+               ,
                { numerator: 4, denominator: 5 }
-             )},
+               )*/
+
+               new SimpleSequence( "c\'\'4 c\'\'4 cis\'\'4 c\'\'4")
+              },
                {
                noteDirection: NoteDirection.Down,
                content:
-               new CompositeSequence(
+               /*new CompositeSequence(
                 new RetrogradeSequence(
                   new TupletSequence( new SimpleSequence("c'8 d'8 e'8 f'8 g'8 a'8"), { numerator: 2, denominator: 3 })),
                 new SimpleSequence("c'8 d'8 e'8 f'8 g'8 a'8")
-              )
+              )*/
+              new SimpleSequence("c\'8 c\'4 c\'4 c\'4 c\'8")
 
                //content: new SimpleSequence( "c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
            },
@@ -52,7 +57,8 @@ export class DemoComponent implements OnInit {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: new SimpleSequence( "c4 c4 c4 c4 c4 c4 c4 c4 c4 c4"
+             //content: new SimpleSequence( "c4 c4 c4 c4 c4 c4 c4 c4 c4 c4"
+             content: new SimpleSequence( "c2 c4 c4"
            )}
          ]
      } as StaffDef

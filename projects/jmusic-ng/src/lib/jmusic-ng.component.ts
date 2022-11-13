@@ -2,18 +2,19 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 const { ScoreViewModel, scoreModelToViewModel } = require('jmusic-model/logical-view');
-const { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
+const { PhysicalModel, generateMeasureMap, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
 //import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
 import { Metrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
+import { ScoreViewModel } from 'jmusic-model/logical-view';
 
-console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
+//console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
   selector: 'mus-jmusic-ng',
 
   template: `<div style="font-family: Emmentaler;">
-              <canvas id="scoreCanvas" #scoreCanvas width="1000px" [height]="canvasHeight"></canvas>
-            </div>`,
+              <canvas id="scoreCanvas" #scoreCanvas width="1000px" [height]="canvasHeight" (mousemove)="mouseMove($event)"></canvas>
+            </div> {{mouseDebug}}`,
 
   styles: [`@font-face {
     font-family: 'Emmentaler';
@@ -99,6 +100,7 @@ export class JmusicNgComponent implements OnInit {
     if (this._scoreDef) {
       const cursor = {absTime: this.insertionPoint?.time, staff: this.insertionPoint?.staffNo, position: 0} as Cursor;
       const logicalModel = scoreModelToViewModel(this._scoreDef);
+      this.logicalModel = logicalModel;
       const physicalModel = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
       renderOnCanvas(physicalModel, this.scoreCanvas.nativeElement, {
         offsetX: 10,
@@ -119,5 +121,27 @@ export class JmusicNgComponent implements OnInit {
   get canvasHeight(): number {
     return 100 * this.scale * this.staffCount;
   }
+
+  mouseMove($event: MouseEvent) {
+    //
+    if (!this.logicalModel) return;
+    const map = generateMeasureMap(this.logicalModel, this.settings);
+    //console.log(map);
+
+    const localized = map.localize(($event.clientX - 10) / this.scale, $event.clientY / this.scale);
+    if (!localized) {
+      this.mouseDebug = '';
+      return;
+    }
+    this.mouseDebug = JSON.stringify($event.clientX) + ',' + JSON.stringify($event.clientY) + ' ' + JSON.stringify(localized);
+    //_insertionPoint = new InsertionPoint(this.scoreDef);
+    if (!this.insertionPoint) return;
+    this.insertionPoint.time = localized.time;
+    this.render();
+  }
+
+
+  logicalModel: ScoreViewModel | undefined;
+  mouseDebug: string = '';
 
 }
