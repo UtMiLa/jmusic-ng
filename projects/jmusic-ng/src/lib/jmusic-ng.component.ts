@@ -72,7 +72,7 @@ export class JmusicNgComponent implements OnInit {
     }*/
   }
 
-  scale = 1.2;
+  scale = 2;
   staffCount = 2;
 
   settings = {}/* as Metrics*/;
@@ -98,7 +98,11 @@ export class JmusicNgComponent implements OnInit {
   render() {
     if (!this.scoreCanvas) return;
     if (this._scoreDef) {
-      const cursor = {absTime: this.insertionPoint?.time, staff: this.insertionPoint?.staffNo, position: 0} as Cursor;
+      const cursor = {
+        absTime: this.insertionPoint?.time,
+        staff: this.insertionPoint?.staffNo,
+        position: this.insertionPoint?.position
+      } as Cursor;
       const logicalModel = scoreModelToViewModel(this._scoreDef);
       this.logicalModel = logicalModel;
       const physicalModel = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
@@ -128,7 +132,7 @@ export class JmusicNgComponent implements OnInit {
     const map = generateMeasureMap(this.logicalModel, this.settings);
     //console.log(map);
 
-    const localized = map.localize(($event.clientX - 10) / this.scale, $event.clientY / this.scale);
+    const localized = map.localize(($event.clientX - 10) / this.scale, ($event.clientY*2 - 40) / this.scale, this.settings);
     if (!localized) {
       this.mouseDebug = '';
       return;
@@ -137,6 +141,7 @@ export class JmusicNgComponent implements OnInit {
     //_insertionPoint = new InsertionPoint(this.scoreDef);
     if (!this.insertionPoint) return;
     this.insertionPoint.time = localized.time;
+    this.insertionPoint.position = 15-localized.pitch;
     this.render();
   }
 
