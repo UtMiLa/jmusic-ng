@@ -42,6 +42,8 @@ export class DemoComponent implements OnInit {
     this.tuplets = this.demos.filter(d => d[0] === ev.target.value)[0][1];
   }
 
+  restrictions = { startTime: Time.newAbsolute(2,1), endTime: Time.EternityTime };
+
   tuplets = {
     staves: [{
            initialClef: { clefType: ClefType.G, line: -2 },

@@ -1,4 +1,4 @@
-<mus-jmusic-ng [scoreDef]="tuplets" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
+<mus-jmusic-ng [scoreDef]="tuplets" [insertionPoint]="insertionPoint" [scale]="1.2" [restrictions]="restrictions"></mus-jmusic-ng>
 
 
 <button (click)="moveLeft()">&lt;</button>
@@ -8,3 +8,6 @@
 <select (change)="setVal($event)">
   <option *ngFor="let opt of demos" [value]="opt[0]">{{opt[0]}}</option>
 </select>
+
+<input type="number" name="startTimeNum" [(ngModel)]="restrictions.startTime.numerator">
+<input type="number" name="startTimeDen" [(ngModel)]="restrictions.startTime.denominator">

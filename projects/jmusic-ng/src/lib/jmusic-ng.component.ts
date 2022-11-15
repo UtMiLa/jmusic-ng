@@ -6,7 +6,7 @@ const { PhysicalModel, generateMeasureMap, viewModelToPhysical, StandardMetrics,
 //import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
 import { Metrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
-import { ScoreViewModel } from 'jmusic-model/logical-view';
+import { ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
 
 //console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
@@ -53,6 +53,8 @@ export class JmusicNgComponent implements OnInit {
   }
 
   @Input()
+  restrictions: SubsetDef = { startTime: Time.StartTime, endTime: Time.EternityTime };
+  @Input()
   scale = 2;
   staffCount = 2;
 
@@ -81,7 +83,7 @@ export class JmusicNgComponent implements OnInit {
         staff: this.insertionPoint?.staffNo,
         position: this.insertionPoint?.position
       } as Cursor;
-      const logicalModel = scoreModelToViewModel(this._scoreDef);
+      const logicalModel = scoreModelToViewModel(this._scoreDef, this.restrictions);
       this.logicalModel = logicalModel;
       const physicalModel = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
       renderOnCanvas(physicalModel, this.scoreCanvas.nativeElement, {
