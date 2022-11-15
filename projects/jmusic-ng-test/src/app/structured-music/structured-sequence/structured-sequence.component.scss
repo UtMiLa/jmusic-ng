@@ -1,0 +1,30 @@
+.sequence {
+  margin: 12px 0px;
+  border: solid thin maroon;
+  border-radius: 10px;
+  padding: 0px;
+  background-color: aquamarine;
+  overflow: hidden;
+  &.simple-sequence {
+    background-color: lightpink;
+  }
+  &.retrograde-sequence {
+    background-color: lightgreen;
+  }
+  &.composite-sequence {
+    background-color: lightblue;
+  }
+  &.tuplet-sequence {
+    background-color: #faf;
+  }
+  .type {
+    border: solid thin gray;
+    background-color: coral;
+    margin-top: 0px;
+    padding: 5px 10px;
+    border-radius: 0px 0px 10px 0px;
+  }
+  .content {
+    padding: 5px 30px;
+  }
+}

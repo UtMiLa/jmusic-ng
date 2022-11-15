@@ -42,7 +42,31 @@ export class DemoComponent implements OnInit {
     this.tuplets = this.demos.filter(d => d[0] === ev.target.value)[0][1];
   }
 
-  restrictions = { startTime: Time.newAbsolute(2,1), endTime: Time.EternityTime };
+  private _splitPointNum = 37;
+  public get splitPointNum() {
+    return this._splitPointNum;
+  }
+  public set splitPointNum(value) {
+    this._splitPointNum = value;
+    this.restrictionsBefore.endTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
+    this.restrictionsAfter.startTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
+    this.tuplets = {...this.tuplets};
+  }
+
+  private _splitPointDen = 8;
+  public get splitPointDen() {
+    return this._splitPointDen;
+  }
+  public set splitPointDen(value) {
+    this._splitPointDen = value;
+    this.restrictionsBefore.endTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
+    this.restrictionsAfter.startTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
+    this.tuplets = {...this.tuplets};
+  }
+
+
+  restrictionsBefore = { startTime: Time.StartTime, endTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen) };
+  restrictionsAfter = { startTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen), endTime: Time.EternityTime };
 
   tuplets = {
     staves: [{

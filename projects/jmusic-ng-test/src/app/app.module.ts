@@ -6,11 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
 import { FormsModule } from '@angular/forms';
+import { StructuredMusicComponent } from './structured-music/structured-music.component';
+import { StructuredSequenceComponent } from './structured-music/structured-sequence/structured-sequence.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent
+    DemoComponent,
+    StructuredMusicComponent,
+    StructuredSequenceComponent
   ],
   imports: [
     BrowserModule,

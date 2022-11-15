@@ -1,0 +1,19 @@
+<div *ngIf="scoreDef">
+  <div *ngFor="let staff of scoreDef.staves; let i = index" class="composite composite-staff">
+    <span class="type">Staff {{i+1}}</span>
+    <div class="content">
+      <ul>
+        <li>{{staff.initialKey|json}}</li>
+        <li>{{staff.initialMeter|json}}</li>
+        <li>{{staff.initialClef|json}}</li>
+      </ul>
+      <div *ngFor="let voice of staff.voices; let j = index" class="composite composite-voice">
+        <span class="type">Voice {{j+1}}</span>
+        <div class="content"><app-structured-sequence [sequence]="voice.content"></app-structured-sequence>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
