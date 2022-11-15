@@ -14,7 +14,7 @@ import { ScoreViewModel } from 'jmusic-model/logical-view';
 
   template: `<div style="font-family: Emmentaler;">
               <canvas id="scoreCanvas" #scoreCanvas width="1000px" [height]="canvasHeight" (mousemove)="mouseMove($event)"></canvas>
-            </div> {{mouseDebug}}`,
+            </div>`,// {{mouseDebug}}
 
   styles: [`@font-face {
     font-family: 'Emmentaler';
@@ -50,35 +50,13 @@ export class JmusicNgComponent implements OnInit {
   public set scoreDef(value: ScoreDef | undefined) {
     this._scoreDef = value;
     this.render();
-    /*if (!this.scoreCanvas) {
-      return;
-    }
-    if (value && this.scoreCanvas) {
-      const logicalModel = scoreModelToViewModel(value);
-      const physicalModel = viewModelToPhysical(logicalModel, this.settings);
-      renderOnCanvas(physicalModel, this.scoreCanvas.nativeElement, {
-        offsetX: 10,
-        offsetY: 40,
-        scaleX: this.scale,
-        scaleY: this.scale
-      });
-    } else {
-      renderOnCanvas({elements: []}, this.scoreCanvas.nativeElement, {
-        offsetX: 10,
-        offsetY: 40,
-        scaleX: this.scale,
-        scaleY: this.scale
-      });
-    }*/
   }
 
+  @Input()
   scale = 2;
   staffCount = 2;
 
-  settings = {}/* as Metrics*/;
-  /*new StandardMetrics({
-      staffLineWidth: 6,
-  });*/
+  settings = {};
 
   ngOnInit(): void {
     this.settings = new StandardMetrics({
@@ -141,6 +119,7 @@ export class JmusicNgComponent implements OnInit {
     //_insertionPoint = new InsertionPoint(this.scoreDef);
     if (!this.insertionPoint) return;
     this.insertionPoint.time = localized.time;
+    this.insertionPoint.staffNo = localized.staff;
     this.insertionPoint.position = 15-localized.pitch;
     this.render();
   }
