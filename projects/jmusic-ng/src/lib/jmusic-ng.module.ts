@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { JmusicNgComponent } from './jmusic-ng.component';
+import { JmusicPhysicalViewComponent } from './jmusic-physical-view/jmusic-physical-view.component';
 
 
 
 @NgModule({
   declarations: [
-    JmusicNgComponent
+    JmusicNgComponent,
+    JmusicPhysicalViewComponent
   ],
   imports: [
   ],
   exports: [
-    JmusicNgComponent
+    JmusicNgComponent,
+    JmusicPhysicalViewComponent
   ]
 })
 export class JmusicNgModule { }
