@@ -1,19 +1,19 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
-const { ScoreViewModel, scoreModelToViewModel } = require('jmusic-model/logical-view');
-const { PhysicalModel, generateMeasureMap, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
+const { ScoreViewModel } = require('jmusic-model/logical-view');
+const { PhysicalModel, viewModelToPhysical, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
 //import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
-import { Metrics, PhysicalModel } from 'jmusic-model/physical-view';
+import { generateMeasureMap, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
-import { ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
+import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
 
 //console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
   selector: 'mus-jmusic-ng',
 
-  template: `<div style="font-family: Emmentaler;">
-              <mus-jmusic-physical-view [model]="physicalModel" [scale]="scale" (onOverElement)="mouseMove($event)"></mus-jmusic-physical-view>
+  template: `<div style="font-family: Emmentaler;" *ngFor="let model of physicalModel">
+              <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)"></mus-jmusic-physical-view>
             </div>`,
 
   styles: [`@font-face {
@@ -53,19 +53,19 @@ export class JmusicNgComponent implements OnInit {
   @Input()
   scale = 2;
 
-  settings = {};
+  settings = new StandardMetrics({
+    staffLineWidth: 6,
+  });;
 
   ngOnInit(): void {
-    this.settings = new StandardMetrics({
-      staffLineWidth: 6,
-    });
+
   }
 
   ngAfterViewInit() {
     this.render();
   }
 
-  physicalModel: PhysicalModel | undefined;
+  physicalModel: PhysicalModel[] = [];
 
   render() {
     if (this._scoreDef) {
@@ -74,9 +74,27 @@ export class JmusicNgComponent implements OnInit {
         staff: this.insertionPoint?.staffNo,
         position: this.insertionPoint?.position
       } as Cursor;
-      const logicalModel = scoreModelToViewModel(this._scoreDef, this.restrictions);
+      let logicalModel = scoreModelToViewModel(this._scoreDef, this.restrictions);
       this.logicalModel = logicalModel;
-      this.physicalModel = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
+      let map = generateMeasureMap(this.logicalModel, this.settings);
+      const maxWidth = 200;
+      this.physicalModel = [];
+      let restriction = this.restrictions;
+      for(let i = 0; i < 3; i++) {
+      //while (map.totalWidth() > 150) {
+        console.log(restriction, map.totalWidth());
+
+        if (map.totalWidth() > maxWidth) {
+          restriction = { endTime: Time.addTime(restriction.startTime, Time.newSpan(4, 1)), startTime: restriction.startTime };
+        }
+        logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
+        this.physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
+        map = generateMeasureMap(this.logicalModel, this.settings);
+
+        restriction = { endTime: restriction.endTime, startTime: Time.addTime(restriction.startTime, Time.newSpan(4, 1)) };
+        //if (Time.sortComparison(restriction.endTime, restriction.startTime) <= 0) break;
+      }
+
     }
   }
 
@@ -98,10 +116,14 @@ export class JmusicNgComponent implements OnInit {
     //console.log('log loc', this.mouseDebug);
     //_insertionPoint = new InsertionPoint(this.scoreDef);
     if (!this.insertionPoint) return;
-    this.insertionPoint.time = localized.time;
-    this.insertionPoint.staffNo = localized.staff;
-    this.insertionPoint.position = 15-localized.pitch;
-    this.render();
+
+
+    if (Time.sortComparison(this.insertionPoint.time, localized.time) !==0 || this.insertionPoint.position !== 15-localized.pitch) {
+      this.insertionPoint.time = localized.time;
+      this.insertionPoint.staffNo = localized.staff;
+      this.insertionPoint.position = 15-localized.pitch;
+      //this.render();
+    }
   }
 
 

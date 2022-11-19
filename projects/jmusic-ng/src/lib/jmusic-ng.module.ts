@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { JmusicNgComponent } from './jmusic-ng.component';
 import { JmusicPhysicalViewComponent } from './jmusic-physical-view/jmusic-physical-view.component';
 
@@ -10,6 +11,7 @@ import { JmusicPhysicalViewComponent } from './jmusic-physical-view/jmusic-physi
     JmusicPhysicalViewComponent
   ],
   imports: [
+    BrowserModule
   ],
   exports: [
     JmusicNgComponent,

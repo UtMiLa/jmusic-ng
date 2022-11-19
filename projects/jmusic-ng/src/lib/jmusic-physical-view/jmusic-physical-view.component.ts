@@ -78,6 +78,7 @@ export class JmusicPhysicalViewComponent implements OnInit {
     return 100 * this.scale * this.staffCount;
   }
 
+
   mouseMove($event: MouseEvent) {
     const rect = ($event.target as any).getBoundingClientRect();
 
