@@ -4,7 +4,7 @@ import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 const { ScoreViewModel } = require('jmusic-model/logical-view');
 const { PhysicalModel, viewModelToPhysical, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
 //import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
-import { generateMeasureMap, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
+import { generateMeasureMap, findSystemSplits, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
 
@@ -77,10 +77,21 @@ export class JmusicNgComponent implements OnInit {
       let logicalModel = scoreModelToViewModel(this._scoreDef, this.restrictions);
       this.logicalModel = logicalModel;
       let map = generateMeasureMap(this.logicalModel, this.settings);
-      const maxWidth = 200;
+
+      const maxWidth = 700;
+
+      const splits = findSystemSplits(map, maxWidth);
+      console.log(splits);
       this.physicalModel = [];
-      let restriction = this.restrictions;
-      for(let i = 0; i < 3; i++) {
+      for(let i = 0; i < splits.length; i++) {
+        const restriction = { startTime: splits[i], endTime: i === splits.length - 1 ? this.restrictions.endTime : splits[i+1] };
+        logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
+        this.physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
+      }
+
+
+      //let restriction = this.restrictions;
+      /*for(let i = 0; i < 3; i++) {
       //while (map.totalWidth() > 150) {
         console.log(restriction, map.totalWidth());
 
@@ -90,10 +101,12 @@ export class JmusicNgComponent implements OnInit {
         logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
         this.physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
         map = generateMeasureMap(this.logicalModel, this.settings);
+        //const splits = findSystemSplits(map, 500);
+        //console.log(splits);
 
         restriction = { endTime: restriction.endTime, startTime: Time.addTime(restriction.startTime, Time.newSpan(4, 1)) };
         //if (Time.sortComparison(restriction.endTime, restriction.startTime) <= 0) break;
-      }
+      }*/
 
     }
   }
