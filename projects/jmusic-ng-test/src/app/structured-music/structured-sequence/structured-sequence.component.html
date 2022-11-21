@@ -16,7 +16,7 @@
   <div >
     <span class="type">CompositeSequence</span>
     <div class="content">
-      <div *ngFor="let child of seqAny._sequences">
+      <div *ngFor="let child of seqAny._sequences" class="side-by-side">
         <app-structured-sequence [sequence]="child"></app-structured-sequence>
       </div>
     </div>
