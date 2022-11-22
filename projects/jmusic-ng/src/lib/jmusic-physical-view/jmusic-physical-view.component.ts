@@ -32,6 +32,9 @@ export class JmusicPhysicalViewComponent implements OnInit {
   @Output()
   onOverElement = new EventEmitter();
 
+  @Output()
+  onClickElement = new EventEmitter();
+
   @Input()
   restrictions: SubsetDef = { startTime: Time.StartTime, endTime: Time.EternityTime };
   @Input()
@@ -82,7 +85,18 @@ export class JmusicPhysicalViewComponent implements OnInit {
   mouseMove($event: MouseEvent) {
     const rect = ($event.target as any).getBoundingClientRect();
 
-    this.onOverElement.next({clientX: $event.clientX - rect.left, clientY: $event.clientY - rect.top});
+    this.onOverElement.next({
+      clientX: $event.clientX - rect.left, clientY: $event.clientY - rect.top, startTime: this.restrictions.startTime});
+  }
+
+  click($event: MouseEvent) {
+    const rect = ($event.target as any).getBoundingClientRect();
+
+    this.onClickElement.next({
+      clientX: $event.clientX - rect.left, clientY: $event.clientY - rect.top,
+      startTime: this.restrictions.startTime,
+      model: this.model
+    });
   }
 
 }

@@ -1,9 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
-const { ScoreViewModel } = require('jmusic-model/logical-view');
-const { PhysicalModel, viewModelToPhysical, renderOnCanvas, Metrics } = require('jmusic-model/physical-view');
-//import { PhysicalModel, viewModelToPhysical, StandardMetrics, renderOnCanvas, Metrics } from 'jmusic-model/physical-view';
+//const { ScoreViewModel } = require('jmusic-model/logical-view');
+const { viewModelToPhysical, renderOnCanvas } = require('jmusic-model/physical-view');
+import { /* viewModelToPhysical, renderOnCanvas*/ } from 'jmusic-model/physical-view';
 import { generateMeasureMap, findSystemSplits, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
@@ -13,7 +13,7 @@ import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/l
   selector: 'mus-jmusic-ng',
 
   template: `<div style="font-family: Emmentaler;" *ngFor="let model of physicalModel">
-              <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)"></mus-jmusic-physical-view>
+              <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)" (onClickElement)="clickElement($event)"></mus-jmusic-physical-view>
             </div>`,
 
   styles: [`@font-face {
@@ -81,7 +81,7 @@ export class JmusicNgComponent implements OnInit {
       const maxWidth = 700;
 
       const splits = findSystemSplits(map, maxWidth);
-      console.log(splits);
+      //console.log(splits);
       this.physicalModel = [];
       for(let i = 0; i < splits.length; i++) {
         const restriction = { startTime: splits[i], endTime: i === splits.length - 1 ? this.restrictions.endTime : splits[i+1] };
@@ -90,29 +90,40 @@ export class JmusicNgComponent implements OnInit {
       }
 
 
-      //let restriction = this.restrictions;
-      /*for(let i = 0; i < 3; i++) {
-      //while (map.totalWidth() > 150) {
-        console.log(restriction, map.totalWidth());
-
-        if (map.totalWidth() > maxWidth) {
-          restriction = { endTime: Time.addTime(restriction.startTime, Time.newSpan(4, 1)), startTime: restriction.startTime };
-        }
-        logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
-        this.physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
-        map = generateMeasureMap(this.logicalModel, this.settings);
-        //const splits = findSystemSplits(map, 500);
-        //console.log(splits);
-
-        restriction = { endTime: restriction.endTime, startTime: Time.addTime(restriction.startTime, Time.newSpan(4, 1)) };
-        //if (Time.sortComparison(restriction.endTime, restriction.startTime) <= 0) break;
-      }*/
-
     }
   }
 
 
   mouseMove($event: MouseEvent) {
+    //console.log('log mm', $event);
+
+    if (!this.logicalModel) return;
+    const map = generateMeasureMap(this.logicalModel, this.settings);
+    //console.log(map);
+    //console.log('log map', map);
+    const localized = map.localize(($event.clientX) / this.scale, ($event.clientY*2 - 12) / this.scale, this.settings);
+    if (!localized) {
+      this.mouseDebug = '';
+      return;
+    }
+
+    this.mouseDebug = JSON.stringify($event.clientX) + ',' + JSON.stringify($event.clientY) + ' ' + JSON.stringify(localized);
+    //console.log('log loc', this.mouseDebug);
+    //_insertionPoint = new InsertionPoint(this.scoreDef);
+    /*if (!this.insertionPoint) return;
+
+
+    if (Time.sortComparison(this.insertionPoint.time, localized.time) !==0 || this.insertionPoint.position !== 15-localized.pitch) {
+      this.insertionPoint.time = localized.time;
+      this.insertionPoint.staffNo = localized.staff;
+      this.insertionPoint.position = 15-localized.pitch;
+      //this.render();
+    }*/
+  }
+
+
+
+  clickElement($event: MouseEvent) {
     //console.log('log mm', $event);
 
     if (!this.logicalModel) return;
@@ -135,7 +146,9 @@ export class JmusicNgComponent implements OnInit {
       this.insertionPoint.time = localized.time;
       this.insertionPoint.staffNo = localized.staff;
       this.insertionPoint.position = 15-localized.pitch;
-      //this.render();
+      console.log(this.insertionPoint, $event);
+
+      this.render();
     }
   }
 
