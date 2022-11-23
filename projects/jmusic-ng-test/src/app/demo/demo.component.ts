@@ -14,6 +14,7 @@ import { physBasics } from '../../demodata/physical-basics';
 import { physBeaming } from '../../demodata/physical-beaming';
 import { tuplets } from '../../demodata/tuplets';
 import { repeats } from '../../demodata/repeats';
+import { expressions } from '../../demodata/expressions';
 
 @Component({
   selector: 'app-demo',
@@ -30,6 +31,7 @@ export class DemoComponent implements OnInit {
   demos: [string, ScoreDef][] = [
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
+    ['Expressions', expressions],
     ['Hymn', koral41],
     /*['Basic physical', physBasics],
     ['Beaming physical', physBeaming],*/
