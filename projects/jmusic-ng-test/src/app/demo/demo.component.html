@@ -2,8 +2,8 @@
 
 <button (click)="moveLeft()">&lt;</button>
 <button (click)="moveRight()">&gt;</button>
-<button>&and;</button>
-<button>&or;</button>
+<button (click)="moveUp()">&and;</button>
+<button (click)="moveDown()">&or;</button>
 <select (change)="setVal($event)">
   <option *ngFor="let opt of demos" [value]="opt[0]">{{opt[0]}}</option>
 </select>
@@ -11,4 +11,28 @@
 <input type="number" name="startTimeNum" [(ngModel)]="splitPointNum">
 <input type="number" name="startTimeDen" [(ngModel)]="splitPointDen">
 
+<dl>
+
+  <dt>Staff</dt>
+  <dd>
+    <select (change)="insertionPoint.staffNo = +staffX.value; invalidate()" #staffX>
+      <option *ngFor="let staffNo of tuplets.staves; let i = index" [value]="+i">{{i}}</option>
+    </select>
+  </dd>
+
+  <dt>Voice</dt>
+  <dd>
+    <select (change)="insertionPoint.voiceNo = +voiceX.value; invalidate()" #voiceX>
+      <option *ngFor="let voice of tuplets.staves[insertionPoint.staffNo].voices; let i = index" [value]="i">{{i}}</option>
+    </select>
+  </dd>
+
+  <dt>Position</dt>
+  <dd>
+    <input type="number" name="insertionPointPosition" [(ngModel)]="insertionPoint.position" (change)="invalidate()">
+  </dd>
+
+</dl>
+
+{{insertionPoint.time |json}}
 <app-structured-music [scoreDef]="tuplets"></app-structured-music>
