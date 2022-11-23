@@ -42,6 +42,7 @@ export class DemoComponent implements OnInit {
   setVal(ev: any) {
     console.log(ev, ev.target.value);
     this.tuplets = this.demos.filter(d => d[0] === ev.target.value)[0][1];
+    this.insertionPoint = new InsertionPoint(this.tuplets);
   }
 
   private _splitPointNum = 37;
@@ -52,7 +53,8 @@ export class DemoComponent implements OnInit {
     this._splitPointNum = value;
     this.restrictionsBefore.endTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
     this.restrictionsAfter.startTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
-    this.tuplets = {...this.tuplets};
+    this.invalidate();
+    this.insertionPoint = new InsertionPoint(this.tuplets);
   }
 
   private _splitPointDen = 8;
@@ -63,13 +65,17 @@ export class DemoComponent implements OnInit {
     this._splitPointDen = value;
     this.restrictionsBefore.endTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
     this.restrictionsAfter.startTime = Time.newAbsolute(this.splitPointNum, this.splitPointDen);
-    this.tuplets = {...this.tuplets};
+    this.invalidate();
+    this.insertionPoint = new InsertionPoint(this.tuplets);
   }
 
 
   restrictionsBefore = { startTime: Time.StartTime, endTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen) };
   restrictionsAfter = { startTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen), endTime: Time.EternityTime };
 
+  invalidate() {
+    this.tuplets = {...this.tuplets};
+  }
 
   tuplets = repeats as ScoreDef;
 
@@ -77,12 +83,22 @@ export class DemoComponent implements OnInit {
 
    moveRight() {
     this.insertionPoint.moveRight();
-    this.tuplets = {...this.tuplets};
+    this.invalidate();
    }
 
    moveLeft() {
     this.insertionPoint.moveLeft();
-    this.tuplets = {...this.tuplets};
+    this.invalidate();
+   }
+
+   moveUp() {
+    this.insertionPoint.position++;
+    this.invalidate();
+   }
+
+   moveDown() {
+    this.insertionPoint.position--;
+    this.invalidate();
    }
 
 }
