@@ -15,6 +15,7 @@ import { physBeaming } from '../../demodata/physical-beaming';
 import { tuplets } from '../../demodata/tuplets';
 import { repeats } from '../../demodata/repeats';
 import { expressions } from '../../demodata/expressions';
+import { lyrics } from '../../demodata/lyrics';
 
 @Component({
   selector: 'app-demo',
@@ -33,6 +34,7 @@ export class DemoComponent implements OnInit {
     ['Beaming model', beamModel],
     ['Expressions', expressions],
     ['Hymn', koral41],
+    ['Lyrics', lyrics],
     /*['Basic physical', physBasics],
     ['Beaming physical', physBeaming],*/
     ['Repeats', repeats],
@@ -79,7 +81,7 @@ export class DemoComponent implements OnInit {
     this.tuplets = {...this.tuplets};
   }
 
-  tuplets = repeats as ScoreDef;
+  tuplets = lyrics as ScoreDef;
 
    insertionPoint = new InsertionPoint(this.tuplets);
 

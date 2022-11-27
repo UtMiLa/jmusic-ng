@@ -1,5 +1,5 @@
 
-<div *ngIf="type!=='SimpleSequence' && type!=='CompositeSequence' && type!=='TupletSequence' && type!=='RetrogradeSequence'">
+<div *ngIf="type!=='SimpleSequence' && type!=='CompositeSequence' && type!=='TupletSequence' && type!=='RetrogradeSequence' && type!=='LyricsSequence'">
   {{type}}
 </div>
 
@@ -11,9 +11,7 @@
 </div>
 
 <div *ngIf="type==='CompositeSequence'" class="sequence composite-sequence">
-
-
-  <div >
+  <div>
     <span class="type">CompositeSequence</span>
     <div class="content">
       <div *ngFor="let child of seqAny._sequences" class="side-by-side">
@@ -21,25 +19,27 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div *ngIf="type==='TupletSequence'"  class="sequence tuplet-sequence">
-
-
   <div >
     <span class="type">TupletSequence ({{seqAny.fraction.numerator}}/{{seqAny.fraction.denominator}})</span>
     <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
   </div>
-
 </div>
 
 <div *ngIf="type==='RetrogradeSequence'" class="sequence retrograde-sequence">
-
   <div >
     <span class="type">RetrogradeSequence</span>
     <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
   </div>
+</div>
 
+<div *ngIf="type==='LyricsSequence'" class="sequence lyrics-sequence">
+  <div >
+    <span class="type">LyricsSequence</span>
+    <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
+    <div class="content">{{seqAny.lyricsText}}</div>
+  </div>
 </div>
 

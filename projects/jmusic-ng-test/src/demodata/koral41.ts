@@ -1,4 +1,4 @@
-import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence } from 'jmusic-model/model';
+import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, LyricsSequence } from 'jmusic-model/model';
 
 
 export const koral41 = {
@@ -9,9 +9,10 @@ export const koral41 = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: new SimpleSequence(
-              "bes'8 bes'4 bes'8 aes'8 g'8 f'8 ees'4 g'8 f'4 bes8 g'8. g'16 aes'8 bes'8 c''8 bes'8 aes'4. g'4 bes'8 f'4 aes'8 g'8 ees'8 bes'8 f'8. g'16 aes'8 g'4 g'8 g'8 f'8 g'8 a'8 g'8 a'8 c''4. bes'8 r8 bes'8 ees''8. ees''16 d''8 c''8 g'8 aes'8 bes'8 c''8 aes'8 g'4 g'8 c''4 bes'8 aes'8 c'8 f'8 ees'4. d'4. ees'4.~ ees'4"
+             content: new LyricsSequence( new SimpleSequence(
+              "bes'8 bes'4 bes'8 aes'8 g'8 f'8 ees'4 g'8 f'4 bes8 g'8. g'16 aes'8 bes'8 c''8 bes'8 aes'4. g'4 bes'8 f'4 aes'8 g'8 ees'8 bes'8 f'8. g'16 aes'8 g'4 g'8 g'8 f'8 g'8 a'8 g'8 a'8 c''4. bes'8 r8 bes'8 ees''8. ees''16 d''8 c''8 g'8 aes'8 bes'8 c''8 aes'8 g'4 g'8 c''4 bes'8 aes'8 c'8 f'8 ees'4. d'4. ees'4.~ ees'4"),
               //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
+              `Den mør- ke nat _ for- gang- en er, og dag- en op- rin- der så vi- de, nu skin- ner sol ov- er mark _ og kær, de fug- le de sjun- ge så bli- de. Gud gi- ve os lyk- ke og go- - de råd, sin nå- des lys os til- sen- - de!`
            )},
              {
              noteDirection: NoteDirection.Down,
