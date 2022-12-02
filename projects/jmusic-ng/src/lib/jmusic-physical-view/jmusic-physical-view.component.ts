@@ -25,6 +25,11 @@ export class JmusicPhysicalViewComponent implements OnInit {
     return this._model;
   }
   public set model(value: PhysicalModel | undefined) {
+    /*if (JSON.stringify(value) === JSON.stringify(this._model)) {
+      console.log('same value');
+
+      return;
+    }*/
     this._model = value;
     this.render();
   }
@@ -52,7 +57,7 @@ export class JmusicPhysicalViewComponent implements OnInit {
   ngAfterViewInit() {
     //console.log(this.scoreCanvas);
 
-    setTimeout(() => { // otherwise does not load fint in Chrome
+    setTimeout(() => { // otherwise does not load font in Chrome
       this.render();
     }, 10);
 

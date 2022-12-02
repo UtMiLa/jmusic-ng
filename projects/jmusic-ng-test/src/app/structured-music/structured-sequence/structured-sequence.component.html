@@ -6,7 +6,7 @@
 <div *ngIf="type==='SimpleSequence'" class="sequence simple-sequence">
   <div >
     <span class="type">SimpleSequence</span>
-    <div class="content">{{seqAny._def}}</div>
+    <div class="content"><textarea [(ngModel)]="seqAny._def" (change)="updateSeq(seqAny)"></textarea></div>
   </div>
 </div>
 
@@ -39,7 +39,7 @@
   <div >
     <span class="type">LyricsSequence</span>
     <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
-    <div class="content">{{seqAny.lyricsText}}</div>
+    <div class="content"><textarea [(ngModel)]="seqAny.lyricsText" (change)="updateLyrics(seqAny)"></textarea></div>
   </div>
 </div>
 

@@ -82,13 +82,19 @@ export class JmusicNgComponent implements OnInit {
 
       const splits = findSystemSplits(map, maxWidth);
       //console.log(splits);
-      this.physicalModel = [];
+      const physicalModel = [];
       for(let i = 0; i < splits.length; i++) {
         const restriction = { startTime: splits[i], endTime: i === splits.length - 1 ? this.restrictions.endTime : splits[i+1] };
         logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
-        this.physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
-      }
 
+
+        if (this.physicalModel.length > i && JSON.stringify(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor)) === JSON.stringify(this.physicalModel[i])) {
+          physicalModel.push(this.physicalModel[i]);
+        } else {
+          physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
+        }
+      }
+      this.physicalModel = physicalModel;
 
     }
   }
