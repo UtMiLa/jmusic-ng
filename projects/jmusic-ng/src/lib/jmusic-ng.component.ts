@@ -2,8 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 //const { ScoreViewModel } = require('jmusic-model/logical-view');
-const { viewModelToPhysical, renderOnCanvas } = require('jmusic-model/physical-view');
-import { /* viewModelToPhysical, renderOnCanvas*/ } from 'jmusic-model/physical-view';
+import { viewModelToPhysical, renderOnCanvas } from 'jmusic-model/physical-view';
 import { generateMeasureMap, findSystemSplits, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
@@ -12,9 +11,9 @@ import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/l
 @Component({
   selector: 'mus-jmusic-ng',
 
-  template: `<div style="font-family: Emmentaler;" *ngFor="let model of physicalModel">
+  template: `<div tabindex="-1" #div (keydown)="keyDown($event)"><div style="font-family: Emmentaler;" *ngFor="let model of physicalModel">
               <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)" (onClickElement)="clickElement($event)"></mus-jmusic-physical-view>
-            </div>`,
+            </div></div>`,
 
   styles: [`@font-face {
     font-family: 'Emmentaler';
@@ -28,6 +27,10 @@ export class JmusicNgComponent implements OnInit {
 
   constructor() {
   }
+
+  @ViewChild('div')
+  div: ElementRef<HTMLDivElement> | undefined;
+
 
   private _insertionPoint: InsertionPoint | undefined;
   @Input()
@@ -63,6 +66,7 @@ export class JmusicNgComponent implements OnInit {
 
   ngAfterViewInit() {
     this.render();
+    this.div?.nativeElement.focus();
   }
 
   physicalModel: PhysicalModel[] = [];
@@ -87,11 +91,12 @@ export class JmusicNgComponent implements OnInit {
         const restriction = { startTime: splits[i], endTime: i === splits.length - 1 ? this.restrictions.endTime : splits[i+1] };
         logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
 
+        const phv = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
 
-        if (this.physicalModel.length > i && JSON.stringify(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor)) === JSON.stringify(this.physicalModel[i])) {
+        if (this.physicalModel.length > i && JSON.stringify(phv) === JSON.stringify(this.physicalModel[i])) {
           physicalModel.push(this.physicalModel[i]);
         } else {
-          physicalModel.push(viewModelToPhysical(logicalModel, this.settings as Metrics, cursor));
+          physicalModel.push(phv);
         }
       }
       this.physicalModel = physicalModel;
@@ -162,4 +167,9 @@ export class JmusicNgComponent implements OnInit {
   logicalModel: ScoreViewModel | undefined;
   mouseDebug: string = '';
 
+
+  keyDown($event: Event) {
+    console.log($event);
+
+  }
 }
