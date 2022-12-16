@@ -9,5 +9,7 @@ export const longdeco = new JMusic({
 const ins = new InsertionPoint(longdeco);
 ins.time = Time.fromStart(Time.QuarterTime);
 longdeco.addLongDecoration(LongDecorationType.Crescendo, ins, Time.newSpan(3, 4));
+longdeco.addLongDecoration(LongDecorationType.Slur, ins, Time.newSpan(1, 1));
+
 ins.time = Time.fromStart(Time.WholeTime);
 longdeco.addLongDecoration(LongDecorationType.Decrescendo, ins, Time.HalfTime);
