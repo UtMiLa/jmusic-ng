@@ -1,3 +1,4 @@
+import { longdeco } from './../../demodata/longdeco';
 import { meterModel } from './../../demodata/time-changes';
 import { stateChanges } from './../../demodata/state-changes';
 import { Component, OnInit } from '@angular/core';
@@ -34,9 +35,8 @@ export class DemoComponent implements OnInit {
     ['Beaming model', beamModel],
     ['Expressions', expressions],
     ['Hymn', koral41],
+    ['Long decorations', longdeco],
     ['Lyrics', lyrics],
-    /*['Basic physical', physBasics],
-    ['Beaming physical', physBeaming],*/
     ['Repeats', repeats],
     ['State changes', stateChanges],
     ['Time model', meterModel],
@@ -81,7 +81,7 @@ export class DemoComponent implements OnInit {
     this.tuplets = {...this.tuplets};
   }
 
-  tuplets = lyrics as ScoreDef;
+  tuplets = longdeco as ScoreDef;
 
    insertionPoint = new InsertionPoint(this.tuplets);
 
