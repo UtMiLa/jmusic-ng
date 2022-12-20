@@ -1,5 +1,5 @@
 
-<div *ngIf="type!=='SimpleSequence' && type!=='CompositeSequence' && type!=='TupletSequence' && type!=='RetrogradeSequence' && type!=='LyricsSequence'">
+<div *ngIf="type!=='SimpleSequence' && type!=='CompositeSequence' && type!=='TupletSequence' && type!=='RetrogradeSequence' && type!=='LyricsSequence' && type !=='GraceSequence'">
   {{type}}
 </div>
 
@@ -21,9 +21,17 @@
   </div>
 </div>
 
+
 <div *ngIf="type==='TupletSequence'"  class="sequence tuplet-sequence">
   <div >
     <span class="type">TupletSequence ({{seqAny.fraction.numerator}}/{{seqAny.fraction.denominator}})</span>
+    <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
+  </div>
+</div>
+
+<div *ngIf="type==='GraceSequence'"  class="sequence grace-sequence">
+  <div >
+    <span class="type">GraceSequence</span>
     <div class="content"><app-structured-sequence [sequence]="seqAny.sequence"></app-structured-sequence></div>
   </div>
 </div>

@@ -101,6 +101,8 @@ export class JmusicNgComponent implements OnInit {
       }
       this.physicalModel = physicalModel;
 
+      console.log('render', this._scoreDef, logicalModel, physicalModel);
+
     }
   }
 

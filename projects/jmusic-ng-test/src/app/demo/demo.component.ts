@@ -17,6 +17,7 @@ import { tuplets } from '../../demodata/tuplets';
 import { repeats } from '../../demodata/repeats';
 import { expressions } from '../../demodata/expressions';
 import { lyrics } from '../../demodata/lyrics';
+import { grace } from '../../demodata/grace';
 
 @Component({
   selector: 'app-demo',
@@ -34,6 +35,7 @@ export class DemoComponent implements OnInit {
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
     ['Expressions', expressions],
+    ['Grace notes', grace],
     ['Hymn', koral41],
     ['Long decorations', longdeco],
     ['Lyrics', lyrics],
@@ -81,7 +83,7 @@ export class DemoComponent implements OnInit {
     this.tuplets = {...this.tuplets};
   }
 
-  tuplets = longdeco as ScoreDef;
+  tuplets = grace as ScoreDef;
 
    insertionPoint = new InsertionPoint(this.tuplets);
 
