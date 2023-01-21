@@ -16,7 +16,11 @@ export const grace = {
               new GraceSequence( new SimpleSequence("d'16 e'16")),
               new SimpleSequence( "f'4 g'4 c''8 d''8"),
               new GraceSequence( new SimpleSequence( "e''16")),
-              new SimpleSequence( "f''4 g''4 f''4 f''4")
+              new SimpleSequence( "f''4 g''4 f''4 f''4 c''16"),
+              new GraceSequence( new SimpleSequence("d'16 e'32 f'32 g'16")),
+              new SimpleSequence( "f'16"),
+              new GraceSequence( new SimpleSequence( "e''16")),
+              new SimpleSequence( "f''16 g''16")
              )
           },{
             noteDirection: NoteDirection.Down,
