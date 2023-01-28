@@ -8,13 +8,15 @@ import { DemoComponent } from './demo/demo.component';
 import { FormsModule } from '@angular/forms';
 import { StructuredMusicComponent } from './structured-music/structured-music.component';
 import { StructuredSequenceComponent } from './structured-music/structured-sequence/structured-sequence.component';
+import { StubToolBarComponent } from './stub-tool-bar/stub-tool-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoComponent,
     StructuredMusicComponent,
-    StructuredSequenceComponent
+    StructuredSequenceComponent,
+    StubToolBarComponent
   ],
   imports: [
     BrowserModule,

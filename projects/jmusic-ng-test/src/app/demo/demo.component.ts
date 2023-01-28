@@ -2,11 +2,11 @@ import { longdeco } from './../../demodata/longdeco';
 import { meterModel } from './../../demodata/time-changes';
 import { stateChanges } from './../../demodata/state-changes';
 import { Component, OnInit } from '@angular/core';
-//import { NoteType,  ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } from 'jmusic-model/model';
+//import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
 const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
-import { ScoreDef, StaffDef, ClefType, Time } from 'jmusic-model/model';
+import { ScoreDef, StaffDef, ClefType, Time, JMusic } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
 import { beamModel } from '../../demodata/beaming';
@@ -29,6 +29,7 @@ export class DemoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    longdeco.onChanged(() => {this.invalidate()});
   }
 
   demos: [string, ScoreDef][] = [
@@ -48,6 +49,7 @@ export class DemoComponent implements OnInit {
   setVal(ev: any) {
     console.log(ev, ev.target.value);
     this.tuplets = this.demos.filter(d => d[0] === ev.target.value)[0][1];
+    this.model = this.tuplets === longdeco ? longdeco : undefined;
     this.insertionPoint = new InsertionPoint(this.tuplets);
   }
 
@@ -84,6 +86,7 @@ export class DemoComponent implements OnInit {
   }
 
   tuplets = grace as ScoreDef;
+  model: JMusic | undefined;
 
    insertionPoint = new InsertionPoint(this.tuplets);
 
