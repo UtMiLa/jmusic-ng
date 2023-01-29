@@ -5,6 +5,7 @@ import { LongDecorationType } from 'jmusic-model/model/decorations/decoration-ty
 
 export const longdeco = new JMusic({
   content: [["c'8 d'16 e'16 f'4 g'4 c''8 d''16 e''16 f''4 g''4 f''4 f''4"]],
+  meter: '4/4'
 });
 const ins = new InsertionPoint(longdeco);
 ins.time = Time.fromStart(Time.QuarterTime);

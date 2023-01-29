@@ -21,10 +21,21 @@ export class StubToolBarComponent implements OnInit {
   }
 
   setPitch() {
-    console.log((this.model, this.insertionPoint));
+    //console.log((this.model, this.insertionPoint));
 
     if (this.model && this.insertionPoint)
       this.model.addPitch(this.insertionPoint);
+  }
+
+  setMeter() {
+    console.log((this.model, this.insertionPoint));
+    if (this.model && this.insertionPoint) {
+
+      const mDef = prompt('Input meter string (e.g. 3/4)');
+      if (mDef) {
+        this.model.addMeterChg(this.insertionPoint, mDef);
+      }
+    }
   }
 
 }

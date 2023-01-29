@@ -1,6 +1,9 @@
 <div *ngIf="model && insertionPoint">
   <button type="button" (click)="setPitch()">Set pitch</button>
   <button type="button">Clear pitch</button>
+  <button type="button">+ pitch</button>
+  <button type="button">- pitch</button>
+  <button type="button">Enharm</button>
   <button type="button">Delete note</button>
   <button type="button">1</button>
   <button type="button">2</button>
@@ -22,4 +25,7 @@
     <button type="button">marca</button>
     <button type="button">sf</button>
   </div>
+  <button type="button" (click)="setMeter()">Chg meter</button>
+  <button type="button">Chg key</button>
+  <button type="button">Chg clef</button>
 </div>
