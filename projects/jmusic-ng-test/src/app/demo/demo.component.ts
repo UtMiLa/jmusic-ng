@@ -29,7 +29,7 @@ export class DemoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    longdeco.onChanged(() => {this.invalidate()});
+
   }
 
   demos: [string, ScoreDef][] = [
@@ -48,8 +48,9 @@ export class DemoComponent implements OnInit {
 
   setVal(ev: any) {
     console.log(ev, ev.target.value);
-    this.tuplets = this.demos.filter(d => d[0] === ev.target.value)[0][1];
-    this.model = this.tuplets === longdeco ? longdeco : undefined;
+    this.tuplets = new JMusic(this.demos.filter(d => d[0] === ev.target.value)[0][1]);
+    this.tuplets.onChanged(() => {this.invalidate()});
+    this.model = this.tuplets;// === longdeco ? longdeco : undefined;
     this.insertionPoint = new InsertionPoint(this.tuplets);
   }
 
@@ -82,10 +83,10 @@ export class DemoComponent implements OnInit {
   restrictionsAfter = { startTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen), endTime: Time.EternityTime };
 
   invalidate() {
-    this.tuplets = {...this.tuplets};
+    this.tuplets = new JMusic(this.tuplets); //{...this.tuplets};
   }
 
-  tuplets = grace as ScoreDef;
+  tuplets: JMusic = longdeco;
   model: JMusic | undefined;
 
    insertionPoint = new InsertionPoint(this.tuplets);
