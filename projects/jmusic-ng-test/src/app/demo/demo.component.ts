@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
 const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
-import { ScoreDef, StaffDef, ClefType, Time, JMusic } from 'jmusic-model/model';
+import { ScoreDef, StaffDef, ClefType, Time, JMusic, JMusicVars, JMusicSettings } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
 import { beamModel } from '../../demodata/beaming';
 import { koral41 } from '../../demodata/koral41';
 import { physBasics } from '../../demodata/physical-basics';
 import { physBeaming } from '../../demodata/physical-beaming';
-import { tuplets } from '../../demodata/tuplets';
+import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { repeats } from '../../demodata/repeats';
 import { expressions } from '../../demodata/expressions';
 import { lyrics } from '../../demodata/lyrics';
@@ -32,7 +32,7 @@ export class DemoComponent implements OnInit {
 
   }
 
-  demos: [string, ScoreDef][] = [
+  demos: [string, ScoreDef | JMusicSettings, JMusicVars?][] = [
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
     ['Expressions', expressions],
@@ -43,12 +43,15 @@ export class DemoComponent implements OnInit {
     ['Repeats', repeats],
     ['State changes', stateChanges],
     ['Time model', meterModel],
-    ['Tuplets', tuplets],
+    ['Tuplets', tuplets, tupletVars],
   ];
+
+  currentVars?: JMusicVars;
 
   setVal(ev: any) {
     console.log(ev, ev.target.value);
-    this.tuplets = new JMusic(this.demos.filter(d => d[0] === ev.target.value)[0][1]);
+    this.currentVars = this.demos.filter(d => d[0] === ev.target.value)[0][2];
+    this.tuplets = new JMusic(this.demos.filter(d => d[0] === ev.target.value)[0][1], this.currentVars);
     this.tuplets.onChanged(() => {this.invalidate()});
     this.model = this.tuplets;// === longdeco ? longdeco : undefined;
     this.insertionPoint = new InsertionPoint(this.tuplets);
@@ -83,10 +86,10 @@ export class DemoComponent implements OnInit {
   restrictionsAfter = { startTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen), endTime: Time.EternityTime };
 
   invalidate() {
-    this.tuplets = new JMusic(this.tuplets); //{...this.tuplets};
+    this.tuplets = new JMusic(this.tuplets, this.currentVars); //{...this.tuplets};
   }
 
-  tuplets: JMusic = longdeco;
+  tuplets: JMusic = new JMusic(tuplets, tupletVars);
   model: JMusic | undefined;
 
    insertionPoint = new InsertionPoint(this.tuplets);
