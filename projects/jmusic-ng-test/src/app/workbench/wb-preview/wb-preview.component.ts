@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { FlexibleItem, JMusic, VariableDef } from 'jmusic-model/model';
+import { Component, Input, OnInit } from '@angular/core';
+import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 
 @Component({
   selector: 'app-wb-preview',
@@ -8,6 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class WbPreviewComponent implements OnInit {
 
   constructor() { }
+
+  private _model?: VariableDef | undefined;
+  @Input()
+  public get model(): VariableDef | undefined {
+    return this._model;
+  }
+  public set model(value: VariableDef | undefined) {
+    this._model = value;
+    if (value) this.score = new JMusic({content: [[value.value as FlexibleItem]]});
+  }
+
+  score = new JMusic('c4');
+
+  insertionPoint = new InsertionPoint(this.score);
 
   ngOnInit() {
   }

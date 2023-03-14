@@ -6,6 +6,7 @@ import { WbPreviewComponent } from './wb-preview/wb-preview.component';
 import { WbTopToolbarComponent } from './wb-top-toolbar/wb-top-toolbar.component';
 import { WbVarListComponent } from './wb-var-list/wb-var-list.component';
 import { WorkbenchComponent } from './workbench.component';
+import { JmusicNgModule } from 'jmusic-ng';
 
 
 
@@ -19,7 +20,8 @@ import { WorkbenchComponent } from './workbench.component';
     WorkbenchComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    JmusicNgModule,
   ],
   exports: [
     WorkbenchComponent
