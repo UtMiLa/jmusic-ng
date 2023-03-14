@@ -20,8 +20,14 @@ export class WorkbenchComponent implements OnInit {
 
   setSelection(event: VariableDef) {
     this.currentVar = event;
-    console.log(this.currentVar);
+    //console.log(this.currentVar);
+  }
 
+  varChanged(event: VariableDef) {
+    //console.log('varChanged', event.id, event.value);
+
+    this.model.vars.setVar(event.id, event.value);
+    this.currentVar = (this.model.vars as any).vars.find((v: VariableDef) => v.id === event.id);
   }
 
 }

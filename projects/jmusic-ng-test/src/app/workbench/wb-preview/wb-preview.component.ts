@@ -21,9 +21,9 @@ export class WbPreviewComponent implements OnInit {
     if (value) this.score = new JMusic({content: [[value.value as FlexibleItem]]});
   }
 
-  score = new JMusic('c4');
+  score?: JMusic;
 
-  insertionPoint = new InsertionPoint(this.score);
+  insertionPoint?: InsertionPoint;
 
   ngOnInit() {
   }

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WbEditorComponent } from './wb-editor/wb-editor.component';
@@ -22,6 +23,7 @@ import { JmusicNgModule } from 'jmusic-ng';
   imports: [
     CommonModule,
     JmusicNgModule,
+    FormsModule
   ],
   exports: [
     WorkbenchComponent

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { VariableDef } from 'jmusic-model/model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FlexibleSequence, VariableDef, FlexibleItem } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-wb-editor',
@@ -10,10 +10,51 @@ export class WbEditorComponent implements OnInit {
 
   constructor() { }
 
+  private _model?: VariableDef | undefined;
   @Input()
-  model?: VariableDef;
+  public get model(): VariableDef | undefined {
+    return this._model;
+  }
+  public set model(value: VariableDef | undefined) {
+    this._model = value;
+    if (value?.value) {
+      this._value = JSON.stringify(value.value);
+    } else {
+      this._value = '';
+    }
+  }
+
+  private _value: string = '';
+  public get value(): string {
+    return this._value;
+  }
+  public set value(value: string) {
+    //console.log('set', this.model, this.value, value);
+    if (this._value !== value) {
+      this._value = value;
+      //console.log(this.model, this.value);
+      this.changed();
+    }
+  }
+
+  @Output()
+  varChange = new EventEmitter<VariableDef>();
 
   ngOnInit() {
+  }
+
+  changed() {
+    //console.log(this.model, this.value);
+
+    try {
+      const obj = JSON.parse(this.value) as FlexibleItem[];
+      const test = new FlexibleSequence(obj);
+      //this.model = {id: this.model?.id as string, value: obj};
+
+      this.varChange.emit({id: this.model?.id as string, value: obj});
+    } catch (_) {
+      console.log(_);
+    }
   }
 
 }
