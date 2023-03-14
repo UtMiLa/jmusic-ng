@@ -1,0 +1,22 @@
+<div class="workbench">
+  <div class="app-wb-main-menu">
+    <app-wb-main-menu></app-wb-main-menu>
+
+  </div>
+  <div class="app-wb-editor">
+    <app-wb-editor [model]="currentVar"></app-wb-editor>
+
+  </div>
+  <div class="app-wb-preview">
+    <app-wb-preview></app-wb-preview>
+
+  </div>
+  <div class="app-wb-top-toolbar">
+    <app-wb-top-toolbar></app-wb-top-toolbar>
+
+  </div>
+  <div class="app-wb-var-list">
+    <app-wb-var-list [model]="model" (selected)="setSelection($event)" #varList></app-wb-var-list>
+
+  </div>
+</div>

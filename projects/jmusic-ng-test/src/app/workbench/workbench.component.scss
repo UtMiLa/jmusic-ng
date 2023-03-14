@@ -1,0 +1,57 @@
+$main-menu-width: 64px;
+$toolbar-height: 48px;
+$list-width: 200px;
+$preview-height: 300px;
+
+div.workbench {
+  // background-color: aqua;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin: 0;
+}
+
+.app-wb-main-menu {
+  background-color: red;
+  position: inherit;
+  left: 0px;
+  width: $main-menu-width;
+  top: $toolbar-height;
+  bottom: 0px;
+}
+
+.app-wb-editor {
+  background-color: blue;
+  position: absolute;
+  top: $toolbar-height + $preview-height;
+  left: $main-menu-width + $list-width;
+  right: 0;
+  bottom: 0;
+}
+.app-wb-preview {
+  background-color: yellow;
+  position: absolute;
+  top: $toolbar-height;
+  left: $main-menu-width + $list-width;
+  right: 0;
+  height: $preview-height;
+}
+
+.app-wb-top-toolbar {
+  background-color: green;
+  position: absolute;
+  top: 0;
+  height: $toolbar-height;
+  left: 0;
+  width: 100%;
+}
+.app-wb-var-list {
+  background-color: orange;
+  position: absolute;
+  top: $toolbar-height;
+  left: $main-menu-width;
+  width: $list-width;
+  bottom: 0px;
+}
