@@ -1,3 +1,4 @@
 <ul *ngIf="model">
+  <li [id]='"score"' (click)="select(undefined)" [ngClass]="!_selected ? 'selected' : ''">Score</li>
   <li *ngFor="let v of variables" [id]='"var_" + v.id' (click)="select(v)" [ngClass]="v.id === _selected?.id ? 'selected' : ''">{{ v.id }}</li>
 </ul>

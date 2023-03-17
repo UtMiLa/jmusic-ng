@@ -11,17 +11,15 @@ export class WbPreviewComponent implements OnInit {
 
   constructor() { }
 
-  private _model?: VariableDef | undefined;
+  private _model?: JMusic | undefined;
   @Input()
-  public get model(): VariableDef | undefined {
+  public get model(): JMusic | undefined {
     return this._model;
   }
-  public set model(value: VariableDef | undefined) {
+  public set model(value: JMusic | undefined) {
     this._model = value;
-    if (value) this.score = new JMusic({content: [[value.value as FlexibleItem]]});
+    //if (value) this.score = new JMusic({content: [[value.value as FlexibleItem]]});
   }
-
-  score?: JMusic;
 
   insertionPoint?: InsertionPoint;
 

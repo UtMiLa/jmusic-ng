@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { JMusic, VariableDef } from 'jmusic-model/model';
+import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 
 @Component({
@@ -13,14 +13,22 @@ export class WorkbenchComponent implements OnInit {
 
   model: JMusic = new JMusic(tuplets, tupletVars);
 
+  previewModel: JMusic = this.model;
+
   currentVar?: VariableDef;
 
   ngOnInit() {
   }
 
   setSelection(event: VariableDef) {
-    this.currentVar = event;
-    //console.log(this.currentVar);
+    if (event) {
+      this.currentVar = event;
+      if (this.currentVar) this.previewModel = new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
+    } else {
+      this.currentVar = undefined;
+      this.previewModel = this.model;
+    }
+  //console.log(this.currentVar);
   }
 
   varChanged(event: VariableDef) {
@@ -28,6 +36,7 @@ export class WorkbenchComponent implements OnInit {
 
     this.model.vars.setVar(event.id, event.value);
     this.currentVar = (this.model.vars as any).vars.find((v: VariableDef) => v.id === event.id);
+    if (this.currentVar) this.previewModel = new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
   }
 
 }

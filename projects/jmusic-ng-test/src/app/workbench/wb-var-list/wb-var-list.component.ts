@@ -26,7 +26,7 @@ export class WbVarListComponent implements OnInit {
   }
 
 
-  select(v: VariableDef) {
+  select(v: VariableDef | undefined) {
     this.selected.emit(v);
     this._selected = v;
   }
