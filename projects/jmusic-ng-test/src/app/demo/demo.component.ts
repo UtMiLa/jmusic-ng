@@ -1,3 +1,4 @@
+import { contrapunctusVars } from './../../demodata/contrapunctus';
 import { longdeco } from './../../demodata/longdeco';
 import { meterModel } from './../../demodata/time-changes';
 import { stateChanges } from './../../demodata/state-changes';
@@ -18,6 +19,7 @@ import { repeats } from '../../demodata/repeats';
 import { expressions } from '../../demodata/expressions';
 import { lyrics } from '../../demodata/lyrics';
 import { grace } from '../../demodata/grace';
+import { contrapunctus } from '../../demodata/contrapunctus';
 
 @Component({
   selector: 'app-demo',
@@ -35,6 +37,7 @@ export class DemoComponent implements OnInit {
   demos: [string, ScoreDef | JMusicSettings, JMusicVars?][] = [
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
+    ['Contrapunctus', contrapunctus, contrapunctusVars],
     ['Expressions', expressions],
     ['Grace notes', grace],
     ['Hymn', koral41],

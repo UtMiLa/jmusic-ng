@@ -8,6 +8,9 @@ import { WbTopToolbarComponent } from './wb-top-toolbar/wb-top-toolbar.component
 import { WbVarListComponent } from './wb-var-list/wb-var-list.component';
 import { WorkbenchComponent } from './workbench.component';
 import { JmusicNgModule } from 'jmusic-ng';
+import { ToolbarButtonComponent } from './toolbar-button/toolbar-button.component';
+import { ToolbarToggleButtonComponent } from './toolbar-toggle-button/toolbar-toggle-button.component';
+import { ToolbarRadioButtonGroupComponent } from './toolbar-radio-button-group/toolbar-radio-button-group.component';
 
 
 
@@ -18,7 +21,10 @@ import { JmusicNgModule } from 'jmusic-ng';
     WbPreviewComponent,
     WbTopToolbarComponent,
     WbVarListComponent,
-    WorkbenchComponent
+    WorkbenchComponent,
+    ToolbarButtonComponent,
+    ToolbarToggleButtonComponent,
+    ToolbarRadioButtonGroupComponent
   ],
   imports: [
     CommonModule,

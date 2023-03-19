@@ -1,3 +1,4 @@
+import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { Component, OnInit } from '@angular/core';
 import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
@@ -12,6 +13,7 @@ export class WorkbenchComponent implements OnInit {
   constructor() { }
 
   model: JMusic = new JMusic(tuplets, tupletVars);
+  insertionPoint = new InsertionPoint(this.model);
 
   previewModel: JMusic = this.model;
 

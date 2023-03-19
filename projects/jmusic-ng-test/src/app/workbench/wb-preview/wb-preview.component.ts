@@ -18,9 +18,12 @@ export class WbPreviewComponent implements OnInit {
   }
   public set model(value: JMusic | undefined) {
     this._model = value;
+    /*if (value)
+      this.insertionPoint = new InsertionPoint(value);*/
     //if (value) this.score = new JMusic({content: [[value.value as FlexibleItem]]});
   }
 
+  @Input()
   insertionPoint?: InsertionPoint;
 
   ngOnInit() {
