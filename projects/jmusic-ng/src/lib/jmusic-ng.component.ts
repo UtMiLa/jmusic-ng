@@ -48,6 +48,12 @@ export class JmusicNgComponent implements OnInit {
   }
   public set scoreDef(value: ScoreDef | undefined) {
     this._scoreDef = value;
+
+    //console.log('set scoredef', value);
+    if (value && (value as any).onChanged) {
+      //console.log('onChanged');
+      (value as any).onChanged(() => this.render())
+    }
     this.render();
   }
 

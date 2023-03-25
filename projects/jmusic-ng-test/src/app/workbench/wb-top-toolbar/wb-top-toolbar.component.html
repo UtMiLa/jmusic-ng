@@ -1,4 +1,4 @@
-<app-toolbar-button>Set pitch</app-toolbar-button>
+<app-toolbar-button (click)="setPitch()">Set pitch</app-toolbar-button>
 <app-toolbar-button>Clear pitch</app-toolbar-button>
 <app-toolbar-button>+ pitch</app-toolbar-button>
 <app-toolbar-button>- pitch</app-toolbar-button>
@@ -13,7 +13,7 @@
 <app-toolbar-button>.</app-toolbar-button>
 <app-toolbar-button>Expr</app-toolbar-button>
 
-<app-toolbar-button>Chg meter</app-toolbar-button>
+<app-toolbar-button (click)="setMeter()">Chg meter</app-toolbar-button>
 <app-toolbar-button>Chg key</app-toolbar-button>
 <app-toolbar-button>Chg clef</app-toolbar-button>
 

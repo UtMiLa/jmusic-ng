@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar-button',
@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarButtonComponent implements OnInit {
 
   constructor() { }
+
+  @Output()
+  clicked = new EventEmitter<boolean>();
 
   ngOnInit(): void {
   }
