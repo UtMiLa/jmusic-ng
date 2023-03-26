@@ -11,6 +11,7 @@ import { JmusicNgModule } from 'jmusic-ng';
 import { ToolbarButtonComponent } from './toolbar-button/toolbar-button.component';
 import { ToolbarToggleButtonComponent } from './toolbar-toggle-button/toolbar-toggle-button.component';
 import { ToolbarRadioButtonGroupComponent } from './toolbar-radio-button-group/toolbar-radio-button-group.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -29,6 +30,7 @@ import { ToolbarRadioButtonGroupComponent } from './toolbar-radio-button-group/t
   imports: [
     CommonModule,
     JmusicNgModule,
+    SharedModule,
     FormsModule
   ],
   exports: [

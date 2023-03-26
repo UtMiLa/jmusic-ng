@@ -2,6 +2,7 @@ import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { Component, OnInit } from '@angular/core';
 import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
+import { MidiInService } from '../midi/midi-in.service';
 
 @Component({
   selector: 'app-workbench',
@@ -10,7 +11,14 @@ import { tuplets, tupletVars } from '../../demodata/tuplets';
 })
 export class WorkbenchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private midiIn: MidiInService) {
+    console.log(
+     midiIn.midiEventEmitter.subscribe(event => {
+      //console.log('MIDI in', event);
+
+     })
+     );
+  }
 
   model: JMusic = new JMusic(tuplets, tupletVars);
   insertionPoint = new InsertionPoint(this.model);

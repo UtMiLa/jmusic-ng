@@ -5,9 +5,13 @@
     "outDir": "../../out-tsc/app",
     "types": []
   },
+  "references": [
+    { "path": "../../node_modules/@types/webmidi" }
+  ],
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "../../node_modules/@types/webmidi/index.d.ts"
   ],
   "include": [
     "src/**/*.d.ts"
