@@ -33,7 +33,7 @@ export class WorkbenchComponent implements OnInit {
   setSelection(event: VariableDef) {
     if (event) {
       this.currentVar = event;
-      if (this.currentVar) this.previewModel = new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
+      if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);// new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
     } else {
       this.currentVar = undefined;
       this.previewModel = this.model;
@@ -46,7 +46,7 @@ export class WorkbenchComponent implements OnInit {
 
     this.model.vars.setVar(event.id, event.value);
     this.currentVar = (this.model.vars as any).vars.find((v: VariableDef) => v.id === event.id);
-    if (this.currentVar) this.previewModel = new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
+    if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);//new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
   }
 
 }
