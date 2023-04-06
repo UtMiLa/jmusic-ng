@@ -1,0 +1,29 @@
+<mus-jmusic-ng [scoreDef]="model" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
+
+<textarea [(ngModel)]="lyText"></textarea>
+
+<dl *ngIf="insertionPoint && model">
+
+  <dt>Staff</dt>
+  <dd>
+    <select (change)="insertionPoint.staffNo = +staffX.value; invalidate()" #staffX>
+      <option *ngFor="let staffNo of model.staves; let i = index" [value]="+i">{{i}}</option>
+    </select>
+  </dd>
+
+  <dt>Voice</dt>
+  <dd>
+    <select (change)="insertionPoint.voiceNo = +voiceX.value; invalidate()" #voiceX>
+      <option *ngFor="let voice of model.staves[insertionPoint.staffNo].voices; let i = index" [value]="i">{{i}}</option>
+    </select>
+  </dd>
+
+  <dt>Position</dt>
+  <dd>
+    <input type="number" name="insertionPointPosition" [(ngModel)]="insertionPoint.position" (change)="invalidate()">
+    {{insertionPoint.time |json}}
+  </dd>
+
+</dl>
+
+

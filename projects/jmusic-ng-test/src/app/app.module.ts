@@ -1,3 +1,4 @@
+import { LyModule } from './ly/ly.module';
 import { JmusicNgModule } from './../../../jmusic-ng/src/lib/jmusic-ng.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,6 +26,7 @@ import { WorkbenchModule } from './workbench/workbench.module';
     AppRoutingModule,
     FormsModule,
     JmusicNgModule,
+    LyModule,
     WorkbenchModule
   ],
   providers: [],
