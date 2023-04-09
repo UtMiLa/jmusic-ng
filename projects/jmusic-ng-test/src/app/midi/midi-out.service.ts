@@ -72,9 +72,6 @@ playNote(channel: number, velocity: number, notes: number[], startTime: number, 
 
 }
 
-/*getInputs() {
-  return this.inputs;
-}*/
 getOutputs() {
   return this.outputs;
 }

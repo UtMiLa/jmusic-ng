@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
 //import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
-import { ScoreDef, StaffDef, ClefType, Rational, Time, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
+import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, ScoreDef, StaffDef, ClefType, Rational, Time, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
+import { MidiPerformer } from 'jmusic-model/midi';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
 import { beamModel } from '../../demodata/beaming';
 import { koral41 } from '../../demodata/koral41';
@@ -124,7 +124,7 @@ export class DemoComponent implements OnInit {
     this.midiOut.playNote(0, 100, [72, 75], 1000, 1000);
     this.midiOut.playNote(0, 100, [74, 77], 2000, 2000);
     this.midiOut.playNote(0, 100, [57, 65], 2000, 2000);*/
-    const tempo = 2700;
+    /*const tempo = 2700;
     const percent = 0.9;
     this.model?.staves.forEach(staff => {
       staff.voices.forEach(voice => {
@@ -137,7 +137,9 @@ export class DemoComponent implements OnInit {
           }
         });
       });
-    });
+    });*/
+
+    if (this.model) new MidiPerformer().perform(this.model, this.midiOut);
 
    }
 }
