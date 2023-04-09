@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 
 export interface IMidiEvent {
   channel: number;
+  command?: number;
   note?: number;
   controller?: number;
   velocity?: number;

@@ -34,7 +34,7 @@ export class LyPageComponent implements OnInit {
         this.insertionPoint = new InsertionPoint(this.model);
         //this.invalidate();
       } catch (e) {
-        //console.log(e);
+        console.log(e);
       }
     }
   }

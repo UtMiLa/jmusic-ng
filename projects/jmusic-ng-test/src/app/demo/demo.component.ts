@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
 //import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
-import { ScoreDef, StaffDef, ClefType, Time, JMusic, JMusicVars, JMusicSettings } from 'jmusic-model/model';
+const { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence } = require('jmusic-model/model');
+import { ScoreDef, StaffDef, ClefType, Rational, Time, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
 import { beamModel } from '../../demodata/beaming';
@@ -20,6 +20,7 @@ import { expressions } from '../../demodata/expressions';
 import { lyrics } from '../../demodata/lyrics';
 import { grace } from '../../demodata/grace';
 import { contrapunctus } from '../../demodata/contrapunctus';
+import { MidiOutService } from '../midi/midi-out.service';
 
 @Component({
   selector: 'app-demo',
@@ -28,7 +29,7 @@ import { contrapunctus } from '../../demodata/contrapunctus';
 })
 export class DemoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private midiOut: MidiOutService) { }
 
   ngOnInit(): void {
 
@@ -117,4 +118,26 @@ export class DemoComponent implements OnInit {
     this.invalidate();
    }
 
+   playMidi() {
+    /*this.midiOut.playNote(0, 100, [70, 74], 0, 1000);
+    this.midiOut.playNote(0, 100, [58, 65], 0, 2000);
+    this.midiOut.playNote(0, 100, [72, 75], 1000, 1000);
+    this.midiOut.playNote(0, 100, [74, 77], 2000, 2000);
+    this.midiOut.playNote(0, 100, [57, 65], 2000, 2000);*/
+    const tempo = 2700;
+    const percent = 0.9;
+    this.model?.staves.forEach(staff => {
+      staff.voices.forEach(voice => {
+        let startTime = Time.StartTime;
+        voice.content.elements.forEach(element => {
+          if (isNote(element)) {
+            const pitches = element.pitches.map(pitch => pitch.midi);
+            this.midiOut.playNote(0, 100, pitches, Rational.value(startTime) * tempo, Rational.value(getDuration(element)) * tempo * percent);
+            startTime = Time.addTime(startTime, getDuration(element));
+          }
+        });
+      });
+    });
+
+   }
 }
