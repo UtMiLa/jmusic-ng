@@ -1,5 +1,5 @@
 <mus-jmusic-ng [scoreDef]="model" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
-
+<button *ngIf="model" (click)="playMidi()">Play Midi</button>
 <textarea [(ngModel)]="lyText"></textarea>
 
 <dl *ngIf="insertionPoint && model">

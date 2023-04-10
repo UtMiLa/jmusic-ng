@@ -1,3 +1,5 @@
+<button (click)="playMidi()">Play Midi</button>
+
 <mus-jmusic-ng [scoreDef]="tuplets" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
 
 <button (click)="moveLeft()">&lt;</button>
@@ -38,4 +40,3 @@
 
 {{insertionPoint.time |json}}
 <app-structured-music [scoreDef]="tuplets"></app-structured-music>
-<button (click)="playMidi()">Test Midi out</button>

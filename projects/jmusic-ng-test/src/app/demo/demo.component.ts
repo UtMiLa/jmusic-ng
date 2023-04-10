@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 //import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, ScoreDef, StaffDef, ClefType, Rational, Time, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
+import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, ScoreDef, StaffDef, ClefType, Rational, Time, AbsoluteTime, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { MidiPerformer } from 'jmusic-model/midi';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
@@ -119,27 +119,13 @@ export class DemoComponent implements OnInit {
    }
 
    playMidi() {
-    /*this.midiOut.playNote(0, 100, [70, 74], 0, 1000);
-    this.midiOut.playNote(0, 100, [58, 65], 0, 2000);
-    this.midiOut.playNote(0, 100, [72, 75], 1000, 1000);
-    this.midiOut.playNote(0, 100, [74, 77], 2000, 2000);
-    this.midiOut.playNote(0, 100, [57, 65], 2000, 2000);*/
-    /*const tempo = 2700;
-    const percent = 0.9;
-    this.model?.staves.forEach(staff => {
-      staff.voices.forEach(voice => {
-        let startTime = Time.StartTime;
-        voice.content.elements.forEach(element => {
-          if (isNote(element)) {
-            const pitches = element.pitches.map(pitch => pitch.midi);
-            this.midiOut.playNote(0, 100, pitches, Rational.value(startTime) * tempo, Rational.value(getDuration(element)) * tempo * percent);
-            startTime = Time.addTime(startTime, getDuration(element));
-          }
-        });
+    if (this.model) {
+      const performer: MidiPerformer = new MidiPerformer();
+      (performer.moveCursor as any).subscribe((time: AbsoluteTime) => {
+        this.insertionPoint.time = time;
+        this.invalidate();
       });
-    });*/
-
-    if (this.model) new MidiPerformer().perform(this.model, this.midiOut);
-
+      performer.perform(this.model, this.midiOut);
+    }
    }
 }

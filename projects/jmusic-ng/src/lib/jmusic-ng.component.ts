@@ -88,7 +88,7 @@ export class JmusicNgComponent implements OnInit {
       this.logicalModel = logicalModel;
       let map = generateMeasureMap(this.logicalModel, this.settings);
 
-      const maxWidth = 700;
+      const maxWidth = 1000;
 
       const splits = findSystemSplits(map, maxWidth);
       //console.log(splits);

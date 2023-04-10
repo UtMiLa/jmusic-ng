@@ -45,7 +45,7 @@ export const contrapunctusVars = {
     args: [`d4 a'8. g16 f8. e16 d4
       cis4 d8. e16 f4~ f16 g16 f16 e16
       d16 cis16 d8~ d16 d16 c16 b16 a16 gis16 a8~ a16 a16 b16 cis16
-      d16 c16 bes16 a16 g16 fis16 g8~ g16 bes16 a16 g16 f8. e16
+      \\clef bass d16 c16 bes16 a16 g16 fis16 g8~ g16 bes16 a16 g16 f8. e16
       d4~ d16 a'16 b16 cis16 d4~ d16 a16 g16 f16
       e4 a8. g16 f8. e16 d4
       c16 d16 e8~ e16 e16 fis16 gis16 a4 r4
@@ -72,7 +72,7 @@ export const contrapunctus = {
       [{variable: 'bass'}],
     ]
   ],
-  clefs: ['treble', 'bass'],
+  clefs: ['treble', 'treble'],
   meter: '4/4',
   key: 'd \\minor'
 

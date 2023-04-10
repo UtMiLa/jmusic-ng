@@ -1,8 +1,10 @@
 import { koral41 } from './../../../demodata/koral41';
-import { JMusic } from 'jmusic-model/model';
+import { AbsoluteTime, JMusic } from 'jmusic-model/model';
 import { Component, OnInit } from '@angular/core';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { lilypondToJMusic } from 'jmusic-lilypond/import-lilypond';
+import { MidiPerformer } from 'jmusic-model/midi';
+import { MidiOutService } from '../../midi/midi-out.service';
 
 @Component({
   selector: 'app-ly-page',
@@ -11,7 +13,7 @@ import { lilypondToJMusic } from 'jmusic-lilypond/import-lilypond';
 })
 export class LyPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private midiOut: MidiOutService) { }
 
   ngOnInit(): void {
   }
@@ -42,4 +44,15 @@ export class LyPageComponent implements OnInit {
   invalidate() {
     //
   }
+
+  playMidi() {
+    if (this.model) {
+      const performer: MidiPerformer = new MidiPerformer();
+      (performer.moveCursor as any).subscribe((time: AbsoluteTime) => {
+        if (this.insertionPoint) this.insertionPoint.time = time;
+        this.invalidate();
+      });
+      performer.perform(this.model, this.midiOut);
+    }
+   }
 }

@@ -26,10 +26,8 @@ export class MidiOutService {
         //const outputs = midiAccess.outputs;
         this.outputs = midiAccess.outputs;
 
-        /*outputs.forEach((element: WebMidi.MIDIOutput) => {
+        /*this.outputs.forEach((element: WebMidi.MIDIOutput) => {
           //console.log(element);
-          const output = new easymidi.Output(element);
-          this.outputs..push({id: element, dev: output});
         });*/
 
       },
