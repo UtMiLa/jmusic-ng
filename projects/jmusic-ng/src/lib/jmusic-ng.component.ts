@@ -6,6 +6,7 @@ import { viewModelToPhysical, renderOnCanvas } from 'jmusic-model/physical-view'
 import { generateMeasureMap, findSystemSplits, Metrics, PhysicalModel, StandardMetrics } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
+import { PhysicalElementBase } from 'jmusic-model/physical-view';
 
 //console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
@@ -172,7 +173,7 @@ export class JmusicNgComponent implements OnInit {
   }
 
   tracker(index: number, item: PhysicalModel) {
-    return item.elements.length + '_' + index.toString();
+    return JSON.stringify(item.elements.filter((element: PhysicalElementBase) => element.element !== 106));//;//.length + '_' + index.toString();
   }
 
   logicalModel: ScoreViewModel | undefined;
