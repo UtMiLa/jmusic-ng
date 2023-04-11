@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { SubsetDef, scoreModelToViewModel, ScoreViewModel } from 'jmusic-model/logical-view';
 import { ScoreDef, Time } from 'jmusic-model/model';
-import { StandardMetrics, viewModelToPhysical, Metrics, renderOnCanvas, generateMeasureMap, PhysicalModel } from 'jmusic-model/physical-view';
+import { StandardMetrics, viewModelToPhysical, Metrics, renderOnCanvas, getPhysicalRect, generateMeasureMap, PhysicalModel } from 'jmusic-model/physical-view';
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 
 @Component({
@@ -31,6 +31,12 @@ export class JmusicPhysicalViewComponent implements OnInit {
       return;
     }*/
     this._model = value;
+    if (value) {
+      const rect = getPhysicalRect(value);
+      this.staffCount = (50 + rect.yMax - rect.yMin) / 80;
+      console.log('staffc', this.staffCount);
+
+    }
     this.render();
   }
 
