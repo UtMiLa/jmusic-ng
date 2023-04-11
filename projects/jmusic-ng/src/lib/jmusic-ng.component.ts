@@ -11,7 +11,7 @@ import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/l
 @Component({
   selector: 'mus-jmusic-ng',
 
-  template: `<div tabindex="-1" #div (keydown)="keyDown($event)"><div style="font-family: Emmentaler;" *ngFor="let model of physicalModel">
+  template: `<div tabindex="-1" #div (keydown)="keyDown($event)"><div style="font-family: Emmentaler;" *ngFor="let model of physicalModel; let i=index; trackBy:tracker">
               <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)" (onClickElement)="clickElement($event)"></mus-jmusic-physical-view>
             </div></div>`,
 
@@ -171,6 +171,9 @@ export class JmusicNgComponent implements OnInit {
     }
   }
 
+  tracker(index: number, item: PhysicalModel) {
+    return item.elements.length + '_' + index.toString();
+  }
 
   logicalModel: ScoreViewModel | undefined;
   mouseDebug: string = '';
