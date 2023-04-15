@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ScoreDef, Time } from 'jmusic-model/model';
+import { AbsoluteTime, ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 //const { ScoreViewModel } = require('jmusic-model/logical-view');
 import { viewModelToPhysical, renderOnCanvas } from 'jmusic-model/physical-view';
@@ -13,7 +13,7 @@ import { PhysicalElementBase } from 'jmusic-model/physical-view';
   selector: 'mus-jmusic-ng',
 
   template: `<div tabindex="-1" #div (keydown)="keyDown($event)"><div style="font-family: Emmentaler;" *ngFor="let model of physicalModel; let i=index; trackBy:tracker">
-              <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove($event)" (onClickElement)="clickElement($event)"></mus-jmusic-physical-view>
+              <mus-jmusic-physical-view [model]="model" [scale]="scale" (onOverElement)="mouseMove(i, $event)" (onClickElement)="clickElement(i, $event)"></mus-jmusic-physical-view>
             </div></div>`,
 
   styles: [`@font-face {
@@ -78,6 +78,8 @@ export class JmusicNgComponent implements OnInit {
 
   physicalModel: PhysicalModel[] = [];
 
+  private splits: AbsoluteTime[] = [];
+
   render() {
     if (this._scoreDef) {
       const cursor = {
@@ -107,6 +109,7 @@ export class JmusicNgComponent implements OnInit {
         }
       }
       this.physicalModel = physicalModel;
+      this.splits = splits;
 
       console.log('render', this._scoreDef, logicalModel, physicalModel);
 
@@ -114,11 +117,16 @@ export class JmusicNgComponent implements OnInit {
   }
 
 
-  mouseMove($event: MouseEvent) {
+  mouseMove(i: number, $event: MouseEvent) {
     //console.log('log mm', $event);
+    if (i >= this.splits.length) return;
 
-    if (!this.logicalModel) return;
-    const map = generateMeasureMap(this.logicalModel, this.settings);
+    if (!this._scoreDef) return;
+    const restrictions = { startTime: this.splits[i], endTime: i === this.splits.length - 1 ? this.restrictions.endTime : this.splits[i+1] };
+    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, restrictions)
+
+    const map = generateMeasureMap(restrictedLogicalModel, this.settings);
+
     //console.log(map);
     //console.log('log map', map);
     const localized = map.localize(($event.clientX) / this.scale, ($event.clientY*2 - 12) / this.scale, this.settings);
@@ -143,11 +151,15 @@ export class JmusicNgComponent implements OnInit {
 
 
 
-  clickElement($event: MouseEvent) {
+  clickElement(i: number, $event: MouseEvent) {
     //console.log('log mm', $event);
+    if (i >= this.splits.length) return;
 
-    if (!this.logicalModel) return;
-    const map = generateMeasureMap(this.logicalModel, this.settings);
+    if (!this._scoreDef) return;
+    const restrictions = { startTime: this.splits[i], endTime: i === this.splits.length - 1 ? this.restrictions.endTime : this.splits[i+1] };
+    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, restrictions)
+
+    const map = generateMeasureMap(restrictedLogicalModel, this.settings);
     //console.log(map);
     //console.log('log map', map);
     const localized = map.localize(($event.clientX) / this.scale, ($event.clientY*2 - 12) / this.scale, this.settings);
