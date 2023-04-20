@@ -63,10 +63,10 @@ sendMidi(cmd: string, data: IMidiEvent & {command: number, note: number, velocit
   });
 }
 
-playNote(channel: number, velocity: number, notes: number[], startTime: number, duration: number) {
+playNote(channel: number, velocity: number, note: number, startTime: number, duration: number) {
   const timeNow = window.performance.now() + startTime;
-  notes.forEach(note => this.sendMidi('', {command: 0x90, channel, velocity, note}, timeNow));
-  notes.forEach(note => this.sendMidi('', {command: 0x90, channel, velocity: 0, note}, timeNow + duration) );
+  this.sendMidi('', {command: 0x90, channel, velocity, note}, timeNow);
+  this.sendMidi('', {command: 0x90, channel, velocity: 0, note}, timeNow + duration);
 
 }
 
