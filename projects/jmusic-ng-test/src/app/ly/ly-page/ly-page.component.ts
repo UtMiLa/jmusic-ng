@@ -33,7 +33,7 @@ export class LyPageComponent implements OnInit {
       try {
         this.error = '';
         const score = lilypondToJMusic(this.lyText);
-        //console.log(score);
+        console.log('score', score);
         this.model = new JMusic(score);
         this.insertionPoint = new InsertionPoint(this.model);
         //this.invalidate();

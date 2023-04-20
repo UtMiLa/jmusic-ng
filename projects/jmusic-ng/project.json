@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "jmusic-ng",
+  "projectType": "library",
+  "sourceRoot": "projects/jmusic-ng/src",
+  "prefix": "mus",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "projects/jmusic-ng/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/jmusic-ng/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "projects/jmusic-ng/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{workspaceRoot}/dist/jmusic-ng"
+      ]
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "projects/jmusic-ng/src/test.ts",
+        "tsConfig": "projects/jmusic-ng/tsconfig.spec.json",
+        "karmaConfig": "projects/jmusic-ng/karma.conf.js"
+      }
+    }
+  }
+}
