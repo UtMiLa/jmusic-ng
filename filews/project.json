@@ -1,0 +1,64 @@
+{
+  "name": "filews",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "filews/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/filews",
+        "main": "filews/src/main.ts",
+        "tsConfig": "filews/tsconfig.app.json",
+        "assets": ["filews/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "filews/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "filews:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "filews:build:development"
+        },
+        "production": {
+          "buildTarget": "filews:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["filews/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "filews/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
