@@ -1,10 +1,10 @@
-import { koral41 } from './../../../demodata/koral41';
 import { AbsoluteTime, JMusic } from 'jmusic-model/model';
 import { Component, OnInit } from '@angular/core';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { lilypondToJMusic } from 'jmusic-lilypond/import-lilypond';
 import { MidiPerformer } from 'jmusic-model/midi';
 import { MidiOutService } from '../../midi/midi-out.service';
+import { FileIoService } from '../../services/file-io.service';
 
 @Component({
   selector: 'app-ly-page',
@@ -13,9 +13,13 @@ import { MidiOutService } from '../../midi/midi-out.service';
 })
 export class LyPageComponent implements OnInit {
 
-  constructor(private midiOut: MidiOutService) { }
+  constructor(private midiOut: MidiOutService, private fileIo: FileIoService) { }
+
+
+  files: string[] = [];
 
   ngOnInit(): void {
+    this.fileIo.listFiles().subscribe(res => this.files = res);
   }
 
   model?: JMusic;
@@ -46,6 +50,13 @@ export class LyPageComponent implements OnInit {
 
   invalidate() {
     //
+  }
+
+  selectFile(event: Event) {
+    this.fileIo.loadFile((event.target as any).value).subscribe(content => {
+      //console.log(event, content);
+      this.lyText = content;
+    });
   }
 
   playMidi() {

@@ -12,6 +12,7 @@ import { StructuredSequenceComponent } from './structured-music/structured-seque
 import { StubToolBarComponent } from './stub-tool-bar/stub-tool-bar.component';
 import { WorkbenchComponent } from './workbench/workbench.component';
 import { WorkbenchModule } from './workbench/workbench.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { WorkbenchModule } from './workbench/workbench.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     JmusicNgModule,
     LyModule,
     WorkbenchModule

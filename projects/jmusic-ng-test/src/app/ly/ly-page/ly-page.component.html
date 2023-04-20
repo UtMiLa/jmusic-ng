@@ -28,3 +28,6 @@
 </dl>
 
 
+<select (change)="selectFile($event)">
+  <option *ngFor="let file of files">{{file}}</option>
+</select>
