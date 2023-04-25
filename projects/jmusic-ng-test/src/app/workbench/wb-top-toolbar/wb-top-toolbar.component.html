@@ -1,23 +1,34 @@
-<app-toolbar-button (click)="setPitch()">Set pitch</app-toolbar-button>
-<app-toolbar-button>Clear pitch</app-toolbar-button>
-<app-toolbar-button>+ pitch</app-toolbar-button>
-<app-toolbar-button>- pitch</app-toolbar-button>
-<app-toolbar-button>Enharm</app-toolbar-button>
 <app-toolbar-button>Delete note</app-toolbar-button>
-<app-toolbar-button>1</app-toolbar-button>
-<app-toolbar-button>2</app-toolbar-button>
-<app-toolbar-button>4</app-toolbar-button>
-<app-toolbar-button>8</app-toolbar-button>
-<app-toolbar-button>16</app-toolbar-button>
-<app-toolbar-button>32</app-toolbar-button>
-<app-toolbar-button>.</app-toolbar-button>
+
+<button mat-button [matMenuTriggerFor]="menuPitch">Pitch</button>
+<mat-menu #menuPitch="matMenu">
+  <app-toolbar-button (click)="setPitch()">Set</app-toolbar-button>
+  <app-toolbar-button>Clear</app-toolbar-button>
+  <app-toolbar-button>+</app-toolbar-button>
+  <app-toolbar-button>-</app-toolbar-button>
+  <app-toolbar-button>Enharm</app-toolbar-button>
+</mat-menu>
+
+
+<button mat-button [matMenuTriggerFor]="menuValue">Value</button>
+<mat-menu #menuValue="matMenu">
+  <app-toolbar-button>1</app-toolbar-button>
+  <app-toolbar-button>2</app-toolbar-button>
+  <app-toolbar-button>4</app-toolbar-button>
+  <app-toolbar-button>8</app-toolbar-button>
+  <app-toolbar-button>16</app-toolbar-button>
+  <app-toolbar-button>32</app-toolbar-button>
+  <app-toolbar-button>.</app-toolbar-button>
+</mat-menu>
+
 <app-toolbar-button>Expr</app-toolbar-button>
 
 <app-toolbar-button (click)="setMeter()">Chg meter</app-toolbar-button>
 <app-toolbar-button>Chg key</app-toolbar-button>
 <app-toolbar-button>Chg clef</app-toolbar-button>
 
-<div>
+<button mat-button [matMenuTriggerFor]="menuExpr">Expression</button>
+<mat-menu #menuExpr="matMenu">
   <app-toolbar-button>stacc</app-toolbar-button>
   <app-toolbar-button>tenut</app-toolbar-button>
   <app-toolbar-button>ferma</app-toolbar-button>
@@ -28,4 +39,4 @@
   <app-toolbar-button>trill</app-toolbar-button>
   <app-toolbar-button>marca</app-toolbar-button>
   <app-toolbar-button>sf</app-toolbar-button>
-</div>
+</mat-menu>

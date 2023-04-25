@@ -10,9 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { StructuredMusicComponent } from './structured-music/structured-music.component';
 import { StructuredSequenceComponent } from './structured-music/structured-sequence/structured-sequence.component';
 import { StubToolBarComponent } from './stub-tool-bar/stub-tool-bar.component';
-import { WorkbenchComponent } from './workbench/workbench.component';
 import { WorkbenchModule } from './workbench/workbench.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     JmusicNgModule,
     LyModule,
-    WorkbenchModule
+    WorkbenchModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
