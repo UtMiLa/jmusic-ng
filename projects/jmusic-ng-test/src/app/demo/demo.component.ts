@@ -21,6 +21,7 @@ import { lyrics } from '../../demodata/lyrics';
 import { grace } from '../../demodata/grace';
 import { contrapunctus } from '../../demodata/contrapunctus';
 import { MidiOutService } from '../midi/midi-out.service';
+import { FileIoService } from '../services/file-io.service';
 
 @Component({
   selector: 'app-demo',
@@ -29,10 +30,10 @@ import { MidiOutService } from '../midi/midi-out.service';
 })
 export class DemoComponent implements OnInit {
 
-  constructor(private midiOut: MidiOutService) { }
+  constructor(private midiOut: MidiOutService, private fileIo: FileIoService) { }
 
   ngOnInit(): void {
-
+    this.fileIo.listFiles().subscribe(res => this.files = ['', ...res]);
   }
 
   demos: [string, ScoreDef | JMusicSettings, JMusicVars?][] = [
@@ -89,6 +90,11 @@ export class DemoComponent implements OnInit {
   restrictionsBefore = { startTime: Time.StartTime, endTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen) };
   restrictionsAfter = { startTime: Time.newAbsolute(this.splitPointNum, this.splitPointDen), endTime: Time.EternityTime };
 
+
+
+  files: string[] = [];
+  currentFileName?: string;
+
   invalidate() {
     this.tuplets = new JMusic(this.tuplets, this.currentVars); //{...this.tuplets};
   }
@@ -97,6 +103,24 @@ export class DemoComponent implements OnInit {
   model: JMusic | undefined;
 
    insertionPoint = new InsertionPoint(this.tuplets);
+
+
+
+  selectFile(event: Event) {
+    this.fileIo.loadFile((event.target as any).value).subscribe((content: any) => {
+      console.log(event, content);
+      this.model = new JMusic(content, content.variables);
+      this.tuplets = this.model;
+      this.insertionPoint = new InsertionPoint(this.model);
+      this.invalidate();
+    });
+  }
+
+  saveFile() {
+    /*if (this.currentFileName)
+    this.fileIo.saveFile(this.currentFileName, this.lyText);*/
+  }
+
 
    moveRight() {
     this.insertionPoint.moveRight();

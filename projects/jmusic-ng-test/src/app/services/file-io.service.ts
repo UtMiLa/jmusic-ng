@@ -12,9 +12,16 @@ export class FileIoService {
   listFiles() {
     return this.http.get<string[]>('http://localhost:3000/api/fs');
   }
+  listLyFiles() {
+    return this.http.get<string[]>('http://localhost:3000/api/fs/ly');
+  }
 
   loadFile(name: string) {
-    return this.http.get('http://localhost:3000/api/fs/file/' + name, {responseType: 'text'});
+    return this.http.get('http://localhost:3000/api/fs/file/' + name);
+  }
+
+  loadLyFile(name: string) {
+    return this.http.get('http://localhost:3000/api/fs/ly/' + name, {responseType: 'text'});
   }
 
   saveFile(name: string, content: string) {

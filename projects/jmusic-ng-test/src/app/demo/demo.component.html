@@ -10,6 +10,16 @@
   <option *ngFor="let opt of demos" [value]="opt[0]">{{opt[0]}}</option>
 </select>
 
+
+
+<select (change)="selectFile($event)" [(ngModel)]="currentFileName">
+  <option *ngFor="let file of files">{{file}}</option>
+</select>
+
+<button (click)="saveFile()" [disabled]="!currentFileName">Save</button>
+
+
+
 <input type="number" name="startTimeNum" [(ngModel)]="splitPointNum">
 <input type="number" name="startTimeDen" [(ngModel)]="splitPointDen">
 

@@ -9,15 +9,28 @@ export class FsController {
   }
 
   @Get('/file/:name')
-  @Header('Content-type', 'text/plain')
+  //@Header('Content-type', 'application/json')
   getFile(@Param('name') name: string) {
+    const dir = this.fservice.loadFile(name);
+    return dir;
+  }
+
+  @Get('/ly/:name')
+  @Header('Content-type', 'text/plain')
+  getFileLy(@Param('name') name: string) {
     const dir = this.fservice.loadFile(name);
     return dir;
   }
 
   @Get()
   getData() {
-    const dir = this.fservice.listFiles();
+    const dir = this.fservice.listFiles('jmus');
+    return dir;
+  }
+
+  @Get('/ly')
+  getDir() {
+    const dir = this.fservice.listFiles('ly');
     return dir;
   }
 

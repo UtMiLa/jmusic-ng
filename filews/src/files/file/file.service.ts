@@ -5,8 +5,8 @@ const demoPath = 'C:/Temp/demo-io'
 
 @Injectable()
 export class FileService {
-  listFiles() {
-    return fs.readdirSync(demoPath);
+  listFiles(ext: string) {
+    return fs.readdirSync(demoPath).filter(dir => dir.endsWith('.' + ext));
   }
 
   loadFile(name: string) {

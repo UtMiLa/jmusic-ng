@@ -20,7 +20,7 @@ export class LyPageComponent implements OnInit {
   currentFileName?: string;
 
   ngOnInit(): void {
-    this.fileIo.listFiles().subscribe(res => this.files = res);
+    this.fileIo.listLyFiles().subscribe(res => this.files = ['', ...res]);
   }
 
   model?: JMusic;
@@ -54,7 +54,7 @@ export class LyPageComponent implements OnInit {
   }
 
   selectFile(event: Event) {
-    this.fileIo.loadFile((event.target as any).value).subscribe(content => {
+    this.fileIo.loadLyFile((event.target as any).value).subscribe(content => {
       //console.log(event, content);
       this.lyText = content;
     });
