@@ -15,6 +15,10 @@ export class FileIoService {
 
   loadFile(name: string) {
     return this.http.get('http://localhost:3000/api/fs/file/' + name, {responseType: 'text'});
-    //return of('c4 d8 e8');
+  }
+
+  saveFile(name: string, content: string) {
+    //console.log('saveFile');
+    return this.http.post('http://localhost:3000/api/fs/file/' + name, {content}).subscribe(_ => {});
   }
 }

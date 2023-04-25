@@ -12,4 +12,9 @@ export class FileService {
   loadFile(name: string) {
     return fs.readFileSync(demoPath + '/' + name).toString();
   }
+
+  saveFile(name: string, content: {content: string}) {
+    //console.log('save', name, content);
+    fs.writeFileSync(demoPath + '/' + name, content.content);
+  }
 }

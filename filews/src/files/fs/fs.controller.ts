@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Param } from '@nestjs/common';
+import { Body, Controller, Get, Header, Param, Post } from '@nestjs/common';
 import { FileService } from '../file/file.service';
 
 
@@ -19,5 +19,10 @@ export class FsController {
   getData() {
     const dir = this.fservice.listFiles();
     return dir;
+  }
+
+  @Post('/file/:name')
+  postData(@Param('name') name: string, @Body() body: {content: string}) {
+    this.fservice.saveFile(name, body);
   }
 }

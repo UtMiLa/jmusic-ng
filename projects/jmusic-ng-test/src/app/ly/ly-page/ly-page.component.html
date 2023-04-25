@@ -28,6 +28,8 @@
 </dl>
 
 
-<select (change)="selectFile($event)">
+<select (change)="selectFile($event)" [(ngModel)]="currentFileName">
   <option *ngFor="let file of files">{{file}}</option>
 </select>
+
+<button (click)="saveFile()" [disabled]="!currentFileName">Save</button>

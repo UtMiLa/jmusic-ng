@@ -17,6 +17,7 @@ export class LyPageComponent implements OnInit {
 
 
   files: string[] = [];
+  currentFileName?: string;
 
   ngOnInit(): void {
     this.fileIo.listFiles().subscribe(res => this.files = res);
@@ -57,6 +58,11 @@ export class LyPageComponent implements OnInit {
       //console.log(event, content);
       this.lyText = content;
     });
+  }
+
+  saveFile() {
+    if (this.currentFileName)
+    this.fileIo.saveFile(this.currentFileName, this.lyText);
   }
 
   playMidi() {
