@@ -3,6 +3,10 @@
 <div>{{error}}</div>
 <textarea [(ngModel)]="lyText"></textarea>
 
+<!--pre contenteditable="true" (input)="editableChanged($event)">{{lyText}}</!--pre-->
+
+<app-ly-editor [(lyText)]="lyText"></app-ly-editor>
+
 <dl *ngIf="insertionPoint && model">
 
   <dt>Staff</dt>
