@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 
-const demoPath = 'C:/Temp/demo-io'
+const demoPath = './demos';
 
 @Injectable()
 export class FileService {
   listFiles(ext: string) {
-    return fs.readdirSync(demoPath).filter(dir => dir.endsWith('.' + ext));
+    return fs.readdirSync(demoPath)//.filter(dir => dir.endsWith('.' + ext));
   }
 
   loadFile(name: string) {
