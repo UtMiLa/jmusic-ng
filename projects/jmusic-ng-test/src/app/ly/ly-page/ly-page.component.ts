@@ -24,7 +24,7 @@ export class LyPageComponent implements OnInit {
   }
 
   model?: JMusic;
-  error = '';
+  error: any;
 
   insertionPoint?: InsertionPoint;
 
@@ -44,7 +44,7 @@ export class LyPageComponent implements OnInit {
         //this.invalidate();
       } catch (e) {
         console.log(e);
-        this.error = JSON.stringify(e);
+        this.error = e;
       }
     }
   }

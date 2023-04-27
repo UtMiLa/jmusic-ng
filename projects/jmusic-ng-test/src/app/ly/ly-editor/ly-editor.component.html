@@ -1,3 +1,11 @@
-<p>ly-editor works!</p>
+<mat-card>
+  <mat-card-content>
+    <pre #editor contenteditable="true" (input)="editableChanged($event)" [textContent]="lyText"></pre>
+  </mat-card-content>
+  <mat-card-footer *ngIf="errorText">{{errorText}}</mat-card-footer>
+</mat-card>
 
-<pre contenteditable="true" (input)="editableChanged($event)" [textContent]="lyText"></pre>
+
+
+
+

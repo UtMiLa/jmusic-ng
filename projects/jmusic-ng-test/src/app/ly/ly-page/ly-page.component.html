@@ -1,11 +1,7 @@
-<mus-jmusic-ng [scoreDef]="model" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
+<mus-jmusic-ng *ngIf="model && !error" [scoreDef]="model" [insertionPoint]="insertionPoint" [scale]="1.2"></mus-jmusic-ng>
 <button *ngIf="model" (click)="playMidi()">Play Midi</button>
-<div>{{error}}</div>
-<textarea [(ngModel)]="lyText"></textarea>
 
-<!--pre contenteditable="true" (input)="editableChanged($event)">{{lyText}}</!--pre-->
-
-<app-ly-editor [(lyText)]="lyText"></app-ly-editor>
+<app-ly-editor [(lyText)]="lyText" [error]="error"></app-ly-editor>
 
 <dl *ngIf="insertionPoint && model">
 

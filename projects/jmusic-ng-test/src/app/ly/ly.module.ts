@@ -1,3 +1,4 @@
+import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { JmusicNgModule } from 'jmusic-ng';
 import { NgModule } from '@angular/core';
@@ -7,6 +8,11 @@ import { LyEditorComponent } from './ly-editor/ly-editor.component';
 
 @NgModule({
   declarations: [LyPageComponent, LyEditorComponent],
-  imports: [CommonModule, FormsModule, JmusicNgModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    JmusicNgModule,
+    MatCardModule
+  ],
 })
 export class LyModule {}
