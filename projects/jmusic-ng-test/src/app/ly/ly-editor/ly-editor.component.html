@@ -1,11 +1,13 @@
 <mat-card>
   <mat-card-content>
-    <pre #editor contenteditable="true" (input)="editableChanged($event)" [textContent]="lyText"></pre>
+    <div class="editor" contenteditable="true"  (input)="editableChanged($event)">
+      <div *ngFor="let line of lyTextLines">
+        <span [textContent]="line.before"></span>
+        <span class="marked" [textContent]="line.marked"></span>
+        <span [textContent]="line.after"></span>
+      </div>
+    </div>
+
   </mat-card-content>
   <mat-card-footer *ngIf="errorText">{{errorText}}</mat-card-footer>
 </mat-card>
-
-
-
-
-
