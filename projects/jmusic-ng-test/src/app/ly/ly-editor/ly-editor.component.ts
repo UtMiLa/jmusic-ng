@@ -73,12 +73,27 @@ export class LyEditorComponent {
   @Output()
   lyTextChange = new EventEmitter<string>();
 
-  setDivCaret(element: Node, indexes: number[], position: number) {
+  setDivCaret(element: Node, line: number, position: number) {
     //var el = document.getElementById("editable")
-    while (indexes.length) {
+    if (!line || !this.lyTextLines || this.lyTextLines.length <= line) {
+      throw 'incompatible line';
+    }
+    const theLine = this.lyTextLines[line];
+    let elementId = 0;
+    if (position > theLine.before.length) {
+      position -= theLine.before.length
+      elementId = 1;
+      if (position > theLine.marked.length) {
+        position -= theLine.marked.length
+        elementId = 2;
+      }
+    }
+    element = element.childNodes.item(line).childNodes.item(elementId).childNodes.item(0);
+    console.log('element', element);
+    /*while (indexes.length) {
       const index = indexes.pop() as number;
       element = element.childNodes.item(index);
-    }
+    }*/
     var range = document.createRange()
     var sel = window.getSelection()
 
@@ -98,6 +113,18 @@ export class LyEditorComponent {
 
   divText: string = '';
 
+  getPos(line: number, element: number, pos: number) {
+    if (!line || !this.lyTextLines || this.lyTextLines.length <= line) {
+      console.error('incompatible line', line, this.lyTextLines);
+      return 0;
+    }
+    if (element === 0) return pos;
+    pos += this.lyTextLines[line].before.length;
+    if (element === 1) return pos;
+    pos += this.lyTextLines[line].marked.length;
+    return pos;
+  }
+
   editableChanged(event: Event) {
     //console.log(event);
 
@@ -111,8 +138,6 @@ export class LyEditorComponent {
     if (sel && sel.rangeCount) {
       const range = sel.getRangeAt(0);
       if (range.startContainer === range.endContainer) {
-        let caretLine = 0;
-        caretPos = range.startOffset;
         //console.log('which line?', range, sel, event);
         //console.log('planning caret', caretLine, caretPos, range.startOffset, range.startContainer);
 
@@ -120,10 +145,19 @@ export class LyEditorComponent {
         while (elm && elm !== event.target) {
           elms.push(elm);
           var index = Array.prototype.indexOf.call(elm.parentElement?.childNodes, elm);
-          indexes.push(index)
+          indexes.push(index);
           elm = elm.parentElement;
         }
-        //console.log('planning caret', elms, indexes);
+        console.log('planning caret', elms, indexes);
+        caretLine = indexes[indexes.length - 1];
+        /*if (elm && (elm as HTMLElement).tagName === 'DIV') {
+          //caretLine = indexes[0];
+          caretPos = this.lyTextLines ? this.lyTextLines[caretLine].before.length : 0;
+        } else */{
+          //caretLine = indexes[2];
+          caretPos = this.getPos(caretLine, indexes[1], range.startOffset);
+        }
+        console.log('pos', caretPos);
       }
     }
 
@@ -149,7 +183,7 @@ export class LyEditorComponent {
       setTimeout(() => {
         if (indexes.length) {
           //console.log('setting caret', caretLine, caretPos, indexes);
-          this.setDivCaret(event.target as HTMLElement, indexes, caretPos);
+          this.setDivCaret(event.target as HTMLElement, caretLine, caretPos);
         }
       }, 1);
 
