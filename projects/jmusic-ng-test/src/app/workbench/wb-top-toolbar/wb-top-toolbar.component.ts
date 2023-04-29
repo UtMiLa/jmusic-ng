@@ -29,6 +29,13 @@ export class WbTopToolbarComponent implements OnInit {
       this.model.addPitch(this.insertionPoint);
   }
 
+  enharmonicPitch() {
+    //console.log((this.model, this.insertionPoint));
+
+    if (this.model && this.insertionPoint)
+      this.model.changePitchEnharm(this.insertionPoint);
+  }
+
   setMeter() {
     console.log((this.model, this.insertionPoint));
     if (this.model && this.insertionPoint) {
