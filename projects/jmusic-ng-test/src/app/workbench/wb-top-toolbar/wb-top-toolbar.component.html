@@ -4,8 +4,8 @@
 <mat-menu #menuPitch="matMenu">
   <app-toolbar-button (click)="setPitch()">Set</app-toolbar-button>
   <app-toolbar-button>Clear</app-toolbar-button>
-  <app-toolbar-button>+</app-toolbar-button>
-  <app-toolbar-button>-</app-toolbar-button>
+  <app-toolbar-button (click)="alterPitch(1)">+</app-toolbar-button>
+  <app-toolbar-button (click)="alterPitch(-1)">-</app-toolbar-button>
   <app-toolbar-button (click)="enharmonicPitch()">Enharm</app-toolbar-button>
 </mat-menu>
 

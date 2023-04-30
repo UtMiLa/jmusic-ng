@@ -23,7 +23,7 @@ export class WbTopToolbarComponent implements OnInit {
 
 
   setPitch() {
-    console.log((this.model, this.insertionPoint));
+    //console.log((this.model, this.insertionPoint));
 
     if (this.model && this.insertionPoint)
       this.model.addPitch(this.insertionPoint);
@@ -34,6 +34,13 @@ export class WbTopToolbarComponent implements OnInit {
 
     if (this.model && this.insertionPoint)
       this.model.changePitchEnharm(this.insertionPoint);
+  }
+
+  alterPitch(amount: number) {
+    //console.log((this.model, this.insertionPoint));
+
+    if (this.model && this.insertionPoint)
+      this.model.alterPitch(this.insertionPoint, amount);
   }
 
   setMeter() {

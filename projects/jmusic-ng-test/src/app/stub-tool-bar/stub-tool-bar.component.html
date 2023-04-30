@@ -1,8 +1,8 @@
 <div *ngIf="model && insertionPoint">
   <button type="button" (click)="setPitch()">Set pitch</button>
   <button type="button" (click)="enharmonicPitch()">Clear pitch</button>
-  <button type="button">+ pitch</button>
-  <button type="button">- pitch</button>
+  <button type="button" (click)="alterPitch(1)">+ pitch</button>
+  <button type="button" (click)="alterPitch(-1)">- pitch</button>
   <button type="button">Enharm</button>
   <button type="button">Delete note</button>
   <button type="button">1</button>

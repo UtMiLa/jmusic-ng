@@ -34,6 +34,15 @@ export class StubToolBarComponent implements OnInit {
       this.model.changePitchEnharm(this.insertionPoint);
   }
 
+
+  alterPitch(amount: number) {
+    //console.log((this.model, this.insertionPoint));
+
+    if (this.model && this.insertionPoint)
+      this.model.alterPitch(this.insertionPoint, amount);
+  }
+
+
   setMeter() {
     console.log((this.model, this.insertionPoint));
     if (this.model && this.insertionPoint) {
