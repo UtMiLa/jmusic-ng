@@ -1,6 +1,6 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { Component, Input, OnInit } from '@angular/core';
-import { JMusic } from 'jmusic-model/model';
+import { JMusic, Time, getDottedValue, getUndottedValue, getDotNumber, Rational } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-wb-top-toolbar',
@@ -38,6 +38,23 @@ export class WbTopToolbarComponent implements OnInit {
 
     if (this.model && this.insertionPoint)
       this.model.removePitch(this.insertionPoint);
+  }
+
+  setDuration(denominator: number) {
+    if (this.model && this.insertionPoint)
+      this.model.setNoteValue(this.insertionPoint, Time.newSpan(1, denominator));
+  }
+
+  setDot() {
+    if (this.model && this.insertionPoint) {
+      const note = this.model.noteFromInsertionPoint(this.insertionPoint);
+
+      const dots = getDotNumber(note.nominalDuration);
+      const undotted = getUndottedValue(note.nominalDuration);
+      const newDuration = getDottedValue(undotted, (dots + 1) % 4);
+
+      this.model.setNoteValue(this.insertionPoint, newDuration);
+    }
   }
 
   enharmonicPitch() {

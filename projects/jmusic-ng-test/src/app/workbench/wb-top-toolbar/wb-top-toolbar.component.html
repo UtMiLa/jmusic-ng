@@ -12,13 +12,13 @@
 
 <button mat-button [matMenuTriggerFor]="menuValue">Value</button>
 <mat-menu #menuValue="matMenu">
-  <app-toolbar-button>1</app-toolbar-button>
-  <app-toolbar-button>2</app-toolbar-button>
-  <app-toolbar-button>4</app-toolbar-button>
-  <app-toolbar-button>8</app-toolbar-button>
-  <app-toolbar-button>16</app-toolbar-button>
-  <app-toolbar-button>32</app-toolbar-button>
-  <app-toolbar-button>.</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(1)">1</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(2)">2</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(4)">4</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(8)">8</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(16)">16</app-toolbar-button>
+  <app-toolbar-button (click)="setDuration(32)">32</app-toolbar-button>
+  <app-toolbar-button (click)="setDot()">.</app-toolbar-button>
 </mat-menu>
 
 <app-toolbar-button>Expr</app-toolbar-button>
