@@ -21,12 +21,23 @@ export class WbTopToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteNote() {
+    if (this.model && this.insertionPoint)
+      this.model.deleteNote(this.insertionPoint);
+  }
 
   setPitch() {
     //console.log((this.model, this.insertionPoint));
 
     if (this.model && this.insertionPoint)
       this.model.addPitch(this.insertionPoint);
+  }
+
+  removePitch() {
+    //console.log((this.model, this.insertionPoint));
+
+    if (this.model && this.insertionPoint)
+      this.model.removePitch(this.insertionPoint);
   }
 
   enharmonicPitch() {

@@ -1,10 +1,10 @@
 <div *ngIf="model && insertionPoint">
   <button type="button" (click)="setPitch()">Set pitch</button>
-  <button type="button" (click)="enharmonicPitch()">Clear pitch</button>
+  <button type="button" (click)="removePitch()">Clear pitch</button>
   <button type="button" (click)="alterPitch(1)">+ pitch</button>
   <button type="button" (click)="alterPitch(-1)">- pitch</button>
-  <button type="button">Enharm</button>
-  <button type="button">Delete note</button>
+  <button type="button" (click)="enharmonicPitch()">Enharm</button>
+  <button type="button" (click)="deleteNote()">Delete note</button>
   <button type="button">1</button>
   <button type="button">2</button>
   <button type="button">4</button>
