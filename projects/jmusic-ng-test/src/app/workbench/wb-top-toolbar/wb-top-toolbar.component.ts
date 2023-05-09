@@ -72,7 +72,7 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
   setMeter() {
-    console.log((this.model, this.insertionPoint));
+    //console.log((this.model, this.insertionPoint));
     if (this.model && this.insertionPoint) {
 
       const mDef = prompt('Input meter string (e.g. 3/4)');
@@ -81,5 +81,28 @@ export class WbTopToolbarComponent implements OnInit {
       }
     }
   }
+
+  setKey() {
+    //console.log((this.model, this.insertionPoint));
+    if (this.model && this.insertionPoint) {
+
+      const kDef = prompt('Input key string (e.g. bes major)');
+      if (kDef) {
+        this.model.addKeyChg(this.insertionPoint, kDef);
+      }
+    }
+  }
+
+  setClef() {
+    //console.log((this.model, this.insertionPoint));
+    if (this.model && this.insertionPoint) {
+
+      const cDef = prompt('Input clef string (e.g. treble or bass)');
+      if (cDef) {
+        this.model.addClefChg(this.insertionPoint, cDef);
+      }
+    }
+  }
+
 
 }

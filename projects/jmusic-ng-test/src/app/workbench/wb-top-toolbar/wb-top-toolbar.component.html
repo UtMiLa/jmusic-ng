@@ -24,8 +24,8 @@
 <app-toolbar-button>Expr</app-toolbar-button>
 
 <app-toolbar-button (click)="setMeter()">Chg meter</app-toolbar-button>
-<app-toolbar-button>Chg key</app-toolbar-button>
-<app-toolbar-button>Chg clef</app-toolbar-button>
+<app-toolbar-button (click)="setKey()">Chg key</app-toolbar-button>
+<app-toolbar-button (click)="setClef()">Chg clef</app-toolbar-button>
 
 <button mat-button [matMenuTriggerFor]="menuExpr">Expression</button>
 <mat-menu #menuExpr="matMenu">
