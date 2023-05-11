@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { MidiInService } from '../midi/midi-in.service';
+import { BaseEventHandler } from 'jmusic-model/editor/event-handler';
+import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
+import { Command } from 'jmusic-model/editor/commands';
 
 @Component({
   selector: 'app-workbench',
@@ -22,6 +25,11 @@ export class WorkbenchComponent implements OnInit {
 
   model: JMusic = new JMusic(tuplets, tupletVars);
   insertionPoint = new InsertionPoint(this.model);
+  eventHandler = new BaseEventHandler(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
+    execute: (command: Command) => {
+        command.execute(this.model);
+    }
+  }, this.insertionPoint);
 
   previewModel: JMusic = this.model;
 

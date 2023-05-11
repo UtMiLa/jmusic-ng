@@ -20,21 +20,16 @@ export class WbTopToolbarComponent implements OnInit {
   @Input()
   insertionPoint: InsertionPoint | undefined;
 
+  @Input()
+  eventHandler: EventHandler | undefined;
 
   ngOnInit() {
   }
 
   deleteNote() {
-    if (this.model && this.insertionPoint) {
-      const model = this.model;
-      const eventHandler = new BaseEventHandler(new BaseCommandFactory(), { // todo: all this initialisation stuff should be done in one place
-        execute: (command: Command) => {
-            command.execute(model);
-        }
-      }, this.insertionPoint);
-      eventHandler.actionSelected('DeleteNote');
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('DeleteNote');
     }
-    //this.model.deleteNote(this.insertionPoint);
   }
 
   setPitch() {
@@ -45,10 +40,9 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
   removePitch() {
-    //console.log((this.model, this.insertionPoint));
-
-    if (this.model && this.insertionPoint)
-      this.model.removePitch(this.insertionPoint);
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('DeletePitch');
+    }
   }
 
   setDuration(denominator: number) {
