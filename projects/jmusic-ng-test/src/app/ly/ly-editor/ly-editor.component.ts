@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 
 //todo: still cannot set caret correctly when changing error status
-
+// inspiration: https://codemirror.net/examples/lang-package/
 
 @Component({
   selector: 'app-ly-editor',

@@ -1,6 +1,9 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
+import { EventHandler, BaseEventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, Input, OnInit } from '@angular/core';
 import { JMusic, Time, getDottedValue, getUndottedValue, getDotNumber, Rational } from 'jmusic-model/model';
+import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
+import { Command } from 'jmusic-model/editor/commands';
 
 @Component({
   selector: 'app-wb-top-toolbar',
@@ -22,8 +25,16 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
   deleteNote() {
-    if (this.model && this.insertionPoint)
-      this.model.deleteNote(this.insertionPoint);
+    if (this.model && this.insertionPoint) {
+      const model = this.model;
+      const eventHandler = new BaseEventHandler(new BaseCommandFactory(), { // todo: all this initialisation stuff should be done in one place
+        execute: (command: Command) => {
+            command.execute(model);
+        }
+      }, this.insertionPoint);
+      eventHandler.actionSelected('DeleteNote');
+    }
+    //this.model.deleteNote(this.insertionPoint);
   }
 
   setPitch() {
