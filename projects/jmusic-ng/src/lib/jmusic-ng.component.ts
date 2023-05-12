@@ -1,3 +1,4 @@
+import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AbsoluteTime, ScoreDef, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
@@ -32,6 +33,8 @@ export class JmusicNgComponent implements OnInit {
   @ViewChild('div')
   div: ElementRef<HTMLDivElement> | undefined;
 
+  @Input()
+  eventHandler?: EventHandler;
 
   private _insertionPoint: InsertionPoint | undefined;
   @Input()
@@ -192,8 +195,14 @@ export class JmusicNgComponent implements OnInit {
   mouseDebug: string = '';
 
 
-  keyDown($event: Event) {
+  keyDown($event: KeyboardEvent) {
     console.log($event);
 
+    if (this.eventHandler) {
+      this.eventHandler.keyDown($event.key);
+      $event.preventDefault(); // todo: this should be handled otherwise
+      $event.stopPropagation(); // todo: this should be handled otherwise
+      this.render(); // todo: this should be handled otherwise
+    }
   }
 }

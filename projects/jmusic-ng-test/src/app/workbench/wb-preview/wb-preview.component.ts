@@ -1,6 +1,7 @@
 import { FlexibleItem, JMusic, VariableDef } from 'jmusic-model/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
+import { EventHandler } from 'jmusic-model/editor/event-handler';
 
 @Component({
   selector: 'app-wb-preview',
@@ -10,6 +11,9 @@ import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 export class WbPreviewComponent implements OnInit {
 
   constructor() { }
+
+  @Input()
+  eventHandler?: EventHandler;
 
   private _model?: JMusic | undefined;
   @Input()
