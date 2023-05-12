@@ -15,12 +15,6 @@ export class WbTopToolbarComponent implements OnInit {
   constructor() { }
 
   @Input()
-  model: JMusic | undefined;
-
-  @Input()
-  insertionPoint: InsertionPoint | undefined;
-
-  @Input()
   eventHandler: EventHandler | undefined;
 
   ngOnInit() {
@@ -33,10 +27,9 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
   setPitch() {
-    //console.log((this.model, this.insertionPoint));
-
-    if (this.model && this.insertionPoint)
-      this.model.addPitch(this.insertionPoint);
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('SetPitch');
+    }
   }
 
   removePitch() {
@@ -46,65 +39,52 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
   setDuration(denominator: number) {
-    if (this.model && this.insertionPoint)
-      this.model.setNoteValue(this.insertionPoint, Time.newSpan(1, denominator));
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('SetDuration', [Time.newSpan(1, denominator)]);
+    }
   }
 
   setDot() {
-    if (this.model && this.insertionPoint) {
-      const note = this.model.noteFromInsertionPoint(this.insertionPoint);
-
-      const dots = getDotNumber(note.nominalDuration);
-      const undotted = getUndottedValue(note.nominalDuration);
-      const newDuration = getDottedValue(undotted, (dots + 1) % 4);
-
-      this.model.setNoteValue(this.insertionPoint, newDuration);
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('SetDot');
     }
   }
 
   enharmonicPitch() {
-    //console.log((this.model, this.insertionPoint));
-
-    if (this.model && this.insertionPoint)
-      this.model.changePitchEnharm(this.insertionPoint);
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('EnharmPitch');
+    }
   }
 
   alterPitch(amount: number) {
-    //console.log((this.model, this.insertionPoint));
-
-    if (this.model && this.insertionPoint)
-      this.model.alterPitch(this.insertionPoint, amount);
+    if (this.eventHandler) {
+      this.eventHandler.actionSelected('AlterPitch', [amount]);
+    }
   }
 
   setMeter() {
-    //console.log((this.model, this.insertionPoint));
-    if (this.model && this.insertionPoint) {
-
+    if (this.eventHandler) {
       const mDef = prompt('Input meter string (e.g. 3/4)');
       if (mDef) {
-        this.model.addMeterChg(this.insertionPoint, mDef);
+        this.eventHandler.actionSelected('SetMeter', [mDef]);
       }
     }
   }
 
   setKey() {
-    //console.log((this.model, this.insertionPoint));
-    if (this.model && this.insertionPoint) {
-
+    if (this.eventHandler) {
       const kDef = prompt('Input key string (e.g. bes major)');
       if (kDef) {
-        this.model.addKeyChg(this.insertionPoint, kDef);
+        this.eventHandler.actionSelected('SetKey', [kDef]);
       }
     }
   }
 
   setClef() {
-    //console.log((this.model, this.insertionPoint));
-    if (this.model && this.insertionPoint) {
-
+    if (this.eventHandler) {
       const cDef = prompt('Input clef string (e.g. treble or bass)');
       if (cDef) {
-        this.model.addClefChg(this.insertionPoint, cDef);
+        this.eventHandler.actionSelected('SetClef', [cDef]);
       }
     }
   }
