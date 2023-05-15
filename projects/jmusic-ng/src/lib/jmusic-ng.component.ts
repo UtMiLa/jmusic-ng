@@ -199,10 +199,11 @@ export class JmusicNgComponent implements OnInit {
     console.log($event);
 
     if (this.eventHandler) {
-      this.eventHandler.keyDown($event.key);
-      $event.preventDefault(); // todo: this should be handled otherwise
-      $event.stopPropagation(); // todo: this should be handled otherwise
-      this.render(); // todo: this should be handled otherwise
+      if (this.eventHandler.keyDown($event.key)) {
+        $event.preventDefault(); // todo: this should be handled otherwise
+        $event.stopPropagation(); // todo: this should be handled otherwise
+        this.render(); // todo: this should be handled otherwise
+      }
     }
   }
 }

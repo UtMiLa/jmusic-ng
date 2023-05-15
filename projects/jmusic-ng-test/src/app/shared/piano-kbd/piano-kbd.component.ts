@@ -1,5 +1,6 @@
+import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { MidiService } from './../../midi/midi.service';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Pitch } from 'jmusic-model/model';
 import { MidiInService } from '../../midi/midi-in.service';
 
@@ -12,6 +13,8 @@ export class PianoKbdComponent implements OnInit {
 
   constructor(private cd: ChangeDetectorRef, private midi: MidiInService) { }
 
+  @Input()
+  eventHandler?: EventHandler;
 
   items = [] as any[];
   tgWidth = 30;
@@ -103,13 +106,29 @@ export class PianoKbdComponent implements OnInit {
   }
   upDown(item: any) {
     const up = !this.pressed[item.i]; // !this.status.notesPressed.some((value) => item.i === value.toMidi() );
+
     return up ? 'up' : 'down';
   }
 
   notePressed(i: number) {
+    if (!this.pressed[i]){
+
+      console.log('Down', i);
+      this.pressed[i] = true;
+
+      if (this.eventHandler) this.eventHandler.noteDown(i);
+    }
     //this.status.pressNoteKey(Pitch.createFromMidi(i));
   }
   noteReleased(i: number) {
+    if (this.pressed[i]){
+
+      console.log('Up', i);
+      this.pressed[i] = false;
+
+      if (this.eventHandler) this.eventHandler.noteUp(i);
+
+    }
     //this.status.releaseNoteKey(Pitch.createFromMidi(i));
   }
 

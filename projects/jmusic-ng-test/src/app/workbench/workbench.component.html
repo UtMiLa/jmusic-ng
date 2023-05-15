@@ -4,7 +4,7 @@
 
   </div>
   <div class="app-wb-editor">
-    <app-wb-editor [model]="currentVar" (varChange)="varChanged($event)"></app-wb-editor>
+    <app-wb-editor [model]="currentVar" [eventHandler]="eventHandler" (varChange)="varChanged($event)"></app-wb-editor>
 
   </div>
   <div class="app-wb-preview">

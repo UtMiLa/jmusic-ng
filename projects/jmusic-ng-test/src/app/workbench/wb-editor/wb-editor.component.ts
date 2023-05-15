@@ -1,3 +1,4 @@
+import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlexibleSequence, VariableDef, FlexibleItem } from 'jmusic-model/model';
 
@@ -23,6 +24,9 @@ export class WbEditorComponent implements OnInit {
       this._value = '';
     }
   }
+
+  @Input()
+  eventHandler?: EventHandler;
 
   private _value: string = '';
   public get value(): string {
