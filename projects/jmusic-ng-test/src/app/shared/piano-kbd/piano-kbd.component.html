@@ -1,6 +1,6 @@
 <p>piano-kbd works!</p>
 
-<div class='piano'>
+<div class='piano' (keydown)="keyDown($event)">
   <span *ngFor="let item of items; let i = index" id="tast{{item.i}}" class="{{upDown(item)}} {{item.bw}}" [style.left]="item.left" (mouseup)="noteReleased(item.i)" (mouseout)="noteReleased(item.i)" (mousedown)="notePressed(item.i)"></span>
 </div>
 <ul><li *ngFor="let chord of chords">{{chordToString(chord.chord)}}{{lengthToString(chord.length)}}</li></ul>

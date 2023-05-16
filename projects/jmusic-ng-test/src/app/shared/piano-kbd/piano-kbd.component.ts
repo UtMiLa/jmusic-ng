@@ -11,7 +11,7 @@ import { MidiInService } from '../../midi/midi-in.service';
 })
 export class PianoKbdComponent implements OnInit {
 
-  constructor(private cd: ChangeDetectorRef, private midi: MidiInService) { }
+  constructor(private cd: ChangeDetectorRef/*, private midi: MidiInService*/) { }
 
   @Input()
   eventHandler?: EventHandler;
@@ -52,46 +52,24 @@ export class PianoKbdComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.midi.midiEventEmitter.subscribe(event => {
+    /*this.midi.midiEventEmitter.subscribe(event => {
       //console.log('PIANO msg', event);
       if (event.note) {
         //console.log('PIANO note', event);
 
-        this.pressed[event.note] = !! event.velocity;
+        //this.pressed[event.note] = !! event.velocity;
         this.cd.detectChanges();
-      }
-    });
-    /*this.musicIoService.chordReleased.subscribe((event) => {
-      // console.log(event);
-      this.chords.push({
-        chord: event.sort().map(n => Pitch.createFromMidi(n)),
-        length: this.currentLength
-      });
-      this.currentLength = 0;
-      this.cd.detectChanges();
-    });
-
-
-    this.musicIoService.musicChanged.subscribe((event) => {
-      if (event.velocity > 0 && this.currentLength && this.musicIoService.status.notesPressed.length === 1) {
-        this.chords.push({ chord: [], length: this.currentLength });
-        this.currentLength = 0;
-        this.cd.detectChanges();
-      }
-    });
-
-    this.musicIoService.controlChanged.subscribe((event) => {
-      // console.log('controlChanged', event);
-      if (event.controller === 64) {
-        // left pedal
-        if (event.value === 0) {
-          this.tap();
-          this.cd.detectChanges();
-        }
-      } else if (event.controller === 67) {
-        // right pedal
       }
     });*/
+    if (this.eventHandler) {
+      this.eventHandler.onChordChange((chord: number[]) => {
+        console.log(chord);
+        this.pressed = chord.reduce((prev: boolean[], curr: number) => {
+          prev[curr] = true;
+          return prev;
+        }, []);
+      });
+    }
 
     const tgSpacing = this.tgWidth * 7 / 12;
     for (let i = 21; i < 109; i++) {
@@ -101,11 +79,11 @@ export class PianoKbdComponent implements OnInit {
         const bw = det >= 7 ? 'bw-black' : 'bw-white';
 
         this.items.push({det, className, left: left + 'px', bw, i});
-        this.pressed.push(false);
+        //this.pressed.push(false);
     }
   }
   upDown(item: any) {
-    const up = !this.pressed[item.i]; // !this.status.notesPressed.some((value) => item.i === value.toMidi() );
+    const up = !this.pressed[item.i];
 
     return up ? 'up' : 'down';
   }
@@ -114,22 +92,27 @@ export class PianoKbdComponent implements OnInit {
     if (!this.pressed[i]){
 
       console.log('Down', i);
-      this.pressed[i] = true;
 
       if (this.eventHandler) this.eventHandler.noteDown(i);
     }
-    //this.status.pressNoteKey(Pitch.createFromMidi(i));
   }
   noteReleased(i: number) {
     if (this.pressed[i]){
 
       console.log('Up', i);
-      this.pressed[i] = false;
 
       if (this.eventHandler) this.eventHandler.noteUp(i);
 
     }
-    //this.status.releaseNoteKey(Pitch.createFromMidi(i));
+  }
+  keyDown($event: KeyboardEvent) {
+
+    if (this.eventHandler) {
+      if (this.eventHandler.keyDown($event.key)) {
+        $event.preventDefault();
+        $event.stopPropagation();
+      }
+    }
   }
 
 }

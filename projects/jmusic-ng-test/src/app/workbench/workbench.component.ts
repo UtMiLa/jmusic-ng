@@ -1,5 +1,5 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { MidiInService } from '../midi/midi-in.service';
@@ -14,10 +14,24 @@ import { Command } from 'jmusic-model/editor/commands';
 })
 export class WorkbenchComponent implements OnInit {
 
-  constructor(private midiIn: MidiInService) {
+  constructor(private midiIn: MidiInService, private cd: ChangeDetectorRef) {
     console.log(
-     midiIn.midiEventEmitter.subscribe(event => {
-      //console.log('MIDI in', event);
+     this.midiIn.midiEventEmitter.subscribe(event => {
+      console.log('MIDI in', event);
+
+      if (this.eventHandler) {
+        if (event.note) {
+          if (event.velocity) {
+            this.eventHandler.noteDown(event.note);
+          } else {
+            this.eventHandler.noteUp(event.note);
+          }
+          //console.log('PIANO note', event);
+
+          //this.pressed[event.note] = !! event.velocity;
+          this.cd.detectChanges();
+        }
+      }
 
      })
      );
