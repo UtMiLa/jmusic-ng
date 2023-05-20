@@ -1,3 +1,14 @@
+
+
+<button mat-button [matMenuTriggerFor]="menuFile">File</button>
+<mat-menu #menuFile="matMenu">
+  <app-toolbar-button (click)="newFile()">New</app-toolbar-button>
+  <app-toolbar-button (click)="unsupported()">Open</app-toolbar-button>
+  <app-toolbar-button (click)="unsupported()">Save</app-toolbar-button>
+  <app-toolbar-button (click)="unsupported()">Save as</app-toolbar-button>
+  <app-toolbar-button (click)="unsupported()">Exit</app-toolbar-button>
+</mat-menu>
+
 <app-toolbar-button (click)="deleteNote()">Delete note</app-toolbar-button>
 
 <button mat-button [matMenuTriggerFor]="menuPitch">Pitch</button>

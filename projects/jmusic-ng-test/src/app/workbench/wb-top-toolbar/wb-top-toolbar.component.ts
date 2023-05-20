@@ -90,4 +90,9 @@ export class WbTopToolbarComponent implements OnInit {
   }
 
 
+  newFile() {
+    this.eventHandler?.actionSelected('NewFile');
+  }
+
+  unsupported() {}
 }
