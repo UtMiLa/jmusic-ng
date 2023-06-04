@@ -114,7 +114,7 @@ export class JmusicNgComponent implements OnInit {
       this.physicalModel = physicalModel;
       this.splits = splits;
 
-      console.log('render', this._scoreDef, logicalModel, physicalModel);
+      console.log('render', this._scoreDef, this.insertionPoint, logicalModel, physicalModel);
 
     }
   }

@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { MidiInService } from '../midi/midi-in.service';
-import { BaseEventHandler } from 'jmusic-model/editor/event-handler';
+import { FinaleSmartEntry } from 'jmusic-model/entry/finale-entry';
 import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
 
@@ -15,31 +15,31 @@ import { Command } from 'jmusic-model/editor/commands';
 export class WorkbenchComponent implements OnInit {
 
   constructor(private midiIn: MidiInService, private cd: ChangeDetectorRef) {
-    console.log(
-     this.midiIn.midiEventEmitter.subscribe(event => {
-      console.log('MIDI in', event);
 
-      if (this.eventHandler) {
-        if (event.note) {
-          if (event.velocity) {
-            this.eventHandler.noteDown(event.note);
-          } else {
-            this.eventHandler.noteUp(event.note);
-          }
-          //console.log('PIANO note', event);
+    this.midiIn.midiEventEmitter.subscribe(event => {
+    console.log('MIDI in', event);
 
-          //this.pressed[event.note] = !! event.velocity;
-          this.cd.detectChanges();
+    if (this.eventHandler) {
+      if (event.note) {
+        if (event.velocity) {
+          this.eventHandler.noteDown(event.note);
+        } else {
+          this.eventHandler.noteUp(event.note);
         }
-      }
+        //console.log('PIANO note', event);
 
-     })
-     );
+        //this.pressed[event.note] = !! event.velocity;
+        this.cd.detectChanges();
+      }
+    }
+
+    })
+
   }
 
   model: JMusic = new JMusic(tuplets, tupletVars);
   insertionPoint = new InsertionPoint(this.model);
-  eventHandler = new BaseEventHandler(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
+  eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
     execute: (command: Command) => {
         command.execute(this.model);
     }

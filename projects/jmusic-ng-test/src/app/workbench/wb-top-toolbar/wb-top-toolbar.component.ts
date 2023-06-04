@@ -1,9 +1,11 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
-import { EventHandler, BaseEventHandler } from 'jmusic-model/editor/event-handler';
+import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, Input, OnInit } from '@angular/core';
 import { JMusic, Time, getDottedValue, getUndottedValue, getDotNumber, Rational } from 'jmusic-model/model';
 import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
+import { DialogProvider } from 'jmusic-model/dialog/dialog-provider';
+import { BrowserPromptDialogProvider } from 'jmusic-model/dialog/browser-prompt-dialog-provider';
 
 @Component({
   selector: 'app-wb-top-toolbar',
@@ -64,28 +66,19 @@ export class WbTopToolbarComponent implements OnInit {
 
   setMeter() {
     if (this.eventHandler) {
-      const mDef = prompt('Input meter string (e.g. 3/4)');
-      if (mDef) {
-        this.eventHandler.actionSelected('SetMeter', [mDef]);
-      }
+      this.eventHandler.actionSelected('SetMeter', [{ placeholder: 'meter' }]);
     }
   }
 
   setKey() {
     if (this.eventHandler) {
-      const kDef = prompt('Input key string (e.g. bes major)');
-      if (kDef) {
-        this.eventHandler.actionSelected('SetKey', [kDef]);
-      }
+      this.eventHandler.actionSelected('SetKey', [{ placeholder: 'key' }]);
     }
   }
 
   setClef() {
     if (this.eventHandler) {
-      const cDef = prompt('Input clef string (e.g. treble or bass)');
-      if (cDef) {
-        this.eventHandler.actionSelected('SetClef', [cDef]);
-      }
+      this.eventHandler.actionSelected('SetClef', [{ placeholder: 'clef' }]);
     }
   }
 
