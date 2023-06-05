@@ -1,0 +1,12 @@
+<p>
+  dialogs works!
+</p>
+<ol>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="answer">
+    You chose: <em>{{answer |json}}</em>
+  </li>
+</ol>
+

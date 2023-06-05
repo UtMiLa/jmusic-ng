@@ -1,0 +1,44 @@
+.select-number {
+
+  ul li {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border: solid 3px;
+    border-color: lightgray gray gray lightgray;
+    background-color: lightcyan;
+
+    font-family: 'Emmentaler';
+    font-style: normal;
+    font-size: 36px;
+    //font-weight: 600;
+    margin: 0px;
+
+    &.selected {
+      background-color: cyan;
+    }
+  }
+
+  .upper {}
+  .lower {}
+}
+
+@font-face {
+  font-family: 'Emmentaler';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Emmentaler'), url(./Emmentaler-20.woff) format('woff');
+}
+
+mat-button-toggle {
+  //height: 30px;
+  font-family: 'Emmentaler';
+  font-style: normal;
+  font-size: 36px;
+  line-height: 0.8em;
+  p {
+    margin-top: 10px;
+    margin-bottom: -25px;
+
+  }
+}

@@ -13,6 +13,8 @@ import { StubToolBarComponent } from './stub-tool-bar/stub-tool-bar.component';
 import { WorkbenchModule } from './workbench/workbench.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogModule } from '@angular/cdk/dialog';
+import { DialogsModule } from './dialogs/dialogs.module';
 
 
 
@@ -32,7 +34,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     JmusicNgModule,
     LyModule,
     WorkbenchModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    //DialogsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
