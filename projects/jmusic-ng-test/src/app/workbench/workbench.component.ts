@@ -6,6 +6,7 @@ import { MidiInService } from '../midi/midi-in.service';
 import { FinaleSmartEntry } from 'jmusic-model/entry/finale-entry';
 import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
+import { DialogsService } from '../dialogs/dialogs.service';
 
 @Component({
   selector: 'app-workbench',
@@ -14,7 +15,7 @@ import { Command } from 'jmusic-model/editor/commands';
 })
 export class WorkbenchComponent implements OnInit {
 
-  constructor(private midiIn: MidiInService, private cd: ChangeDetectorRef) {
+  constructor(private midiIn: MidiInService, private cd: ChangeDetectorRef, private dialogSrv: DialogsService) {
 
     this.midiIn.midiEventEmitter.subscribe(event => {
     console.log('MIDI in', event);
@@ -41,7 +42,7 @@ export class WorkbenchComponent implements OnInit {
   insertionPoint = new InsertionPoint(this.model);
   eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
     execute: (command: Command) => {
-        command.execute(this.model);
+      command.execute(this.model);
     }
   }, this.insertionPoint);
 
@@ -50,6 +51,7 @@ export class WorkbenchComponent implements OnInit {
   currentVar?: VariableDef;
 
   ngOnInit() {
+    this.eventHandler.registerDialogProvider(this.dialogSrv);
   }
 
   setSelection(event: VariableDef) {

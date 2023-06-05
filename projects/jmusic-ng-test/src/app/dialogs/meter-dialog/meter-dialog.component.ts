@@ -55,6 +55,8 @@ export class MeterDialogComponent implements OnInit {
     if (vals && vals.length === 2) {
       this._numerator = vals[0];
       this._denominator = vals[1];
+      this.data.meterDef.count = +vals[0];
+      this.data.meterDef.value = +vals[1];
     }
   }
 

@@ -14,6 +14,8 @@ import { ToolbarRadioButtonGroupComponent } from './toolbar-radio-button-group/t
 import { SharedModule } from '../shared/shared.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { DialogsService } from '../dialogs/dialogs.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 
 /************************************** /
@@ -90,10 +92,12 @@ import {DialogModule} from '@angular/cdk/dialog';
     SharedModule,
     FormsModule,
     MatMenuModule,
+    MatDialogModule,
     MatButtonModule
   ],
   exports: [
     WorkbenchComponent
-  ]
+  ],
+  providers: [DialogsService]
 })
 export class WorkbenchModule { }
