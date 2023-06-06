@@ -1,0 +1,18 @@
+
+@font-face {
+  font-family: 'Emmentaler';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Emmentaler'), url(../../Emmentaler-20.woff) format('woff');
+}
+
+mat-button-toggle {
+  font-family: 'Emmentaler';
+  font-style: normal;
+  font-size: 36px;
+  line-height: 0.8em;
+  p {
+    margin-top: 10px;
+    margin-bottom: -36px;
+  }
+}

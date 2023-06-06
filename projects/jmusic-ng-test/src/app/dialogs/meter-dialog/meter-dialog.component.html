@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>Select Meter</h1>
 {{meterDef|json}}
-<app-select-meter [(selected)]="meterDef"></app-select-meter>
+<mus-meter-select [(selected)]="meterDef"></mus-meter-select>
 
-<app-construct-regular-meter [(meterDef)]="meterDef"></app-construct-regular-meter>
+<mus-meter-construct [(meterDef)]="meterDef"></mus-meter-construct>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>

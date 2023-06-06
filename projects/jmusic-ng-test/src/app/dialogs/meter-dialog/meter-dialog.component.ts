@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { KeyDef, RegularMeterDef, Time } from 'jmusic-model/model';
-import { ControlsModule } from '../../controls/controls.module';
+import { ControlsModule } from 'projects/jmusic-ng/src/lib/controls/controls.module';
 
 export interface DialogData {
   meterDef: RegularMeterDef;

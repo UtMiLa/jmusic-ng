@@ -9,12 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { ClefDialogComponent } from './clef-dialog/clef-dialog.component';
 import { MeterDialogComponent } from './meter-dialog/meter-dialog.component';
 import { KeyDialogComponent } from './key-dialog/key-dialog.component';
-import { ControlsModule } from '../controls/controls.module';
+import { ControlsModuleDevelop } from '../controls/controls.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ControlsModule
+    ControlsModuleDevelop
     /*FormsModule,
     MatDialogModule,
     MatFormFieldModule,

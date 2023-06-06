@@ -29,4 +29,4 @@ import { MatInputModule } from '@angular/material/input';
     SelectMeterComponent
   ]
 })
-export class ControlsModule { }
+export class ControlsModuleDevelop { }
