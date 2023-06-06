@@ -6,6 +6,7 @@ import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
 import { DialogProvider } from 'jmusic-model/dialog/dialog-provider';
 import { BrowserPromptDialogProvider } from 'jmusic-model/dialog/browser-prompt-dialog-provider';
+import { DialogsService } from '../../dialogs/dialogs.service';
 
 @Component({
   selector: 'app-wb-top-toolbar',
@@ -20,6 +21,7 @@ export class WbTopToolbarComponent implements OnInit {
   eventHandler: EventHandler | undefined;
 
   ngOnInit() {
+
   }
 
   deleteNote() {

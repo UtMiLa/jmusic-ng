@@ -1,42 +1,12 @@
 <h1 mat-dialog-title>Select Meter</h1>
-<div mat-dialog-content>
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selected">
-    <mat-button-toggle value="2/2"><p>2</p><p>2</p></mat-button-toggle>
-    <mat-button-toggle value="c/"><p>&#xe17a;</p></mat-button-toggle>
-    <mat-button-toggle value="2/4"><p>2</p><p>4</p></mat-button-toggle>
-    <mat-button-toggle value="3/4"><p>3</p><p>4</p></mat-button-toggle>
-    <mat-button-toggle value="4/4"><p>4</p><p>4</p></mat-button-toggle>
-    <mat-button-toggle value="c"><p>&#xe179;</p></mat-button-toggle>
-    <mat-button-toggle value="6/8"><p>6</p><p>8</p></mat-button-toggle>
-  </mat-button-toggle-group>
+{{meterDef|json}}
+<app-select-meter [(selected)]="meterDef"></app-select-meter>
 
-  <br/>
-  <mat-button-toggle-group name="numerator" aria-label="Numerator" [(ngModel)]="numerator">
-    <mat-button-toggle value="1"><p>1</p></mat-button-toggle>
-    <mat-button-toggle value="2"><p>2</p></mat-button-toggle>
-    <mat-button-toggle value="3"><p>3</p></mat-button-toggle>
-    <mat-button-toggle value="4"><p>4</p></mat-button-toggle>
-    <mat-button-toggle value="5"><p>5</p></mat-button-toggle>
-    <mat-button-toggle value="6"><p>6</p></mat-button-toggle>
-    <mat-button-toggle value="7"><p>7</p></mat-button-toggle>
-    <mat-button-toggle value="8"><p>8</p></mat-button-toggle>
-  </mat-button-toggle-group>
-  <br/>
+<app-construct-regular-meter [(meterDef)]="meterDef"></app-construct-regular-meter>
 
-  <mat-button-toggle-group name="denominator" aria-label="Denominator" [(ngModel)]="denominator">
-    <mat-button-toggle value="1">1</mat-button-toggle>
-    <mat-button-toggle value="2">2</mat-button-toggle>
-    <mat-button-toggle value="4">4</mat-button-toggle>
-    <mat-button-toggle value="8">8</mat-button-toggle>
-    <mat-button-toggle value="16">16</mat-button-toggle>
-    <mat-button-toggle value="32">32</mat-button-toggle>
-    <mat-button-toggle value="64">64</mat-button-toggle>
-  </mat-button-toggle-group>
-
-  </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="{meterDef}" cdkFocusInitial [disabled]="!isLegal()">Ok</button>
 </div>
 
 

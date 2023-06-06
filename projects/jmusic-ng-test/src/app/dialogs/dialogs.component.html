@@ -10,3 +10,10 @@
   </li>
 </ol>
 
+<div>
+  <app-display-meter [meterDef]="{ count: 17, value:32 }"></app-display-meter>
+  <app-construct-regular-meter [(meterDef)]="demo"></app-construct-regular-meter>
+  <app-select-meter [(selected)]="demo"></app-select-meter>
+  {{demo|json}}
+</div>
+

@@ -8,13 +8,15 @@ import { JsonPipe, NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MeterDialogComponent } from './meter-dialog/meter-dialog.component';
 import { DialogsService } from './dialogs.service';
+import { ControlsModule } from '../controls/controls.module';
+import { RegularMeterDef } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-dialogs',
   templateUrl: './dialogs.component.html',
   styleUrls: ['./dialogs.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatFormFieldModule, FormsModule, MatInputModule, NgIf, JsonPipe],
+  imports: [MatDialogModule, MatFormFieldModule, FormsModule, MatInputModule, NgIf, JsonPipe, ControlsModule],
   providers: [DialogsService]
 })
 export class DialogsComponent implements OnInit {
@@ -22,6 +24,9 @@ export class DialogsComponent implements OnInit {
   constructor(public dialog: MatDialog, public diaServ: DialogsService) { }
 
   answer: any;
+
+  demo?: RegularMeterDef;
+
 
   async openDialog() {
     /*const dialogRef = this.dialog.open(MeterDialogComponent, {
