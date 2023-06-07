@@ -8,7 +8,7 @@ import { ControlsModule } from '../../controls/controls.module';
 @Component({
   selector: 'app-meter-dialog',
   templateUrl: './meter-dialog.component.html',
-  styleUrls: ['./meter-dialog.component.css'],
+  styleUrls: ['./meter-dialog.component.scss'],
   standalone: true,
   imports: [MatDialogModule, MatFormFieldModule, ControlsModule],
 })

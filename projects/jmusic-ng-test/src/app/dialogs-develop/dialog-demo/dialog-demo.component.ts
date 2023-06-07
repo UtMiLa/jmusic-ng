@@ -23,8 +23,22 @@ export class DialogDemoComponent {
     Clef.clefBass.def
   ]; //{ clefType: ClefType.G, line: 2 };
 
-  async openDialog() {
+  async openMeterDialog() {
     const meter = await this.diaServ.getMeter();
+
+    if (meter) {
+      this.answer = meter;
+    }
+  }
+  async openClefDialog() {
+    const meter = await this.diaServ.getClef();
+
+    if (meter) {
+      this.answer = meter;
+    }
+  }
+  async openKeyDialog() {
+    const meter = await this.diaServ.getKey();
 
     if (meter) {
       this.answer = meter;

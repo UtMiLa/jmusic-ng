@@ -9,9 +9,6 @@ import { ClefDialogComponent } from './dialogs/clef-dialog/clef-dialog.component
   declarations: [
     JmusicNgComponent,
     JmusicPhysicalViewComponent,
-
-    KeyDialogComponent,
-    ClefDialogComponent,
   ],
   imports: [BrowserModule],
   exports: [JmusicNgComponent, JmusicPhysicalViewComponent],

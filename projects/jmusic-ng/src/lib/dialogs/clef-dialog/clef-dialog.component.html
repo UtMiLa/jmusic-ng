@@ -1,1 +1,10 @@
-<p>clef-dialog works!</p>
+<h1 mat-dialog-title>Select Clef</h1>
+
+<!--[(selected)]="clefDef"
+<mus-clef-construct [(meterDef)]="clefDef"></mus-clef-construct>
+-->
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+ <!-- <button mat-button [mat-dialog-close]="{clefDef}" cdkFocusInitial [disabled]="!isLegal()">Ok</button> -->
+</div>
+

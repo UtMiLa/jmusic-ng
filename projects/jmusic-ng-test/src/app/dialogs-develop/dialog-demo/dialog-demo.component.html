@@ -1,7 +1,9 @@
 <p>dialog-demo works!</p>
 <ol>
   <li>
-    <button mat-raised-button (click)="openDialog()">Pick one</button>
+    <button mat-raised-button (click)="openKeyDialog()">Pick key</button>
+    <button mat-raised-button (click)="openClefDialog()">Pick clef</button>
+    <button mat-raised-button (click)="openMeterDialog()">Pick meter</button>
   </li>
   <li *ngIf="answer">
     You chose: <em>{{answer |json}}</em>
