@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WorkbenchComponent } from './workbench/workbench.component';
 import { LyPageComponent } from './ly/ly-page/ly-page.component';
-import { DialogsComponent } from './dialogs/dialogs.component';
+import { DialogDemoComponent } from './dialogs-develop/dialog-demo/dialog-demo.component';
+import { DialogsModule } from './dialogs-develop/dialogs.module';
 
 const routes: Routes = [
-  { path: '', component: DemoComponent },
+  { path: 'demo', component: DemoComponent },
   { path: 'wb', component: WorkbenchComponent },
-  { path: 'dlg', component: DialogsComponent },
+  { path: '', component: DialogDemoComponent },
   { path: 'ly', component: LyPageComponent }
 ];
 

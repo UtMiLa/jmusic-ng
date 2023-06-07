@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogProvider } from 'jmusic-model/dialog/dialog-provider';
 import { KeyDef, ClefDef, RegularMeterDef } from 'jmusic-model/model';
-import { MeterDialogComponent } from './meter-dialog/meter-dialog.component';
+import { MeterDialogComponent } from './dialogs/meter-dialog/meter-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
-@Injectable()
-export class DialogsService implements DialogProvider{
+@Injectable({
+  providedIn: 'root'
+})
+export class DialogsService {
 
-constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
+
   getKey(): Promise<KeyDef> {
     throw new Error('Method not implemented.');
   }
@@ -21,7 +23,7 @@ constructor(public dialog: MatDialog) { }
 
     return new Promise((resolve, reject) => {
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        //console.log('The dialog was closed');
         if (result && result.meterDef)
           resolve(result.meterDef);
         else
@@ -31,5 +33,4 @@ constructor(public dialog: MatDialog) { }
     });
 
   }
-
 }

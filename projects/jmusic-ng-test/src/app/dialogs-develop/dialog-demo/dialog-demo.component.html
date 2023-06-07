@@ -1,6 +1,4 @@
-<p>
-  dialogs works!
-</p>
+<p>dialog-demo works!</p>
 <ol>
   <li>
     <button mat-raised-button (click)="openDialog()">Pick one</button>
@@ -10,17 +8,21 @@
   </li>
 </ol>
 
+
+<div>
+  <mus-clef-display *ngFor="let clef of clefDemos" [clefDef]="clef"></mus-clef-display>
+  {{clefDemo|json}}
+</div>
+<mus-clef-select></mus-clef-select>
+
 <div>
   <app-display-meter [meterDef]="{ count: 17, value:32 }"></app-display-meter>
   <app-construct-regular-meter [(meterDef)]="demo"></app-construct-regular-meter>
   <app-select-meter [(selected)]="demo"></app-select-meter>
   {{demo|json}}
-</div>
 
-<div>
-  <mus-meter-display [meterDef]="{ count: 17, value:32 }"></mus-meter-display>
-  <mus-meter-construct [(meterDef)]="demo"></mus-meter-construct>
-  <mus-meter-select [(selected)]="demo"></mus-meter-select>
-  {{demo|json}}
+
+
+
 </div>
 

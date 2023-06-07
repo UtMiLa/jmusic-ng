@@ -6,7 +6,7 @@ import { MidiInService } from '../midi/midi-in.service';
 import { FinaleSmartEntry } from 'jmusic-model/entry/finale-entry';
 import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
-import { DialogsService } from '../dialogs/dialogs.service';
+import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 
 @Component({
   selector: 'app-workbench',

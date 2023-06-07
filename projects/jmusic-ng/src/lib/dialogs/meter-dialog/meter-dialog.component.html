@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Select Meter</h1>
+
+<mus-meter-select [(selected)]="meterDef"></mus-meter-select>
+
+<mus-meter-construct [(meterDef)]="meterDef"></mus-meter-construct>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="{meterDef}" cdkFocusInitial [disabled]="!isLegal()">Ok</button>
+</div>

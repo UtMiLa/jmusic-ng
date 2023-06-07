@@ -14,8 +14,8 @@ import { ToolbarRadioButtonGroupComponent } from './toolbar-radio-button-group/t
 import { SharedModule } from '../shared/shared.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
-import { DialogsService } from '../dialogs/dialogs.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 
 
 /************************************** /

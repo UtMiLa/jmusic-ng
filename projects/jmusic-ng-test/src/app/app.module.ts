@@ -1,5 +1,5 @@
 import { LyModule } from './ly/ly.module';
-import { JmusicNgModule } from './../../../jmusic-ng/src/lib/jmusic-ng.module';
+import { JmusicNgModule } from 'projects/jmusic-ng/src/lib/jmusic-ng.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,8 +13,8 @@ import { StubToolBarComponent } from './stub-tool-bar/stub-tool-bar.component';
 import { WorkbenchModule } from './workbench/workbench.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogModule } from '@angular/cdk/dialog';
-import { DialogsModule } from './dialogs/dialogs.module';
+import { DialogsModule } from './dialogs-develop/dialogs.module';
+import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 
 
 
@@ -33,11 +33,11 @@ import { DialogsModule } from './dialogs/dialogs.module';
     HttpClientModule,
     JmusicNgModule,
     LyModule,
+    DialogsModule,
     WorkbenchModule,
-    NoopAnimationsModule,
-    //DialogsModule
+    NoopAnimationsModule
   ],
-  providers: [],
+  providers: [DialogsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

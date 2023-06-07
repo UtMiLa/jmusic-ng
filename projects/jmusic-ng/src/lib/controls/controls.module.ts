@@ -7,17 +7,44 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ClefDisplayComponent } from './clef-display/clef-display.component';
+import { ClefSelectComponent } from './clef-select/clef-select.component';
+import { ClefConstructComponent } from './clef-construct/clef-construct.component';
+import { KeyDisplayComponent } from './key-display/key-display.component';
+import { KeySelectComponent } from './key-select/key-select.component';
+import { KeyConstructComponent } from './key-construct/key-construct.component';
+import { JmusicNgModule } from 'jmusic-ng';
 
 @NgModule({
   imports: [
-
     CommonModule,
     MatButtonToggleModule,
     MatFormFieldModule,
     FormsModule,
-    MatInputModule
+    MatInputModule,
+    JmusicNgModule
   ],
-  declarations: [MeterConstructComponent, MeterDisplayComponent, MeterSelectComponent],
-  exports: [MeterConstructComponent, MeterDisplayComponent, MeterSelectComponent]
+  declarations: [
+    MeterConstructComponent,
+    MeterDisplayComponent,
+    MeterSelectComponent,
+    ClefDisplayComponent,
+    ClefSelectComponent,
+    ClefConstructComponent,
+    KeyDisplayComponent,
+    KeySelectComponent,
+    KeyConstructComponent,
+  ],
+  exports: [
+    MeterConstructComponent,
+    MeterDisplayComponent,
+    MeterSelectComponent,
+    ClefDisplayComponent,
+    ClefSelectComponent,
+    ClefConstructComponent,
+    KeyDisplayComponent,
+    KeySelectComponent,
+    KeyConstructComponent,
+  ],
 })
-export class ControlsModule { }
+export class ControlsModule {}
