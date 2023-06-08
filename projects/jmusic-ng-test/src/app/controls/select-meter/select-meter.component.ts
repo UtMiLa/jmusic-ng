@@ -4,7 +4,7 @@ import { RegularMeterDef } from 'jmusic-model/model';
 @Component({
   selector: 'app-select-meter',
   templateUrl: './select-meter.component.html',
-  styleUrls: ['./select-meter.component.css']
+  styleUrls: ['./select-meter.component.scss']
 })
 export class SelectMeterComponent implements OnInit {
 

@@ -4,7 +4,7 @@ import { ClefDef, ClefType } from 'jmusic-model/model';
 @Component({
   selector: 'mus-clef-display',
   templateUrl: './clef-display.component.html',
-  styleUrls: ['./clef-display.component.css'],
+  styleUrls: ['./clef-display.component.scss'],
 })
 export class ClefDisplayComponent {
 

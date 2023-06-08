@@ -4,7 +4,7 @@ import { Clef, ClefDef } from 'jmusic-model/model';
 @Component({
   selector: 'mus-clef-select',
   templateUrl: './clef-select.component.html',
-  styleUrls: ['./clef-select.component.css']
+  styleUrls: ['./clef-select.component.scss']
 })
 export class ClefSelectComponent implements OnInit {
 

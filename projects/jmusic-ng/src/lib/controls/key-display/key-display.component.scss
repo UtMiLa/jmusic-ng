@@ -1,0 +1,18 @@
+
+@font-face {
+  font-family: 'Emmentaler';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Emmentaler'), url(../../Emmentaler-20.woff) format('woff');
+}
+
+div {
+  height: 50px;
+  overflow: hidden;
+  mus-jmusic-physical-view {
+    position: relative;
+    top: -50px;
+    left: -10px
+  }
+}
+

@@ -8,7 +8,7 @@ import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 @Component({
   selector: 'mus-jmusic-physical-view',
   templateUrl: './jmusic-physical-view.component.html',
-  styleUrls: ['./jmusic-physical-view.component.css']
+  styleUrls: ['./jmusic-physical-view.component.scss']
 })
 export class JmusicPhysicalViewComponent implements OnInit {
 

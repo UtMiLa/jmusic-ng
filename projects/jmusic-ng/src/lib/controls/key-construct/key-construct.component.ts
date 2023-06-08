@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'mus-key-construct',
   templateUrl: './key-construct.component.html',
-  styleUrls: ['./key-construct.component.css'],
+  styleUrls: ['./key-construct.component.scss'],
 })
 export class KeyConstructComponent {}

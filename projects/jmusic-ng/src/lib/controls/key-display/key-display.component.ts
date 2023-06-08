@@ -5,7 +5,7 @@ import { Clef, Key, KeyDef } from 'jmusic-model/model';
 @Component({
   selector: 'mus-key-display',
   templateUrl: './key-display.component.html',
-  styleUrls: ['./key-display.component.css'],
+  styleUrls: ['./key-display.component.scss'],
 })
 export class KeyDisplayComponent {
 

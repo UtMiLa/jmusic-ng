@@ -13,7 +13,7 @@ export interface DialogData {
 @Component({
   selector: 'app-clef-dialog',
   templateUrl: './clef-dialog.component.html',
-  styleUrls: ['./clef-dialog.component.css'],
+  styleUrls: ['./clef-dialog.component.scss'],
   standalone: true,
   imports: [MatDialogModule, MatFormFieldModule, FormsModule, MatInputModule]
 })

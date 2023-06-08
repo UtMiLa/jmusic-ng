@@ -6,7 +6,7 @@ import { KeyDef } from 'jmusic-model/model';
 @Component({
   selector: 'app-key-dialog',
   templateUrl: './key-dialog.component.html',
-  styleUrls: ['./key-dialog.component.css'],
+  styleUrls: ['./key-dialog.component.scss'],
   standalone: true,
   imports: [MatDialogModule, ControlsModule],
 })
