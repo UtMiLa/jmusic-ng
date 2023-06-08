@@ -1,1 +1,9 @@
-<p>key-dialog works!</p>
+<h1 mat-dialog-title>Select Key</h1>
+
+<mus-key-select [(selected)]="keyDef"></mus-key-select>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="{keyDef}" cdkFocusInitial [disabled]="!isLegal()">Ok</button>
+</div>
+

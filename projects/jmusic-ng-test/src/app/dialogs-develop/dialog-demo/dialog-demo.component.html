@@ -12,19 +12,7 @@
 
 
 <div>
-  <mus-clef-display *ngFor="let clef of clefDemos" [clefDef]="clef"></mus-clef-display>
-  {{clefDemo|json}}
-</div>
-<mus-clef-select></mus-clef-select>
-
-<div>
-  <app-display-meter [meterDef]="{ count: 17, value:32 }"></app-display-meter>
-  <app-construct-regular-meter [(meterDef)]="demo"></app-construct-regular-meter>
-  <app-select-meter [(selected)]="demo"></app-select-meter>
-  {{demo|json}}
-
-
-
+  <mus-key-display *ngFor="let key of keyDemos" [keyDef]="key"></mus-key-display>
 
 </div>
-
+<mus-key-select></mus-key-select>

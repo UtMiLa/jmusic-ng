@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Clef, ClefDef, ClefType, RegularMeterDef } from 'jmusic-model/model';
+import { Clef, ClefDef, ClefType, KeyDef, RegularMeterDef } from 'jmusic-model/model';
 import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 
 @Component({
@@ -22,6 +22,13 @@ export class DialogDemoComponent {
     Clef.clefTenorC.def,
     Clef.clefBass.def
   ]; //{ clefType: ClefType.G, line: 2 };
+
+  keyDemos: KeyDef[] = [
+    { accidental: 1, count: 2 },
+    { accidental: 0, count: 0 },
+    { accidental: -1, count: 7 },
+    { accidental: 1, count: 7 },
+  ];
 
   async openMeterDialog() {
     const meter = await this.diaServ.getMeter();

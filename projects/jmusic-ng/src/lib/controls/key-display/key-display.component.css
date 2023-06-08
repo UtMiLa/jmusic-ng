@@ -1,0 +1,9 @@
+div {
+  height: 50px;
+  overflow: hidden;
+}
+div mus-jmusic-physical-view {
+  position: relative;
+  top: -50px;
+  left: -10px
+}
