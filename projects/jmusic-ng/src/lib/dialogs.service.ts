@@ -4,6 +4,7 @@ import { MeterDialogComponent } from './dialogs/meter-dialog/meter-dialog.compon
 import { MatDialog } from '@angular/material/dialog';
 import { ClefDialogComponent } from './dialogs/clef-dialog/clef-dialog.component';
 import { KeyDialogComponent } from './dialogs/key-dialog/key-dialog.component';
+import { ScoreDialogComponent } from './dialogs/score-dialog/score-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -64,24 +65,18 @@ export class DialogsService {
   }
 
   getNewScore(): Promise<ScoreDef> {
-    const scoreStr = prompt('Input score def in format Meter Key, clef1 noVoices1, clef2 noVoices2,...()');
-    if (!scoreStr) return Promise.reject();
-    const [meterKeyDef, ...stavesDef] = scoreStr.split(',');
-    const [meterDef, ...keyDef] = meterKeyDef.split(' ');
-    const meter = JMusic.makeMeter(meterDef.trim());
-    const key = JMusic.makeKey(keyDef.join(' ').trim());
+    const dialogRef = this.dialog.open(ScoreDialogComponent, {
+      data: {scoreDef: { staves: [] }},
+    });
 
-    return Promise.resolve({
-        staves: stavesDef.map(sd => {
-            const [clefStr, voiceNo] = sd.split(' ');
+    return new Promise((resolve, reject) => {
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.scoreDef)
+          resolve(result.scoreDef);
+        else
+          reject();
+      });
 
-            return {
-                voices: new Array(+voiceNo).map(() => ({ content: new FlexibleSequence('') })),
-                initialClef: JMusic.makeClef(clefStr),
-                initialKey: key,
-                initialMeter: meter
-            } as StaffDef;
-        })
     });
   }
 }
