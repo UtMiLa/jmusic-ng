@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Clef, ClefDef } from 'jmusic-model/model';
 
 @Component({
@@ -19,9 +19,16 @@ export class ClefSelectComponent implements OnInit {
     Clef.clefBass.def
   ];
 
-  selectedString: string = '';
+  @Input()
+  selected: ClefDef = this.clefs[0];
+
+  @Output()
+  selectedChange = new EventEmitter<ClefDef>();
 
   ngOnInit(): void {
   }
 
+  selChange() {
+    this.selectedChange.emit(this.selected);
+  }
 }
