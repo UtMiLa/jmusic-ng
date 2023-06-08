@@ -10,7 +10,7 @@ import { MeterDialogComponent } from './meter-dialog/meter-dialog.component';
 import { KeyDialogComponent } from './key-dialog/key-dialog.component';
 import { ControlsModuleDevelop } from '../controls/controls.module';
 import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
-import { JmusicNgModule } from 'projects/jmusic-ng/src/public-api';
+import { JmusicNgModule } from 'projects/jmusic-ng/src/lib/jmusic-ng.module';
 import { DialogDemoComponent } from './dialog-demo/dialog-demo.component';
 import { ControlsModule } from 'projects/jmusic-ng/src/lib/controls/controls.module';
 

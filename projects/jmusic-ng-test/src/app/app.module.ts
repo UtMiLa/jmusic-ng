@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogsModule } from './dialogs-develop/dialogs.module';
 import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
+import { CommonModule } from '@angular/common';
 
 
 

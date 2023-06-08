@@ -13,15 +13,15 @@ import { ClefConstructComponent } from './clef-construct/clef-construct.componen
 import { KeyDisplayComponent } from './key-display/key-display.component';
 import { KeySelectComponent } from './key-select/key-select.component';
 import { KeyConstructComponent } from './key-construct/key-construct.component';
-import { JmusicNgModule } from 'jmusic-ng';
+import { JmusicNgModule } from '../jmusic-ng.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonToggleModule,
-    MatFormFieldModule,
+    /*MatFormFieldModule,*/
     FormsModule,
-    MatInputModule,
+    /*MatInputModule,*/
     JmusicNgModule
   ],
   declarations: [

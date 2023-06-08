@@ -14,8 +14,8 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './clef-dialog.component.html',
   styleUrls: ['./clef-dialog.component.css'],
   standalone: true,
-  imports: [MatDialogModule, MatFormFieldModule, ControlsModule,
-    JmusicNgModule,
+  imports: [MatDialogModule, /*MatFormFieldModule, */ControlsModule,/*
+    JmusicNgModule,*/
     /*CommonModule,
 
     FormsModule,

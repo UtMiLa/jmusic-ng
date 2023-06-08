@@ -10,7 +10,7 @@ import { ControlsModule } from '../../controls/controls.module';
   templateUrl: './meter-dialog.component.html',
   styleUrls: ['./meter-dialog.component.scss'],
   standalone: true,
-  imports: [MatDialogModule, MatFormFieldModule, ControlsModule],
+  imports: [MatDialogModule, ControlsModule],
 })
 export class MeterDialogComponent {
   constructor(public dialogRef: MatDialogRef<MeterDialogComponent>,
