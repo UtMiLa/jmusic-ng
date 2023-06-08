@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { KeyDef, ClefDef, RegularMeterDef, ClefType } from 'jmusic-model/model';
+import { KeyDef, Clef, ClefDef, RegularMeterDef, ClefType, ScoreDef, JMusic, StaffDef, FlexibleSequence } from 'jmusic-model/model';
 import { MeterDialogComponent } from './dialogs/meter-dialog/meter-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ClefDialogComponent } from './dialogs/clef-dialog/clef-dialog.component';
@@ -61,5 +61,27 @@ export class DialogsService {
 
     });
 
+  }
+
+  getNewScore(): Promise<ScoreDef> {
+    const scoreStr = prompt('Input score def in format Meter Key, clef1 noVoices1, clef2 noVoices2,...()');
+    if (!scoreStr) return Promise.reject();
+    const [meterKeyDef, ...stavesDef] = scoreStr.split(',');
+    const [meterDef, ...keyDef] = meterKeyDef.split(' ');
+    const meter = JMusic.makeMeter(meterDef.trim());
+    const key = JMusic.makeKey(keyDef.join(' ').trim());
+
+    return Promise.resolve({
+        staves: stavesDef.map(sd => {
+            const [clefStr, voiceNo] = sd.split(' ');
+
+            return {
+                voices: new Array(+voiceNo).map(() => ({ content: new FlexibleSequence('') })),
+                initialClef: JMusic.makeClef(clefStr),
+                initialKey: key,
+                initialMeter: meter
+            } as StaffDef;
+        })
+    });
   }
 }

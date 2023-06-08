@@ -4,6 +4,7 @@
     <button mat-raised-button (click)="openKeyDialog()">Pick key</button>
     <button mat-raised-button (click)="openClefDialog()">Pick clef</button>
     <button mat-raised-button (click)="openMeterDialog()">Pick meter</button>
+    <button mat-raised-button (click)="openScoreDialog()">Pick score</button>
   </li>
   <li *ngIf="answer">
     You chose: <em>{{answer |json}}</em>

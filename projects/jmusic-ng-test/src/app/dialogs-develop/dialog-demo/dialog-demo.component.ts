@@ -51,4 +51,11 @@ export class DialogDemoComponent {
       this.answer = meter;
     }
   }
+  async openScoreDialog() {
+    const score = await this.diaServ.getNewScore();
+
+    if (score) {
+      this.answer = score;
+    }
+  }
 }

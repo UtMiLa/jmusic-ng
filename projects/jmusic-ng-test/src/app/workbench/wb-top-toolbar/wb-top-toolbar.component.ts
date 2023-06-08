@@ -82,7 +82,7 @@ export class WbTopToolbarComponent implements OnInit {
 
 
   newFile() {
-    this.eventHandler?.actionSelected('NewFile');
+    this.eventHandler?.actionSelected('NewFile', [{ placeholder: 'score' }]);
   }
 
   unsupported() {}
