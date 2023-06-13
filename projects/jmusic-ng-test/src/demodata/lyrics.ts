@@ -1,4 +1,4 @@
-import { NoteType, LyricsSequence, NoteDirection, StaffDef, ClefType, Time, SimpleSequence } from 'jmusic-model/model';
+import { NoteType, LyricsSequence, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, voiceSequenceToDef } from 'jmusic-model/model';
 
 
 export const lyrics = {
@@ -9,10 +9,10 @@ export const lyrics = {
          voices:[
            {
              //noteDirection: NoteDirection.Up,
-             content: new LyricsSequence(
+             content: voiceSequenceToDef(new LyricsSequence(
               new SimpleSequence( "c'8 d'16 e'16 f'4 g'4 c''8 d''16 e''16 f''4 g''4"),
               'Hvad skal jeg si- ge, når jeg _ vand- rer?'
-             )
+             ))
             },
          ]
      } as StaffDef,

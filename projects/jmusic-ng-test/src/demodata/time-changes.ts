@@ -9,8 +9,8 @@ export const meterModel = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: new SimpleSequence("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 6/8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 3/4 c'8 c'8 c'8 c'8 c'8 c'8" //
-           )},
+             content:"c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 6/8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 3/4 c'8 c'8 c'8 c'8 c'8 c'8"
+           },
          ]
      } as StaffDef,
 

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ISequence, LyricsSequence, SimpleSequence } from 'jmusic-model/model';
+import { ISequence, LyricsSequence, SequenceDef, SimpleSequence } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-structured-sequence',
@@ -11,7 +11,7 @@ export class StructuredSequenceComponent implements OnInit {
   constructor() { }
 
   @Input()
-  sequence: ISequence | undefined;
+  sequence: SequenceDef | undefined;
 
   get seqAny(): any { return this.sequence as any; }
 
@@ -24,7 +24,7 @@ export class StructuredSequenceComponent implements OnInit {
 
 
   updateSeq(seq: SimpleSequence) {
-    seq.def = seq.def;
+    //todo: seq.def = seq.def;
     //console.log(seq.elements);
   }
 

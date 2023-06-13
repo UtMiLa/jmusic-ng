@@ -19,7 +19,7 @@ export class WbEditorComponent implements OnInit {
   public set model(value: VariableDef | undefined) {
     this._model = value;
     if (value?.value) {
-      this._value = JSON.stringify(value.value.def);
+      this._value = JSON.stringify(value.value);
     } else {
       this._value = '';
     }
@@ -55,7 +55,7 @@ export class WbEditorComponent implements OnInit {
       const test = new FlexibleSequence(obj);
       //this.model = {id: this.model?.id as string, value: obj};
 
-      this.varChange.emit({id: this.model?.id as string, value: test});
+      this.varChange.emit({id: this.model?.id as string, value: obj});
     } catch (_) {
       console.log(_);
     }

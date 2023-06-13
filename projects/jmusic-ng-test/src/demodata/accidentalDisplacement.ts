@@ -16,9 +16,9 @@ export const accidentalTest = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: new SimpleSequence(chord1
+             content: chord1
               //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
-           )
+
           }
         ]
      } as StaffDef,
@@ -29,9 +29,9 @@ export const accidentalTest = {
       voices:[
         {
           noteDirection: NoteDirection.Up,
-          content: new SimpleSequence(chord2
+          content: chord2
            //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
-        )
+
        }
      ]
   } as StaffDef,
@@ -42,9 +42,9 @@ export const accidentalTest = {
     voices:[
       {
         noteDirection: NoteDirection.Up,
-        content: new SimpleSequence(chord3
+        content: chord3
          //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
-      )
+
      }
    ]
 } as StaffDef,

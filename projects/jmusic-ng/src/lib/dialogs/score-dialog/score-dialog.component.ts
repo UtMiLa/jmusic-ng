@@ -22,7 +22,7 @@ export class ScoreDialogComponent implements OnInit {
     staves: [
       {
         voices: [{
-          content: new FlexibleSequence('c\'\'4.')
+          content: 'c\'\'4.'
         }],
         initialClef: Clef.clefTreble.def,
         initialKey: { accidental: 0, count: 0 },

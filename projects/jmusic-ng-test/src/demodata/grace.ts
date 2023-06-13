@@ -1,5 +1,5 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
-import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, JMusic, CompositeSequence, GraceSequence } from 'jmusic-model/model';
+import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, JMusic, CompositeSequence, GraceSequence, voiceSequenceToDef } from 'jmusic-model/model';
 import { LongDecorationType } from 'jmusic-model/model/decorations/decoration-type';
 
 
@@ -11,7 +11,7 @@ export const grace = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: new CompositeSequence(
+             content: voiceSequenceToDef(new CompositeSequence(
               new SimpleSequence( "c'4"),
               new GraceSequence( new SimpleSequence("d'16 e'16")),
               new SimpleSequence( "f'4 g'4 c''8 d''8"),
@@ -21,10 +21,10 @@ export const grace = {
               new SimpleSequence( "f'16"),
               new GraceSequence( new SimpleSequence( "e''16")),
               new SimpleSequence( "f''16 g''16")
-             )
+             ))
           },{
             noteDirection: NoteDirection.Down,
-            content:  new SimpleSequence( "f4 g4 f4 f4 f4 g4 f4 f4")
+            content: "f4 g4 f4 f4 f4 g4 f4 f4"
          },
          ]
      } as StaffDef,

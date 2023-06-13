@@ -1,4 +1,4 @@
-import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, FlexibleSequence, JMusic, JMusicSettings, SeqFunction } from 'jmusic-model/model';
+import { CompositeSequence, FlexibleSequence, JMusic, JMusicSettings, SeqFunction } from 'jmusic-model/model';
 
 export const tupletVars = {
   scale: ["c'8 d'8 e'8 f'8 g'8 a'8"],
