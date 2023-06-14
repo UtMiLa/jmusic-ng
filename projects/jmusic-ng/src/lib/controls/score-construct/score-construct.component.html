@@ -1,1 +1,15 @@
-<p>score-construct works!</p>
+<div>
+  Select meter
+</div>
+<div>
+  Select key
+</div>
+<div>
+  Select voices
+  <ul>
+    <li *ngFor="let staff of staves">
+      <mus-staff-construct></mus-staff-construct>
+    </li>
+  </ul>
+  <button (click)="addStaff()">Add staff</button>
+</div>

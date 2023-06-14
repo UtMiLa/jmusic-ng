@@ -15,6 +15,7 @@ import { KeySelectComponent } from './key-select/key-select.component';
 import { KeyConstructComponent } from './key-construct/key-construct.component';
 import { JmusicNgModule } from '../jmusic-ng.module';
 import { ScoreConstructComponent } from './score-construct/score-construct.component';
+import { StaffConstructComponent } from './staff-construct/staff-construct.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { ScoreConstructComponent } from './score-construct/score-construct.compo
     KeySelectComponent,
     KeyConstructComponent,
     ScoreConstructComponent,
+    StaffConstructComponent,
   ],
   exports: [
     MeterConstructComponent,
@@ -47,6 +49,7 @@ import { ScoreConstructComponent } from './score-construct/score-construct.compo
     KeyDisplayComponent,
     KeySelectComponent,
     KeyConstructComponent,
+    ScoreConstructComponent,
   ],
 })
 export class ControlsModule {}
