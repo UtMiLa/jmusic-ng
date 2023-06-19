@@ -68,7 +68,7 @@ export class WorkbenchComponent implements OnInit {
   varChanged(event: VariableDef) {
     //console.log('varChanged', event.id, event.value);
 
-    this.model.vars.setVar(event.id, event.value);
+    this.model.setVar(event.id, event.value);
     this.currentVar = (this.model.vars as any).vars.find((v: VariableDef) => v.id === event.id);
     if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);//new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
   }

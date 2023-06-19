@@ -9,7 +9,7 @@
       </ul>
       <div *ngFor="let voice of staff.voices; let j = index" class="composite composite-voice">
         <span class="type">Voice {{j+1}}</span>
-        <div class="content"><app-structured-sequence [sequence]="voice.content"></app-structured-sequence>
+        <div class="content"><app-structured-sequence [sequence]="voice.content.asObject"></app-structured-sequence>
         </div>
       </div>
     </div>

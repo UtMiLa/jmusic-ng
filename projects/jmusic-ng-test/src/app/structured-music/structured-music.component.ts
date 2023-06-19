@@ -1,4 +1,4 @@
-import { ScoreDef } from 'jmusic-model/model';
+import { Score } from 'jmusic-model/model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,12 +10,12 @@ export class StructuredMusicComponent implements OnInit {
 
   constructor() { }
 
-  private _scoreDef: ScoreDef | undefined;
+  private _scoreDef: Score | undefined;
   @Input()
-  public get scoreDef(): ScoreDef | undefined {
+  public get scoreDef(): Score | undefined {
     return this._scoreDef;
   }
-  public set scoreDef(value: ScoreDef | undefined) {
+  public set scoreDef(value: Score | undefined) {
     this._scoreDef = value;
     //this.render();
   }

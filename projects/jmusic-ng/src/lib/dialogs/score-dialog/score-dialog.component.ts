@@ -1,4 +1,4 @@
-import { Clef, FlexibleSequence, KeyDef, ScoreDef } from 'jmusic-model/model';
+import { Clef, FlexibleSequence, KeyDef, Score, scoreDefToScore } from 'jmusic-model/model';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ControlsModule } from '../../controls/controls.module';
@@ -18,7 +18,7 @@ export class ScoreDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  scoreDef: ScoreDef = {
+  scoreDef: Score = scoreDefToScore({
     staves: [
       {
         voices: [{
@@ -29,7 +29,7 @@ export class ScoreDialogComponent implements OnInit {
         initialMeter: { count: 6, value: 8 }
       }
     ]
-  }
+  })
 
   isLegal(): boolean {
     return !!this.scoreDef;

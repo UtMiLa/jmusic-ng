@@ -1,12 +1,12 @@
 import { contrapunctusVars } from './../../demodata/contrapunctus';
-import { longdeco } from './../../demodata/longdeco';
+import { longDeco } from './../../demodata/longdeco';
 import { meterModel } from './../../demodata/time-changes';
 import { stateChanges } from './../../demodata/state-changes';
 import { Component, OnInit } from '@angular/core';
-//import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic } from 'jmusic-model/model';
+//import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic, Score } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, ScoreDef, StaffDef, ClefType, Rational, Time, AbsoluteTime, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
+import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, Score, StaffDef, ClefType, Rational, Time, AbsoluteTime, JMusic, JMusicVars, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { MidiPerformer } from 'jmusic-model/midi';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
@@ -22,6 +22,8 @@ import { grace } from '../../demodata/grace';
 import { contrapunctus } from '../../demodata/contrapunctus';
 import { MidiOutService } from '../midi/midi-out.service';
 import { FileIoService } from '../services/file-io.service';
+import { ScoreDef } from 'jmusic-model/model';
+import { ProjectDef } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-demo',
@@ -36,14 +38,14 @@ export class DemoComponent implements OnInit {
     this.fileIo.listFiles().subscribe(res => this.files = ['', ...res]);
   }
 
-  demos: [string, ScoreDef | JMusicSettings, JMusicVars?][] = [
+  demos: [string, JMusicSettings | ScoreDef | ProjectDef, JMusicVars?][] = [
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
     ['Contrapunctus', contrapunctus, contrapunctusVars],
     ['Expressions', expressions],
     ['Grace notes', grace],
     ['Hymn', koral41],
-    ['Long decorations', longdeco],
+    ['Long decorations', longDeco],
     ['Lyrics', lyrics],
     ['Repeats', repeats],
     ['State changes', stateChanges],
@@ -96,7 +98,7 @@ export class DemoComponent implements OnInit {
   currentFileName?: string;
 
   invalidate() {
-    this.tuplets = new JMusic(this.tuplets, this.currentVars); //{...this.tuplets};
+    this.tuplets = new JMusic(this.tuplets.project); //{...this.tuplets};
   }
 
   tuplets: JMusic = new JMusic(tuplets, tupletVars);

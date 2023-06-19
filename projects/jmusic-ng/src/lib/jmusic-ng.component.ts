@@ -1,6 +1,6 @@
 import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { AbsoluteTime, ScoreDef, Time } from 'jmusic-model/model';
+import { AbsoluteTime, Score, Time } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 //const { ScoreViewModel } = require('jmusic-model/logical-view');
 import { viewModelToPhysical, renderOnCanvas } from 'jmusic-model/physical-view';
@@ -45,12 +45,12 @@ export class JmusicNgComponent implements OnInit {
     this._insertionPoint = value;
   }
 
-  private _scoreDef: ScoreDef | undefined;
+  private _scoreDef: Score | undefined;
   @Input()
-  public get scoreDef(): ScoreDef | undefined {
+  public get scoreDef(): Score | undefined {
     return this._scoreDef;
   }
-  public set scoreDef(value: ScoreDef | undefined) {
+  public set scoreDef(value: Score | undefined) {
     this._scoreDef = value;
 
     //console.log('set scoredef', value);
