@@ -15,11 +15,11 @@ export const repeats = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: "c''1 d''1 c''1 c''1 c''1 c''1 c''1 c''1 c''2 c''2 c''2 c''2 c''2 c''2 c''2 c''2"
+             contentDef: "c''1 d''1 c''1 c''1 c''1 c''1 c''1 c''1 c''2 c''2 c''2 c''2 c''2 c''2 c''2 c''2"
            },
              {
              noteDirection: NoteDirection.Down,
-             content: "c'1 c'1 c'1 c'1 c'1 c'1 c'1 c'1 c'2 c'2 c'2 c'2 c'2 c'2 c'2 c'2"
+             contentDef: "c'1 c'1 c'1 c'1 c'1 c'1 c'1 c'1 c'2 c'2 c'2 c'2 c'2 c'2 c'2 c'2"
          },
          ]
      } as StaffDef,
@@ -30,7 +30,7 @@ export const repeats = {
        voices:[
            {
            noteDirection: NoteDirection.Down,
-           content: "c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1"},
+           contentDef: "c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1 c,1"},
        ]
    } as StaffDef
    ]

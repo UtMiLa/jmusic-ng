@@ -11,7 +11,7 @@ export const grace = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: voiceSequenceToDef(new CompositeSequence(
+             contentDef: voiceSequenceToDef(new CompositeSequence(
               new SimpleSequence( "c'4"),
               new GraceSequence( new SimpleSequence("d'16 e'16")),
               new SimpleSequence( "f'4 g'4 c''8 d''8"),
@@ -24,7 +24,7 @@ export const grace = {
              ))
           },{
             noteDirection: NoteDirection.Down,
-            content: "f4 g4 f4 f4 f4 g4 f4 f4"
+            contentDef: "f4 g4 f4 f4 f4 g4 f4 f4"
          },
          ]
      } as StaffDef,

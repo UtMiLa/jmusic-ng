@@ -23,7 +23,7 @@ export class StaffConstructComponent implements OnInit {
   }
 
   addVoice() {
-    this.voices.push({content: 'c4'});
+    this.voices.push({contentDef: 'c4'});
     //this.voices = [...this.voices, ({content: new FlexibleSequence('c4')})];
   }
 }

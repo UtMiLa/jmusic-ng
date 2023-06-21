@@ -9,7 +9,7 @@ export const meterModel = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content:"c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 6/8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 3/4 c'8 c'8 c'8 c'8 c'8 c'8"
+             contentDef:"c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 6/8 c'8 c'8 c'8 c'8 c'8 c'8 \\meter 3/4 c'8 c'8 c'8 c'8 c'8 c'8"
            },
          ]
      } as StaffDef,

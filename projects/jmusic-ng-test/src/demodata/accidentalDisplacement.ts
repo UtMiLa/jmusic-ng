@@ -16,7 +16,7 @@ export const accidentalTest = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content: chord1
+             contentDef: chord1
               //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
 
           }
@@ -29,7 +29,7 @@ export const accidentalTest = {
       voices:[
         {
           noteDirection: NoteDirection.Up,
-          content: chord2
+          contentDef: chord2
            //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
 
        }
@@ -42,7 +42,7 @@ export const accidentalTest = {
     voices:[
       {
         noteDirection: NoteDirection.Up,
-        content: chord3
+        contentDef: chord3
          //'c\'\'8 c\'\'2. e\'\'1 r4 g\'\'4'
 
      }

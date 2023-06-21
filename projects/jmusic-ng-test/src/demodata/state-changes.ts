@@ -9,11 +9,11 @@ export const stateChanges = {
          voices:[
            {
              noteDirection: NoteDirection.Up,
-             content:  "c''1 \\key b \\major c''1 c''1 c''1 \\meter 3/4 c''4 c''4 c''4 d''4 d''4 d''4 e''4 e''4 e''4"
+             contentDef:  "c''1 \\key b \\major c''1 c''1 c''1 \\meter 3/4 c''4 c''4 c''4 d''4 d''4 d''4 e''4 e''4 e''4"
            },
              {
              noteDirection: NoteDirection.Down,
-             content:  "c'4 \\clef alto c'4 c'4 c'4 c'1 c'4 \\clef bass c'4 \\clef alto c'4 \\clef treble c'4 c'1 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8"
+             contentDef:  "c'4 \\clef alto c'4 c'4 c'4 c'1 c'4 \\clef bass c'4 \\clef alto c'4 \\clef treble c'4 c'1 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8"
          },
          ]
      } as StaffDef,
@@ -24,11 +24,11 @@ export const stateChanges = {
        voices:[
          {
            noteDirection: NoteDirection.Up,
-           content:  "c4 c4 c4 c4 c4 c4 c4 c4 c4 c4 \\key f \\major c4 c4 c'1 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8"
+           contentDef:  "c4 c4 c4 c4 c4 c4 c4 c4 c4 c4 \\key f \\major c4 c4 c'1 c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8"
          },
            {
            noteDirection: NoteDirection.Down,
-           content: "c,1 c,1 c,1 c,1 c,2. c,2."},
+           contentDef: "c,1 c,1 c,1 c,1 c,2. c,2."},
        ]
    } as StaffDef
    ]

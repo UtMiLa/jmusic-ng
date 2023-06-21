@@ -9,7 +9,7 @@ export const expressions = {
          voices:[
            {
              //noteDirection: NoteDirection.Up,
-             content:  "c'8\\staccato d'16\\staccatissimo e'16\\tenuto f'4\\prall\\fermata g'4\\trill c''8\\staccato d''16\\staccatissimo e''16\\tenuto f''4\\prall\\fermata g''4\\trill" //
+             contentDef:  "c'8\\staccato d'16\\staccatissimo e'16\\tenuto f'4\\prall\\fermata g'4\\trill c''8\\staccato d''16\\staccatissimo e''16\\tenuto f''4\\prall\\fermata g''4\\trill" //
            },
          ]
      } as StaffDef,

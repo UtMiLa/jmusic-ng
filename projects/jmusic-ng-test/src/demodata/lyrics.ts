@@ -9,7 +9,7 @@ export const lyrics = {
          voices:[
            {
              //noteDirection: NoteDirection.Up,
-             content: voiceSequenceToDef(new LyricsSequence(
+             contentDef: voiceSequenceToDef(new LyricsSequence(
               new SimpleSequence( "c'8 d'16 e'16 f'4 g'4 c''8 d''16 e''16 f''4 g''4"),
               'Hvad skal jeg si- ge, når jeg _ vand- rer?'
              ))
