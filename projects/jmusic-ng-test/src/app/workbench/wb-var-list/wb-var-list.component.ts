@@ -1,5 +1,7 @@
 import { JMusic, VariableDef } from 'jmusic-model/model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { VarDict } from 'jmusic-model/model';
+import { FlexibleItem, varDictToVarDefArray } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-wb-var-list',
@@ -9,6 +11,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class WbVarListComponent implements OnInit {
 
   constructor() { }
+
 
   @Input()
   model?: JMusic;
@@ -22,7 +25,7 @@ export class WbVarListComponent implements OnInit {
   }
 
   get variables(): VariableDef[] {
-    return (this.model?.vars as any).vars;
+    return varDictToVarDefArray((this.model?.vars as any).vars);
   }
 
 
