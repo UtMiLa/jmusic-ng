@@ -29,7 +29,7 @@ export class ClefDisplayComponent {
       case ClefType.C: this.phys.elements[5].glyph = 'clefs.C'; break;
       case ClefType.F: this.phys.elements[5].glyph = 'clefs.F'; break;
       case ClefType.G: this.phys.elements[5].glyph = 'clefs.G'; break;
-      case ClefType.G8: this.phys.elements[5].glyph = 'clefs.G'; break;
+      //case ClefType.G8: this.phys.elements[5].glyph = 'clefs.G'; break;
     }
   }
 
