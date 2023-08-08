@@ -44,12 +44,15 @@ export class WorkbenchComponent implements OnInit {
 
   model: EditableView = new JMusic(variablesAndFunctions, variablesAndFunctionsVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
   //model: JMusic = new JMusic(nestedVariables, nestedVariableVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
+  getModel(): EditableView {
+    return this.previewModel;
+  }
   previewModel: EditableView = this.model;
   insertionPoint = new InsertionPoint(this.model);
 
-  eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
+  eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // this gets initialised every time model changes
     execute: (command: Command) => {
-      command.execute(this.model as JMusic);
+      command.execute(this.getModel());
     }
   }, this.insertionPoint);
 
@@ -66,6 +69,13 @@ export class WorkbenchComponent implements OnInit {
       if (this.currentVar) {
         this.previewModel = this.model.getView(this.currentVar.id);
         this.insertionPoint = new InsertionPoint(this.previewModel);
+
+        this.eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), {
+          execute: (command: Command) => {
+            command.execute(this.previewModel);
+          }
+        }, this.insertionPoint);
+
         console.log('this.currentVar', this.currentVar, this.previewModel);
       }
     } else {

@@ -10,8 +10,6 @@ export const variablesAndFunctionsVars = {
 
 export const variablesAndFunctions = {
   content: [
-
-
     [
       [
         {variable: 'var1'},
