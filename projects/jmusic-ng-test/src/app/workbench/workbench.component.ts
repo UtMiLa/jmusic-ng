@@ -1,6 +1,6 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { JMusic, VariableDef, FlexibleItem } from 'jmusic-model/model';
+import { JMusic, VariableDef, FlexibleItem, EditableView } from 'jmusic-model/model';
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { MidiInService } from '../midi/midi-in.service';
 import { FinaleSmartEntry } from 'jmusic-model/entry/finale-entry';
@@ -42,16 +42,17 @@ export class WorkbenchComponent implements OnInit {
 
   }
 
-  //model: JMusic = new JMusic(variablesAndFunctions, variablesAndFunctionsVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
-  model: JMusic = new JMusic(nestedVariables, nestedVariableVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
+  model: EditableView = new JMusic(variablesAndFunctions, variablesAndFunctionsVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
+  //model: JMusic = new JMusic(nestedVariables, nestedVariableVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
+  previewModel: EditableView = this.model;
   insertionPoint = new InsertionPoint(this.model);
+
   eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
     execute: (command: Command) => {
-      command.execute(this.model);
+      command.execute(this.model as JMusic);
     }
   }, this.insertionPoint);
 
-  previewModel: JMusic = this.model;
 
   currentVar?: VariableDef;
 
@@ -62,10 +63,15 @@ export class WorkbenchComponent implements OnInit {
   setSelection(event: VariableDef) {
     if (event) {
       this.currentVar = event;
-      if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);// new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
+      if (this.currentVar) {
+        this.previewModel = this.model.getView(this.currentVar.id);
+        this.insertionPoint = new InsertionPoint(this.previewModel);
+        console.log('this.currentVar', this.currentVar, this.previewModel);
+      }
     } else {
       this.currentVar = undefined;
       this.previewModel = this.model;
+      this.insertionPoint = new InsertionPoint(this.model);
     }
   //console.log(this.currentVar);
   }

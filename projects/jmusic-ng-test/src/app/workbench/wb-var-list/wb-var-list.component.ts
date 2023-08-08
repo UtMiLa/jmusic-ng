@@ -1,4 +1,4 @@
-import { JMusic, VariableDef } from 'jmusic-model/model';
+import { JMusic, VariableDef, EditableView } from 'jmusic-model/model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { VarDict } from 'jmusic-model/model';
 import { FlexibleItem, varDictToVarDefArray } from 'jmusic-model/model';
@@ -14,7 +14,7 @@ export class WbVarListComponent implements OnInit {
 
 
   @Input()
-  model?: JMusic;
+  model?: EditableView;
 
   @Output()
   selected = new EventEmitter<VariableDef>;

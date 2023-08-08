@@ -1,4 +1,4 @@
-import { FlexibleItem, JMusic, VariableDef } from 'jmusic-model/model';
+import { FlexibleItem, JMusic, VariableDef, EditableView } from 'jmusic-model/model';
 import { Component, Input, OnInit } from '@angular/core';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { EventHandler } from 'jmusic-model/editor/event-handler';
@@ -15,12 +15,12 @@ export class WbPreviewComponent implements OnInit {
   @Input()
   eventHandler?: EventHandler;
 
-  private _model?: JMusic | undefined;
+  private _model?: EditableView | undefined;
   @Input()
-  public get model(): JMusic | undefined {
+  public get model(): EditableView | undefined {
     return this._model;
   }
-  public set model(value: JMusic | undefined) {
+  public set model(value: EditableView | undefined) {
     this._model = value;
     /*if (value)
       this.insertionPoint = new InsertionPoint(value);*/
