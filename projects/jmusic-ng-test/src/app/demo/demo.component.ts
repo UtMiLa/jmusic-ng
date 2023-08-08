@@ -24,6 +24,7 @@ import { MidiOutService } from '../midi/midi-out.service';
 import { FileIoService } from '../services/file-io.service';
 import { ScoreDef } from 'jmusic-model/model';
 import { ProjectDef } from 'jmusic-model/model';
+import { variablesAndFunctions, variablesAndFunctionsVars } from '../../demodata/variables-and-functions';
 
 @Component({
   selector: 'app-demo',
@@ -51,6 +52,7 @@ export class DemoComponent implements OnInit {
     ['State changes', stateChanges],
     ['Time model', meterModel],
     ['Tuplets', tuplets, tupletVars],
+    ['Variables', variablesAndFunctions, variablesAndFunctionsVars],
   ];
 
   currentVars?: VarDict;

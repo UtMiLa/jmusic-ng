@@ -8,6 +8,7 @@ import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
 import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 import { koral41 } from '../../demodata/koral41';
+import { variablesAndFunctions, variablesAndFunctionsVars } from '../../demodata/variables-and-functions';
 
 @Component({
   selector: 'app-workbench',
@@ -39,7 +40,7 @@ export class WorkbenchComponent implements OnInit {
 
   }
 
-  model: JMusic = /*new JMusic(koral41);/*/new JMusic(tuplets, tupletVars);
+  model: JMusic = new JMusic(variablesAndFunctions, variablesAndFunctionsVars); /*new JMusic(koral41);/*/ //new JMusic(tuplets, tupletVars);
   insertionPoint = new InsertionPoint(this.model);
   eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // todo: this should be initialised every time model changes
     execute: (command: Command) => {
