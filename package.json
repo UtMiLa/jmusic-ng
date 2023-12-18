@@ -24,10 +24,12 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nrwl/nest": "^15.9.2",
+    "@types/ramda": "^0.29.4",
     "@types/webmidi": "^2.0.7",
     "axios": "^1.0.0",
     "jmusic-lilypond": "file:../jmusic-lilypond/dist",
     "jmusic-model": "file:../jmusic-model/dist",
+    "ramda": "^0.29.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",
     "zone.js": "~0.11.4"
