@@ -1,6 +1,6 @@
 {
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "name": "jmusic-ng",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "projects/jmusic-ng/src",
   "prefix": "mus",
@@ -19,9 +19,7 @@
         }
       },
       "defaultConfiguration": "production",
-      "outputs": [
-        "{workspaceRoot}/dist/jmusic-ng"
-      ]
+      "outputs": ["{workspaceRoot}/dist/jmusic-ng"]
     },
     "test": {
       "executor": "@angular-devkit/build-angular:karma",
@@ -29,6 +27,41 @@
         "main": "projects/jmusic-ng/src/test.ts",
         "tsConfig": "projects/jmusic-ng/tsconfig.spec.json",
         "karmaConfig": "projects/jmusic-ng/karma.conf.js"
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "projects/jmusic-ng/.storybook",
+        "browserTarget": "jmusic-ng:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/jmusic-ng",
+        "configDir": "projects/jmusic-ng/.storybook",
+        "browserTarget": "jmusic-ng:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c projects/jmusic-ng/.storybook --url=http://localhost:4400"
       }
     }
   }
