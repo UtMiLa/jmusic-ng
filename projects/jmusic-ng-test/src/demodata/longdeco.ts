@@ -1,6 +1,6 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, JMusic } from 'jmusic-model/model';
-import { LongDecorationType } from 'jmusic-model/model/decorations/decoration-type';
+import { LongDecorationType } from 'jmusic-model/model';
 
 
 const longdeco = new JMusic({
