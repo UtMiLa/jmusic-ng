@@ -4,13 +4,15 @@ import { JMusic, VariableDef, FlexibleItem, EditableView } from 'jmusic-model/mo
 import { tuplets, tupletVars } from '../../demodata/tuplets';
 import { MidiInService } from '../midi/midi-in.service';
 import { FinaleSmartEntry } from 'jmusic-model/entry/finale-entry';
-import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
 import { Command } from 'jmusic-model/editor/commands';
 import { DialogsService } from 'projects/jmusic-ng/src/lib/dialogs.service';
 import { koral41 } from '../../demodata/koral41';
 import { variablesAndFunctions, variablesAndFunctionsVars } from '../../demodata/variables-and-functions';
 import { contrapunctus, contrapunctusVars } from '../../demodata/contrapunctus';
 import { nestedVariableVars, nestedVariables } from '../../demodata/nested-variables';
+import { TextCommandEngine } from 'jmusic-model/editor/text-command-engine';
+import { BaseCommandFactory } from 'jmusic-model/editor/command-factory';
+import { SelectionManager } from 'jmusic-model/selection/selection-types';
 
 @Component({
   selector: 'app-workbench',
@@ -49,6 +51,7 @@ export class WorkbenchComponent implements OnInit {
   }
   previewModel: EditableView = this.model;
   insertionPoint = new InsertionPoint(this.model);
+  selectionManager = new SelectionManager();
 
   eventHandler = new FinaleSmartEntry(new BaseCommandFactory(), { // this gets initialised every time model changes
     execute: (command: Command) => {
@@ -91,7 +94,18 @@ export class WorkbenchComponent implements OnInit {
 
     this.model.setVar(event.id, event.value);
     this.currentVar = (this.model.vars as any).vars.find((v: VariableDef) => v.id === event.id);
-    if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);//new JMusic({content: [[this.currentVar.value as FlexibleItem]]});
+    if (this.currentVar) this.previewModel = this.model.getView(this.currentVar.id);
+  }
+
+  get onCommand() {
+    return (command: string): string | undefined => {
+      //console.log('onCommand', command);
+      const cmd = TextCommandEngine.parse(command);
+      //console.log('onCommand cmd', cmd);
+      const answer = cmd.execute(this.previewModel, this.insertionPoint, this.selectionManager);
+      //console.log('onCommand answer', answer);
+      return answer?.toString();
+    };
   }
 
 }

@@ -6,6 +6,7 @@
   <div class="app-wb-editor">
     <app-wb-editor [model]="currentVar" [eventHandler]="eventHandler" (varChange)="varChanged($event)"></app-wb-editor>
 
+    <app-terminal [commandEntered]="onCommand"></app-terminal>
   </div>
   <div class="app-wb-preview">
     <app-wb-preview [model]="previewModel" [insertionPoint]="insertionPoint" [eventHandler]="eventHandler"></app-wb-preview>

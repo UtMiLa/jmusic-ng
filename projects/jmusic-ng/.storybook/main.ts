@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/angular';
+import '../src/lib/dialogs/Emmentaler-20.woff';
 
 const config: StorybookConfig = {
   stories: ['../**/*.stories.@(js|jsx|ts|tsx|mdx)'],

@@ -1,6 +1,6 @@
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { NoteType, NoteDirection, StaffDef, ClefType, Time, SimpleSequence, JMusic, CompositeSequence, GraceSequence, voiceSequenceToDef } from 'jmusic-model/model';
-import { LongDecorationType } from 'jmusic-model/model/decorations/decoration-type';
+
 
 
 export const grace = {

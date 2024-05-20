@@ -1,13 +1,12 @@
+import { KeyDisplayComponent } from './key-display.component';
 import type { Meta, StoryObj } from '@storybook/angular';
 
-import { KeySelectComponent } from './key-select.component';
-
-const meta: Meta<KeySelectComponent> = {
-  component: KeySelectComponent,
+const meta: Meta<KeyDisplayComponent> = {
+  component: KeyDisplayComponent,
 };
 
 export default meta;
-type Story = StoryObj<KeySelectComponent>;
+type Story = StoryObj<KeyDisplayComponent>;
 
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
@@ -17,7 +16,7 @@ type Story = StoryObj<KeySelectComponent>;
 export const Primary: Story = {
   render: () => ({
     props: {
-      selected: {accidental: 1, count: 5}
+      keyDef: {accidental: 1, count: 5}
     },
   }),
 };

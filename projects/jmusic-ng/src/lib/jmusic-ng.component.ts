@@ -8,6 +8,7 @@ import { generateMeasureMap, findSystemSplits, Metrics, PhysicalModel, StandardM
 import { Cursor } from 'jmusic-model/physical-view/physical/cursor';
 import { scoreModelToViewModel, ScoreViewModel, SubsetDef } from 'jmusic-model/logical-view';
 import { PhysicalElementBase } from 'jmusic-model/physical-view';
+import { Some, none } from 'fp-ts/Option'
 
 //console.log(Component, scoreModelToViewModel, viewModelToPhysical, StandardMetrics);
 @Component({
@@ -90,7 +91,7 @@ export class JmusicNgComponent implements OnInit {
         staff: this.insertionPoint?.staffNo,
         position: this.insertionPoint?.position
       } as Cursor;
-      let logicalModel = scoreModelToViewModel(this._scoreDef, this.restrictions);
+      let logicalModel = scoreModelToViewModel(this._scoreDef, none, this.restrictions);
       this.logicalModel = logicalModel;
       let map = generateMeasureMap(this.logicalModel, this.settings);
 
@@ -101,7 +102,7 @@ export class JmusicNgComponent implements OnInit {
       const physicalModel = [];
       for(let i = 0; i < splits.length; i++) {
         const restriction = { startTime: splits[i], endTime: i === splits.length - 1 ? this.restrictions.endTime : splits[i+1] };
-        logicalModel = scoreModelToViewModel(this._scoreDef, restriction);
+        logicalModel = scoreModelToViewModel(this._scoreDef, none, restriction);
 
         const phv = viewModelToPhysical(logicalModel, this.settings as Metrics, cursor);
 
@@ -126,7 +127,7 @@ export class JmusicNgComponent implements OnInit {
 
     if (!this._scoreDef) return;
     const restrictions = { startTime: this.splits[i], endTime: i === this.splits.length - 1 ? this.restrictions.endTime : this.splits[i+1] };
-    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, restrictions)
+    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, none, restrictions)
 
     const map = generateMeasureMap(restrictedLogicalModel, this.settings);
 
@@ -160,7 +161,7 @@ export class JmusicNgComponent implements OnInit {
 
     if (!this._scoreDef) return;
     const restrictions = { startTime: this.splits[i], endTime: i === this.splits.length - 1 ? this.restrictions.endTime : this.splits[i+1] };
-    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, restrictions)
+    const restrictedLogicalModel = scoreModelToViewModel(this._scoreDef, none, restrictions)
 
     const map = generateMeasureMap(restrictedLogicalModel, this.settings);
     //console.log(map);

@@ -1,6 +1,7 @@
 import { EventHandler } from 'jmusic-model/editor/event-handler';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FlexibleSequence, VariableDef, FlexibleItem } from 'jmusic-model/model';
+import { FlexibleSequence, VariableDef, FlexibleItem, SequenceDef } from 'jmusic-model/model';
+import { TextCommandEngine } from 'jmusic-model/editor/text-command-engine';
 
 @Component({
   selector: 'app-wb-editor',
@@ -55,7 +56,7 @@ export class WbEditorComponent implements OnInit {
       const test = new FlexibleSequence(obj);
       //this.model = {id: this.model?.id as string, value: obj};
 
-      this.varChange.emit({id: this.model?.id as string, value: obj});
+      this.varChange.emit({id: this.model?.id as string, value: obj as SequenceDef});//todo: check this
     } catch (_) {
       console.log(_);
     }
