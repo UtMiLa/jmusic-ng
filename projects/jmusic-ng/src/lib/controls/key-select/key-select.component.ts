@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { KeyDef } from 'jmusic-model/model';
+import { DiatonicKeyDef } from 'jmusic-model/model';
 
 @Component({
   selector: 'mus-key-select',
@@ -7,7 +7,7 @@ import { KeyDef } from 'jmusic-model/model';
   styleUrls: ['./key-select.component.scss'],
 })
 export class KeySelectComponent {
-  keys: KeyDef[] = [
+  keys: DiatonicKeyDef[] = [
     {accidental: 0, count: 0},
     {accidental: 1, count: 1},
     {accidental: 1, count: 2},
@@ -27,10 +27,10 @@ export class KeySelectComponent {
 
 
   @Input()
-  selected: KeyDef = this.keys[0];
+  selected: DiatonicKeyDef = this.keys[0];
 
   @Output()
-  selectedChange = new EventEmitter<KeyDef>();
+  selectedChange = new EventEmitter<DiatonicKeyDef>();
 
   ngOnInit(): void {
   }

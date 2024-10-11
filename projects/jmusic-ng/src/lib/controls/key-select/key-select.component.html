@@ -1,4 +1,4 @@
 <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selected" (change)="selChange()">
-  <mat-button-toggle *ngFor="let key of keys" [value]="key">{{key|json}}<mus-key-display [keyDef]="key"></mus-key-display></mat-button-toggle>
+  <mat-button-toggle *ngFor="let key of keys" [value]="key"><mus-key-display [keyDef]="key"></mus-key-display></mat-button-toggle>
 </mat-button-toggle-group>
 

@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { ControlsModule } from '../../controls/controls.module';
-import { KeyDef } from 'jmusic-model/model';
+import { DiatonicKeyDef } from 'jmusic-model/model';
 
 @Component({
   selector: 'app-key-dialog',
@@ -12,7 +12,7 @@ import { KeyDef } from 'jmusic-model/model';
 })
 export class KeyDialogComponent {
   constructor(public dialogRef: MatDialogRef<KeyDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public keyDef: KeyDef) { }
+    @Inject(MAT_DIALOG_DATA) public keyDef: DiatonicKeyDef) { }
 
   ngOnInit() {
   }

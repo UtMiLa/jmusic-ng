@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { keyToView } from 'jmusic-model/logical-view';
-import { Clef, Key, KeyDef } from 'jmusic-model/model';
+import { Clef, Key, DiatonicKeyDef } from 'jmusic-model/model';
 
 @Component({
   selector: 'mus-key-display',
@@ -9,12 +9,12 @@ import { Clef, Key, KeyDef } from 'jmusic-model/model';
 })
 export class KeyDisplayComponent {
 
-  private _keyDef: KeyDef = { accidental: 1, count: 1 };
+  private _keyDef: DiatonicKeyDef = { accidental: 1, count: 1 };
   @Input()
-  public get keyDef(): KeyDef {
+  public get keyDef(): DiatonicKeyDef {
     return this._keyDef;
   }
-  public set keyDef(value: KeyDef) {
+  public set keyDef(value: DiatonicKeyDef) {
     this._keyDef = value;
     this.setPhys();
 
@@ -76,7 +76,7 @@ export class KeyDisplayComponent {
 
 
   private setPhys() {
-    const key = new Key(this._keyDef);
+    const key = Key.create(this._keyDef);
     const clef = Clef.clefTreble;
     const keyView = keyToView(key, clef);
     this.phys = { elements: [] };

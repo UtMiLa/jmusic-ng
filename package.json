@@ -30,7 +30,7 @@
     "axios": "^1.0.0",
     "fp-ts": "^2.16.5",
     "jmusic-lilypond": "file:../jmusic-lilypond/dist",
-    "jmusic-model": "file:../jmusic-model/dist",
+    "jmusic-model": "^0.0.18",
     "ramda": "^0.29.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.5.0",

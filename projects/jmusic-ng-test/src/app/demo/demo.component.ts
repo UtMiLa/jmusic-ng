@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 //import { NoteType, ClefType, NoteDirection, SimpleSequence, TupletSequence, Rational, RetrogradeSequence, CompositeSequence, JMusic, Score } from 'jmusic-model/model';
 //import { ClefType } from 'jmusic-model/src/model/states/clef';
 
-import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, Score, StaffDef, ClefType, Rational, VarDict, Time, AbsoluteTime, JMusic, JMusicSettings, isNote, getDuration } from 'jmusic-model/model';
+import { NoteType,  NoteDirection, SimpleSequence, TupletSequence, RetrogradeSequence, CompositeSequence, Score, StaffDef, ClefType, Rational, Time, AbsoluteTime, JMusic, JMusicSettings, isNote, getDuration, VarDictDef } from 'jmusic-model/model';
 import { InsertionPoint } from 'jmusic-model/editor/insertion-point';
 import { MidiPerformer } from 'jmusic-model/midi';
 import { accidentalTest } from '../../demodata/accidentalDisplacement';
@@ -39,7 +39,7 @@ export class DemoComponent implements OnInit {
     this.fileIo.listFiles().subscribe(res => this.files = ['', ...res]);
   }
 
-  demos: [string, JMusicSettings | ScoreDef | ProjectDef, VarDict?][] = [
+  demos: [string, JMusicSettings | ScoreDef | ProjectDef, VarDictDef?][] = [
     ['Accidentals', accidentalTest],
     ['Beaming model', beamModel],
     ['Contrapunctus', contrapunctus, contrapunctusVars],
@@ -55,7 +55,7 @@ export class DemoComponent implements OnInit {
     ['Variables', variablesAndFunctions, variablesAndFunctionsVars],
   ];
 
-  currentVars?: VarDict;
+  currentVars?: VarDictDef;
 
   setVal(ev: any) {
     console.log(ev, ev.target.value);

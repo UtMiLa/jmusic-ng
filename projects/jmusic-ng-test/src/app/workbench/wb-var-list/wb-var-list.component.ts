@@ -1,6 +1,6 @@
 import { JMusic, VariableDef, EditableView } from 'jmusic-model/model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { VarDict } from 'jmusic-model/model';
+
 import { FlexibleItem, varDictToVarDefArray } from 'jmusic-model/model';
 
 @Component({
